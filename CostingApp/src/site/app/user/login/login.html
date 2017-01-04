@@ -1,0 +1,20 @@
+
+
+<div class="wrapper">
+    <form class="form-signin">       
+        <h2 class="form-signin-heading text-center">
+            <img src="./img/maslogo.PNG" alt=""/><br>
+            <img src="./img/pink.PNG" alt=""/>
+        </h2><br><br>
+        <p class="login-box-msg text-center">Log in to start your session</p>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="user name" ng-model="name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div><br>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" ng-model="password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div><br>
+        <button class="btn btn-sm btn-primary btn-block btn-flat" type="submit" ng-click="login(name)">Login</button>   
+    </form>
+</div>

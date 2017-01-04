@@ -1,0 +1,139 @@
+
+.view.ng-enter{
+    animation: fadeIn 1s;
+}
+
+#imgPanel:hover{
+    /*background-color: papayawhip;*/
+    background-color: #ffcccc;
+    opacity: 0.5;
+    /*border: 1px solid #cccc00;*/
+}
+
+.mygrid-wrapper-div{
+    white-space: nowrap;
+    overflow-x: visible;
+    overflow-y: hidden;
+    border: 1px solid #cccccc; 
+}
+.table{
+    margin-bottom: 0px !important;
+}
+
+.my-part{
+    width: 20% !important;
+}
+.category{
+    width: 100%;
+    height: auto;
+    /*border: 1px solid #cccccc;*/
+    margin-top: 25px;
+}
+.tier{
+    width: 100%;
+    height: auto;
+    border: 1px solid #cccccc;
+    margin-top: 10px;
+}
+.title{
+    background-color: #cccccc;
+    height: 15px;
+    font-size: 12px;
+    padding-left: 5px;
+}
+#txt{
+    margin-top: 20px;
+    font-size: 20px;
+}
+#input{
+    width: 90%;
+}
+.form-group {
+    margin-bottom: 0px !important;
+}
+#default-price{
+    margin-top: 91px;
+}
+#range-bar{
+    margin-top: 100px;
+}
+#smv-cor{
+    margin-top: 34px;
+}
+#smv-total{
+    margin-top: 35px;
+    margin-bottom: 45px;
+}
+#smv-top{
+    margin-top: 90px;
+}
+#top{
+    margin-top: 10px;
+}
+#trim-range{
+    margin-top: 150px;
+    margin-bottom: 45px;
+}
+#skip-btn{
+    margin-top: 30px;
+    margin-bottom: 45px;
+}
+#top-img{
+    width: 40px;
+    height: 40px;
+}
+
+
+
+/* Bordered form */
+/*form {
+    border: 3px solid #f1f1f1;
+}*/
+
+.login-text{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+/* Set a style for all buttons */
+#login-btn{
+    /*background-color: #4CAF50;*/
+    color: white;
+    padding: 8px 20px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary.active, .btn-primary:active, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
+    color: #000 !important;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 0px 0 14px 0;
+}
+
+
+/* Add padding to containers */
+#login-form{
+    padding: 16px;
+    margin-top: 65px;
+}
+
+/*footer*/
+.footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%; 
+    height: 40px;
+    background-color: #636161;
+    z-index: 3;
+}

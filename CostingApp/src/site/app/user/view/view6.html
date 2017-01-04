@@ -1,0 +1,113 @@
+<div class="container-fluid" id="top">
+    <div class="row">
+        <div class="col-xs-5">              
+            <img class="pull-left" src="./img/maslogosmall.PNG">     
+        </div>
+        <div class="col-xs-4">
+            <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
+        </div>
+        <div class="col-xs-3">
+            <img class="pull-right" src="./img/pinksmall.PNG">
+            <h6 class="pull-right">Bottoms</h6>
+        </div>
+    </div>
+
+    <!--stepper-->
+    <div class="row">
+        <div class="container">
+            <div class="bs-wizard" style="border-bottom:0;">
+                <div class="col-xs-3 my-part bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum">Fabric Cost</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum">Trim Cost</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step active">
+                    <div class="text-center bs-wizard-stepnum">Emd Cost</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                    <div class="text-center bs-wizard-stepnum">CM Cost</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                    <div class="text-center bs-wizard-stepnum">FOB</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+    <!--category-->
+    <div class="text-center"><label>Embellishment Cost Trim making cost</label>
+    </div>
+    <div class="category col-xs-12">
+        <div class="row mygrid-wrapper-div">
+            <table class="table">  
+                <tbody>
+                    <tr>
+                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment1.PNG" /><h6 class="text-center" ng-model="embllishment1">${{embllishment1}}</h6></div></td>   
+                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment2.PNG" /><h6 class="text-center" ng-model="embllishment2">${{embllishment2}}</h6></div></td>   
+                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment3.PNG" /><h6 class="text-center" ng-model="embllishment3">${{embllishment3}}</h6></div></td>   
+                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment1.PNG" /><h6 class="text-center" ng-model="embllishment4">${{embllishment4}}</h6></div></td>   
+                    </tr>   
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" id="cmd-cost">
+        <div class="col-xs-6">
+            <h6 class="text-center">cost :</h6>
+            <div class="form-group">
+                <div class="input-group"> 
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="embCostDecrement()">-</span>
+                    <input type="text" class="form-control input-sm text-center" ng-model="embCost">
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="embCostIncrement()">+</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h6 class="text-center">qty :</h6>
+            <div class="form-group">
+                <div class="input-group"> 
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="qtyDecrement()">-</span>
+                    <input type="text" class="form-control input-sm text-center" ng-model="qty">
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="qtyIncrement()">+</span>
+                </div>
+            </div>
+            <!--<input type="text" class="form-control input-sm text-center" ng-model="qty" ng-change="calculateEmd()">-->
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <h6 class="text-center">Total :</h6>
+        <input type="text" class="form-control input-sm text-center" ng-model="emdTotal">
+    </div>
+
+    <a class="btn btn-default btn-xs pull-right btn-flat" id="skip-btn" href="#/view-7" ng-click="skip()">Skip if not applicable 
+        <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
+</div>
+
+<!--footer-->
+<footer class="footer">
+    <div class="container-fluid" style="margin-top: 8px">
+        <a class="btn btn-default btn-xs btn-flat" href="#/view-5">
+            <span class="glyphicon glyphicon-arrow-left"></span> BACK
+        </a>
+        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/view-7">NEXT
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+    </div>
+</footer>

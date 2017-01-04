@@ -1,0 +1,35 @@
+<div class="container-fluid" id="top">
+    <div class="row">
+        <div class="col-xs-6">              
+            <img class="pull-left" src="./img/maslogosmall.PNG">     
+        </div>
+        <div class="col-xs-6">
+            <img class="pull-right" src="./img/pinksmall.PNG">
+        </div>
+    </div><br>
+    <div class="container-fluid">
+        <label>Style No :</label>
+        <input type="text" class="form-control input-sm text-center"><br>
+
+
+        <label>Image :</label>
+        <form>
+            <input type='file' onchange="angular.element(this).scope().imageSelected(this)"/>
+        </form><br>
+        <div style="width: 100%; height: 180px; border: 1px solid #333333">
+            <img id="img-save" src="./img/placeholder.png" alt="your image" style="width: 100%; height:100%" />
+        </div><br>
+
+        <button class="btn btn-default col-xs-5 pull-left btn-flat">Share</button>
+        <button class="btn btn-primary col-xs-5 pull-right btn-flat">Save</button>
+    </div><br>
+</div>
+
+<!--footer-->
+<footer class="footer">
+    <div class="container-fluid" style="margin-top: 8px">
+        <a class="btn btn-default btn-xs pull-right btn-flat" href="#/view-1">
+            <span class="glyphicon glyphicon-arrow-right"></span> Menu
+        </a>
+    </div>
+</footer>

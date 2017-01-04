@@ -1,0 +1,117 @@
+<div class="container-fluid" id="top">
+    <div class="row">
+        <div class="col-xs-5">              
+            <img class="pull-left" src="./img/maslogosmall.PNG">     
+        </div>
+        <div class="col-xs-4">
+            <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
+        </div>
+        <div class="col-xs-3">
+            <img class="pull-right" src="./img/pinksmall.PNG">
+            <h6 class="pull-right">Bottoms</h6>
+        </div>
+    </div>
+
+    <!--initial cost summary-->
+    <div class="text-center"><label>Initial Cost Summary</label></div>
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>           
+                    <th></th>
+                    <th>Solid</th>
+                    <th>Print</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fabric Cost</td>
+                    <td>${{fabSolid}}</td>
+                    <td>${{fabPrint}}</td>
+                </tr>
+                <tr>
+                    <td>Trim Cost</td>
+                    <td>${{trimCost}}</td>
+                    <td>${{trimCost}}</td>
+                </tr>
+                <tr>
+                    <td>TEmb Cost</td>
+                    <td>${{embCost}}</td>
+                    <td>${{embCost}}</td>
+                </tr>
+                <tr>
+                    <td>TCM Cost</td>
+                    <td>${{cmCost}}</td>
+                    <td>${{cmCost}}</td>
+                </tr>
+                <tr>
+                    <td>Packing Cost</td>
+                    <td>${{packingCostSolid}}</td>
+                    <td>${{packingCostPrint}}</td>
+                </tr>
+                <tr>
+                    <td>Initial FOB</td>
+                    <td>${{calculateInitialFobSolid()}}</td>
+                    <td>${{calculateInitialFobPrint()}}</td>
+                </tr>
+                <tr>
+                    <td>Retail Price</td>
+                    <td>${{retailPriceSolid}}</td>
+                    <td>${{retailPricePrint}}</td>
+                </tr>
+                 <tr>
+                    <td><label>Sea IMU%</label></td>
+                    <td>86%</td>
+                    <td>83%</td>
+                </tr>
+                <tr>
+                    <td><label>Air IMU %</label></td>
+                    <td>85%</td>
+                    <td>82%</td>
+                </tr>
+            </tbody>
+        </table>
+
+<!--        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Initial FOB</td>
+                    <td>${{calculateInitialFobSolid()}}</td>
+                    <td>${{calculateInitialFobPrint()}}</td>
+                </tr>
+                <tr>
+                    <td>Retail Price</td>
+                    <td>${{retailPriceSolid}}</td>
+                    <td>${{retailPricePrint}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><label>Sea IMU%</label></td>
+                    <td>86%</td>
+                    <td>83%</td>
+                </tr>
+                <tr>
+                    <td><label>Air IMU %</label></td>
+                    <td>85%</td>
+                    <td>82%</td>
+                </tr>
+            </tbody>
+        </table>-->
+    </div>
+</div>
+
+<!--footer-->
+<footer class="footer">
+    <div class="container-fluid" style="margin-top: 8px">
+        <a class="btn btn-default btn-xs btn-flat" href="#/view-10">
+            <span class="glyphicon glyphicon-arrow-left"></span> BACK
+        </a>
+        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/view-12">FINISH
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+    </div>
+</footer>
