@@ -15,7 +15,8 @@
         "bootstrap": "3.3.7",
         "animate.css": "3.5.2",
         "angular-ui-notification": "latest",
-        "chart.js": "npm:chart.js#2.2.2"
+        "chart.js": "npm:chart.js#2.2.2",
+        "ngCordova": "~0.1.9-alpha"
     },
-    "devDependencies": {}  
+    "devDependencies": {}
 }

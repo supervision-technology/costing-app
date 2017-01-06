@@ -8,6 +8,25 @@
         $scope.embllishment3 = 0.25;
         $scope.embllishment4 = 0.60;
 
+        //---------------------model----------------------
+        $scope.newTempData = function () {
+            var tempData = {
+                "indexNo": null,
+                "chequeNo": null,
+                "bankDate": null,
+                "amount": null
+            };
+
+            return tempData;
+        };
+
+        //----------------http funtions--------------------
+        $scope.saveStyle = function () {
+
+        };
+
+
+
         //main menu list
 //        $scope.categorys = [];
 //
@@ -28,6 +47,7 @@
 //                    $scope.styles = data.styles;
 //                    console.log(data.styles);
 //                });
+
 
 
 
@@ -247,9 +267,9 @@
             $scope.emdTotal = Math.round($scope.emdTotal * 100) / 100;
             $rootScope.emdTotal = $scope.emdTotal;
         };
-        
-        $scope.skip = function (){
-             $rootScope.emdTotal=0;
+
+        $scope.skip = function () {
+            $rootScope.emdTotal = 0;
         };
 
 
@@ -374,19 +394,88 @@
 
 
         //view-12 funtiions
-        $scope.imageSelected = function (input) {
-            if (input.files) {
-                var reader = new FileReader();
+//        $scope.imageSelected = function (input) {
+//            if (input.files) {
+//                var reader = new FileReader();
+//
+//                reader.onload = function (e) {
+//                    angular.element(document.querySelector('#img-save'))
+//                            .attr('src', e.target.result);
+//                };
+//
+//                reader.readAsDataURL(input.files[0]);
+//            }
+//        };
+        //the image
+        $scope.uploadme;
 
-                reader.onload = function (e) {
-                    angular.element(document.querySelector('#img-save'))
-                            .attr('src', e.target.result);
-                };
+        $scope.uploadImage = function () {
+            var fd = new FormData();
+            var imgBlob = dataURItoBlob($scope.uploadme);
+            fd.append('file', imgBlob);
+//            console.log(imgBlob);
 
-                reader.readAsDataURL(input.files[0]);
-            }
+//            var obj = {
+//                file: imgBlob
+//            };
+//            var newObj = JSON.stringify(imgBlob);
+//            console.log(newObj);
+
+            var url = systemConfig.apiUrl + "/upload-file";
+
+            $http.post(
+                    url,
+                    fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': 'undefined'}
+                    }
+            )
+                    .success(function (response) {
+                        console.log('successss', response);
+                    })
+                    .error(function (response) {
+                        console.log('error', response);
+                    });
         };
+
+
+        //you need this function to convert the dataURI
+        function dataURItoBlob(dataURI) {
+            var binary = atob(dataURI.split(',')[1]);
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            var array = [];
+            for (var i = 0; i < binary.length; i++) {
+                array.push(binary.charCodeAt(i));
+            }
+            return new Blob([new Uint8Array(array)], {
+                type: mimeString
+            });
+        }
+
     };
+
+    //your directive
+    angular.module("viewModule")
+            .directive("fileread", [
+                function () {
+                    return {
+                        scope: {
+                            fileread: "="
+                        },
+                        link: function (scope, element, attributes) {
+                            element.bind("change", function (changeEvent) {
+                                var reader = new FileReader();
+                                reader.onload = function (loadEvent) {
+                                    scope.$apply(function () {
+                                        scope.fileread = loadEvent.target.result;
+                                    });
+                                },
+                                        reader.readAsDataURL(changeEvent.target.files[0]);
+                            });
+                        }
+                    };
+                }
+            ]);
 
     angular.module("viewModule")
             .controller("viewController", viewController);
