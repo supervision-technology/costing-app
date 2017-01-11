@@ -58,7 +58,7 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><div class="col-lg-4"><img src="./img/1.PNG"/></div></td>
+                        <td><div class="col-lg-4"><img src="./img/{{selectPicture}}.PNG"/></div></td>
                     </tr>   
                 </tbody>
             </table>
@@ -75,7 +75,7 @@
                 <h6>Solid Price/yd</h6>
                 <div class="input-group">                                           
                     <span class="btn btn-primary input-group-addon"  ng-click="solidDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="solid"> 
+                    <input type="text" class="form-control input-sm text-center" ng-model="solidPrice"> 
                     <span class="btn btn-primary input-group-addon" ng-click="solidIncrement()">+</span>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                 <div class="form-group">
                     <div class="input-group">                                           
                         <span class="btn btn-primary input-group-addon"  ng-click="printDecrement()">-</span>
-                        <input type="text" class="form-control input-sm text-center" ng-model="print">
+                        <input type="text" class="form-control input-sm text-center" ng-model="printPrice">
                         <span class="btn btn-primary input-group-addon" ng-click="printIncrement()">+</span>
                     </div>
                 </div>

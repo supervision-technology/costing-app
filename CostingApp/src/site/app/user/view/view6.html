@@ -57,10 +57,11 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment1.PNG" /><h6 class="text-center" ng-model="embllishment1">${{embllishment1}}</h6></div></td>   
-                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment2.PNG" /><h6 class="text-center" ng-model="embllishment2">${{embllishment2}}</h6></div></td>   
-                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment3.PNG" /><h6 class="text-center" ng-model="embllishment3">${{embllishment3}}</h6></div></td>   
-                        <td><div class="col-lg-4" id="imgPanel" ng-click="clickEmbellishment1()"><img src="./img/embellishment1.PNG" /><h6 class="text-center" ng-model="embllishment4">${{embllishment4}}</h6></div></td>   
+                        <td  ng-repeat="embllishment in embllishments">
+                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src=".\img\{{style.picture}}.PNG" />
+                                <h6 class="text-center">${{embllishment.price}}</h6>
+                            </div>
+                        </td>   
                     </tr>   
                 </tbody>
             </table>

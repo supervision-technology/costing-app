@@ -3,6 +3,14 @@
     animation: fadeIn 1s;
 }
 
+/*#imgPanel{
+    padding-bottom: 10px;
+}*/
+
+.img-circle {
+    border-radius: 50%;
+}
+
 #imgPanel:hover{
     /*background-color: papayawhip;*/
     background-color: #ffcccc;

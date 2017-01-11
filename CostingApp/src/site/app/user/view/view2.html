@@ -55,27 +55,17 @@
         <div class="title row">
             <label>Tier 1</label>
         </div>
-        <!--<div ng-repeat="style in styles">-->
-        <!--<a href="#/view-3">-->
-        <!--                <div class="col-xs-4" id="imgPanel" ng-click="setFabricCost(style.fabricCost.indexNo)"><img src="{{style.picture}}"/>
-                        </div></a>-->
-        <!--<a href="#/view-3"><div class="col-xs-4" id="imgPanel"><img src="{{style.picture}}"/><h6>2.25</h6></div></a>-->
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
+                        <td ng-repeat="style in styles|filter: {'tier':'1'}">
+                            <a href="#/view-3"><div class="col-lg-4" id="imgPanel" ng-click="getfabricCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>
+                        </td>
                     </tr>   
                 </tbody>
             </table>
         </div>
-
-
     </div>
     <div class="category col-xs-12" >
         <div class="title row">
@@ -85,11 +75,9 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
+                        <td ng-repeat="style in styles|filter: {'tier':'2'}">
+                            <a href="#/view-3"><div class="col-lg-4" id="imgPanel" ng-click="getfabricCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>
+                        </td>
                     </tr>   
                 </tbody>
             </table>
@@ -103,9 +91,9 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/3.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/3.PNG"/></div></a></td>
-                        <td><a href="#/view-3"><div class="col-lg-4" id="imgPanel"><img src="./img/3.PNG"/></div></a></td>
+                        <td ng-repeat="style in styles|filter: {'tier':'3'}">
+                            <a href="#/view-3"><div class="col-lg-4" id="imgPanel" ng-click="getfabricCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>
+                        </td>
                     </tr>   
                 </tbody>
             </table>

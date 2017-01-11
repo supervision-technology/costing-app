@@ -59,12 +59,9 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/1.PNG"/></div></a></td>
+                        <td ng-repeat="style in styles|filter: {'tier':'1'}">
+                            <a href="#/view-8"><div class="col-lg-4" id="imgPanel" ng-click="getCMCostDetails(style)"><img src=".\img\{{style.picture}}.PNG"/></div></a>
+                        </td>
                     </tr>   
                 </tbody>
             </table>
@@ -72,18 +69,15 @@
     </div>
     <div class="category col-xs-12">
         <div class="title row">
-            <label>Tier 2</label>
+            <label>Tier 1</label>
         </div>
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/2.PNG"/></div></a></td>
+                        <td ng-repeat="style in styles|filter: {'tier':'2'}">
+                            <a href="#/view-8"><div class="col-lg-4" id="imgPanel" ng-click="getCMCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>
+                        </td>
                     </tr>   
                 </tbody>
             </table>
@@ -91,21 +85,20 @@
     </div>
     <div class="category col-xs-12">
         <div class="title row">
-            <label>Tier 2</label>
+            <label>Tier 1</label>
         </div>
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/3.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/3.PNG"/></div></a></td>
-                        <td><a href="#/view-8"><div class="col-lg-4" id="imgPanel"><img src="./img/3.PNG"/></div></a></td>
+                        <td ng-repeat="style in styles|filter: {'tier':'3'}">
+                            <a href="#/view-8"><div class="col-lg-4" id="imgPanel" ng-click="getCMCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>
+                        </td>
                     </tr>   
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
 
 <!--footer-->

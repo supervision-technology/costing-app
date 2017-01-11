@@ -1,9 +1,7 @@
-package com.mac.masapp.app.style.model;
+package com.mac.costingapp.app.style.model;
 
-import com.mac.masapp.app.cm.model.CmCost;
-import com.mac.masapp.app.fabric.model.FabricCost;
-import com.mac.masapp.app.tier.model.Tier;
-import com.mac.masapp.app.trim.model.TrimCost;
+import com.mac.costingapp.app.emblishment.model.Emblishment;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,30 +17,124 @@ import javax.persistence.Table;
  *
  * @author Nidura Prageeth
  */
-@Entity(name = "com.mac.masapp.app.style.model.Style")
+@Entity()
 @Table(name = "style")
-public class Style {
+public class Style implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer indexNo;
+
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "embellishment_cost")
+    private Emblishment emblishment;
+
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "style_no")
     private String styleNo;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "tier")
-    private Tier tier;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "fabric_cost")
-    private FabricCost fabricCost;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "cm_cost")
-    private CmCost cmCost;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "trim_cost")
-    private TrimCost trimCost;
+
+    @Column(name = "picture")
     private String picture;
 
+    @Column(name = "tier")
+    private int tier;
+
+    @Column(name = "solid_price")
+    private double solidPrice;
+
+    @Column(name = "solid_consumption")
+    private double solidConsumption;
+
+    @Column(name = "print_price")
+    private double printPrice;
+
+    @Column(name = "print_consumption")
+    private double printConsumption;
+
+    @Column(name = "trim_cost")
+    private double trimCost;
+
+    @Column(name = "smv")
+    private double smv;
+
+    @Column(name = "cor")
+    private double cor;
+
     public Style() {
+    }
+
+    public Style(Integer indexNo, Emblishment emblishment, String category, String styleNo, String picture, int tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor) {
+        this.indexNo = indexNo;
+        this.emblishment = emblishment;
+        this.category = category;
+        this.styleNo = styleNo;
+        this.picture = picture;
+        this.tier = tier;
+        this.solidPrice = solidPrice;
+        this.solidConsumption = solidConsumption;
+        this.printPrice = printPrice;
+        this.printConsumption = printConsumption;
+        this.trimCost = trimCost;
+        this.smv = smv;
+        this.cor = cor;
+    }
+
+    public double getSolidPrice() {
+        return solidPrice;
+    }
+
+    public void setSolidPrice(double solidPrice) {
+        this.solidPrice = solidPrice;
+    }
+
+    public double getSolidConsumption() {
+        return solidConsumption;
+    }
+
+    public void setSolidConsumption(double solidConsumption) {
+        this.solidConsumption = solidConsumption;
+    }
+
+    public double getPrintPrice() {
+        return printPrice;
+    }
+
+    public void setPrintPrice(double printPrice) {
+        this.printPrice = printPrice;
+    }
+
+    public double getPrintConsumption() {
+        return printConsumption;
+    }
+
+    public void setPrintConsumption(double printConsumption) {
+        this.printConsumption = printConsumption;
+    }
+
+    public double getTrimCost() {
+        return trimCost;
+    }
+
+    public void setTrimCost(double trimCost) {
+        this.trimCost = trimCost;
+    }
+
+    public double getSmv() {
+        return smv;
+    }
+
+    public void setSmv(double smv) {
+        this.smv = smv;
+    }
+
+    public double getCor() {
+        return cor;
+    }
+
+    public void setCor(double cor) {
+        this.cor = cor;
     }
 
     public Integer getIndexNo() {
@@ -53,44 +145,28 @@ public class Style {
         this.indexNo = indexNo;
     }
 
+    public Emblishment getEmblishment() {
+        return emblishment;
+    }
+
+    public void setEmblishment(Emblishment emblishment) {
+        this.emblishment = emblishment;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getStyleNo() {
         return styleNo;
     }
 
     public void setStyleNo(String styleNo) {
         this.styleNo = styleNo;
-    }
-
-    public Tier getTier() {
-        return tier;
-    }
-
-    public void setTier(Tier tier) {
-        this.tier = tier;
-    }
-
-    public FabricCost getFabricCost() {
-        return fabricCost;
-    }
-
-    public void setFabricCost(FabricCost fabricCost) {
-        this.fabricCost = fabricCost;
-    }
-
-    public CmCost getCmCost() {
-        return cmCost;
-    }
-
-    public void setCmCost(CmCost cmCost) {
-        this.cmCost = cmCost;
-    }
-
-    public TrimCost getTrimCost() {
-        return trimCost;
-    }
-
-    public void setTrimCost(TrimCost trimCost) {
-        this.trimCost = trimCost;
     }
 
     public String getPicture() {
@@ -100,8 +176,13 @@ public class Style {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-    
-    
-    
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
+    }
 
 }
