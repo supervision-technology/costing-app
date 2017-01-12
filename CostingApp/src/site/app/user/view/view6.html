@@ -58,7 +58,7 @@
                 <tbody>
                     <tr>
                         <td  ng-repeat="embllishment in embllishments">
-                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src=".\img\{{style.picture}}.PNG" />
+                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src="{{embllishment.picture}}" />
                                 <h6 class="text-center">${{embllishment.price}}</h6>
                             </div>
                         </td>   
