@@ -31,26 +31,26 @@ public class Emblishment implements Serializable {
 
     @Column(name = "price")
     private double price;
-
+    
+    @Column(name = "type")
+    private String type;
+    
+    @Column(name = "smv")
+    private double smv;
+    
+    @Column(name = "charge_out")
+    private double chargeOut;
+    
     public Emblishment() {
     }
 
-    public Emblishment(Integer indexNo) {
-        this.indexNo = indexNo;
-    }
-
-    public Emblishment(Integer indexNo, String picture, double price) {
+    public Emblishment(Integer indexNo, String picture, double price, String type, double smv, double chargeOut) {
         this.indexNo = indexNo;
         this.picture = picture;
         this.price = price;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+        this.type = type;
+        this.smv = smv;
+        this.chargeOut = chargeOut;
     }
 
     public Integer getIndexNo() {
@@ -68,4 +68,38 @@ public class Emblishment implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getSmv() {
+        return smv;
+    }
+
+    public void setSmv(double smv) {
+        this.smv = smv;
+    }
+
+    public double getChargeOut() {
+        return chargeOut;
+    }
+
+    public void setChargeOut(double chargeOut) {
+        this.chargeOut = chargeOut;
+    }
+
+    
 }

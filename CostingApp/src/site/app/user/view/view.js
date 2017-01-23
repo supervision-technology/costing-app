@@ -1,20 +1,20 @@
 (function () {
     angular.module("viewModule", ["ngAnimate"]);
 
+    var viewController = function ($http, $scope, $rootScope, systemConfig, $location) {
 
-    var viewController = function ($http, $scope, $rootScope, systemConfig) {
-        $scope.qty = 1;
-
+        if (!$rootScope.qty) {
+            $scope.qty = 1;
+        }
+        if (!$rootScope.embMachineqty) {
+            $scope.embMachineqty = 1;
+        }
         if (!$rootScope.packingCostSolid) {
             $scope.packingCostSolid = 0.36;
         }
         if (!$rootScope.packingCostPrint) {
             $scope.packingCostPrint = 0.36;
         }
-        //styles detals
-        $scope.styles = [];
-        //emblishment detals
-        $scope.embllishments = [];
 
         //----------------http funtions with privilages--------------------
         //get emblishment details
@@ -25,35 +25,34 @@
                     $scope.embllishments = data;
                 });
 
-        //get styles 
-        if ($rootScope.top === 1) {
-            var url = systemConfig.apiUrl + "/api/style/all-top-style";
+        //get tier details 
+        if ($rootScope.mode === "top") {
+            var url = systemConfig.apiUrl + "/api/tiers/all-tiers";
 
             $http.get(url)
                     .success(function (data) {
-                        $scope.styles = data;
+                        $scope.tiers = data;
                     });
         }
 
-        if ($rootScope.bottom === 2) {
-            var url = systemConfig.apiUrl + "/api/style/all-bottom-style";
+        if ($rootScope.mode === "bottom") {
+            var url = systemConfig.apiUrl + "/api/tiers/all-tiers";
 
             $http.get(url)
                     .success(function (data) {
-                        $scope.styles = data;
+                        $scope.tiers = data;
                     });
+
         }
 
         //menu funtions
         $scope.selectTop = function () {
-            $rootScope.bottom = 0;
-            $scope.top = 1;
+            $rootScope.mode = "top";
             $rootScope.top = $scope.top;
         };
 
         $scope.selectBottom = function () {
-            $rootScope.top = 0;
-            $scope.bottom = 2;
+            $rootScope.mode = "bottom";
             $rootScope.bottom = $scope.bottom;
         };
 
@@ -62,36 +61,47 @@
         //get fabric cost
         $scope.getfabricCostDetails = function (styles) {
             $scope.fabricCost = styles;
-            $scope.selectPicture = $scope.fabricCost.picture;
-            $scope.solidPrice = $scope.fabricCost.solidPrice;
-            $scope.solidConsumption = $scope.fabricCost.solidConsumption;
-            $scope.printPrice = $scope.fabricCost.printPrice;
-            $scope.printConsumption = $scope.fabricCost.printConsumption;
-
-            $rootScope.selectPicture = $scope.selectPicture;
-            $rootScope.solidPrice = $scope.solidPrice;
-            $rootScope.solidConsumption = $scope.solidConsumption;
-            $rootScope.printPrice = $scope.printPrice;
-            $rootScope.printConsumption = $scope.printConsumption;
+            $rootScope.selectPicture = $scope.fabricCost.picture;
+            $rootScope.solidPrice = $scope.fabricCost.solidPrice;
+            $rootScope.solidConsumption = $scope.fabricCost.solidConsumption;
+            $rootScope.printPrice = $scope.fabricCost.printPrice;
+            $rootScope.printConsumption = $scope.fabricCost.printConsumption;
+            $rootScope.linerPrice = $scope.fabricCost.linerPrice;
+            $rootScope.linerConsumption = $scope.fabricCost.linerConsumption;
 
             $rootScope.fabSolid = $rootScope.solidPrice * $rootScope.solidConsumption;
             $rootScope.fabSolid = Math.round($rootScope.fabSolid * 100) / 100;
 
             $rootScope.fabPrint = $rootScope.printPrice * $rootScope.printConsumption;
             $rootScope.fabPrint = Math.round($rootScope.fabPrint * 100) / 100;
+
+            $rootScope.linerCost = $rootScope.linerPrice * $rootScope.linerConsumption;
+            $rootScope.linerCost = Math.round($rootScope.linerCost * 100) / 100;
         };
 
         //get trim cost
         $scope.getTrimCostDetails = function (styles) {
             $scope.trimCost = styles.trimCost;
-
             $rootScope.trimCost = $scope.trimCost;
         };
 
+        $scope.getCupCostDetails = function (styles) {
+            $scope.cupCost = styles.cupCost;
+            $rootScope.cupCost = $scope.cupCost;
+        };
+
         //get embllishment cost
-        $scope.getEmbllishmentCostDetails = function (embllishment) {
+        $scope.getHandEmbllishmentDetails = function (embllishment) {
             $rootScope.embCost = embllishment.price;
+            $rootScope.emblishmentSmv = embllishment.smv;
+            $rootScope.chargeOut = embllishment.chargeOut;
             $scope.calculateEmd();
+            $scope.calculateSmvTotal();
+        };
+
+        $scope.getMachineEmbllishmentDetails = function (embllishment) {
+            $rootScope.embMachineCost = embllishment.price;
+            $scope.calculateMachineCost();
         };
 
         //get cm and smv cost 
@@ -104,6 +114,10 @@
         };
 
         //view-3 funtions
+        $scope.yardBtnClick = function () {
+//           $scope.yardMode = 1;
+        };
+
         $scope.solidIncrement = function () {
             $rootScope.solidPrice += 0.01;
             $rootScope.solidPrice = Math.round($rootScope.solidPrice * 100) / 100;
@@ -152,8 +166,6 @@
             $scope.calculatePrint();
         };
 
-
-        //view-3 other funtion
         $scope.calculateSolid = function () {
             $rootScope.fabSolid = $rootScope.solidPrice * $scope.solidConsumption;
             $rootScope.fabSolid = Math.round($rootScope.fabSolid * 100) / 100;
@@ -164,6 +176,39 @@
             $rootScope.fabPrint = Math.round($rootScope.fabPrint * 100) / 100;
         };
 
+        //liner cost funtion
+        $scope.linerPriceIncrement = function () {
+            $rootScope.linerPrice += 0.01;
+            $rootScope.linerPrice = Math.round($rootScope.linerPrice * 100) / 100;
+            $scope.calculateLinerCost();
+        };
+
+        $scope.linerPriceDecrement = function () {
+            $rootScope.linerPrice -= 0.01;
+            $rootScope.linerPrice = Math.round($rootScope.linerPrice * 100) / 100;
+            $scope.calculateLinerCost();
+        };
+
+        $scope.linerConsumptionIncrement = function () {
+            $rootScope.linerConsumption += 0.01;
+            $rootScope.linerConsumption = Math.round($rootScope.linerConsumption * 100) / 100;
+            $scope.calculateLinerCost();
+        };
+
+        $scope.linerConsumptionDecrement = function () {
+            $rootScope.linerConsumption -= 0.01;
+            $rootScope.linerConsumption = Math.round($rootScope.linerConsumption * 100) / 100;
+            $scope.calculateLinerCost();
+        };
+
+        $scope.calculateLinerCost = function () {
+            $rootScope.linerCost = $rootScope.linerPrice * $scope.linerConsumption;
+            $rootScope.linerCost = Math.round($rootScope.linerCost * 100) / 100;
+        };
+
+        $scope.skipLinerCost = function () {
+            $rootScope.linerCost = 0;
+        };
 
         //view-5 funtions
         $scope.trimCostIncrement = function () {
@@ -177,6 +222,26 @@
             $scope.trimCost = Math.round($scope.trimCost * 100) / 100;
             $rootScope.trimCost = $scope.trimCost;
         };
+
+        $scope.newCupCost = function () {
+            if ($rootScope.mode === "top") {
+                $location.path("/cup-cost");
+            } else {
+                $location.path("/view-6");
+            }
+        };
+
+        //cup cost funtions
+        $scope.cupCostIncrement = function () {
+            $rootScope.cupCost += 0.01;
+            $rootScope.cupCost = Math.round($rootScope.cupCost * 100) / 100;
+        };
+
+        $scope.cupCostDecrement = function () {
+            $rootScope.cupCost -= 0.01;
+            $rootScope.cupCost = Math.round($rootScope.cupCost * 100) / 100;
+        };
+
 
         //view-6 funtions
         $scope.embCostIncrement = function () {
@@ -205,14 +270,79 @@
             $scope.calculateEmd();
         };
 
+        $scope.embSmvIncrement = function () {
+            $rootScope.emblishmentSmv += 0.01;
+            $rootScope.emblishmentSmv = Math.round($rootScope.emblishmentSmv * 100) / 100;
+            $scope.calculateSmvTotal();
+        };
+
+        $scope.embSmvDecrement = function () {
+            $rootScope.emblishmentSmv += 0.01;
+            $rootScope.emblishmentSmv = Math.round($rootScope.emblishmentSmv * 100) / 100;
+            $scope.calculateSmvTotal();
+        };
+
+        $scope.embChargeOutIncrement = function () {
+            $rootScope.chargeOut += 0.01;
+            $rootScope.chargeOut = Math.round($rootScope.chargeOut * 100) / 100;
+            $scope.calculateSmvTotal();
+        };
+
+        $scope.embChargeOutDecrement = function () {
+            $rootScope.chargeOut += 0.01;
+            $rootScope.chargeOut = Math.round($rootScope.chargeOut * 100) / 100;
+            $scope.calculateSmvTotal();
+        };
+
+        $scope.embMachineCostIncrement = function () {
+            $rootScope.embMachineCost += 0.01;
+            $rootScope.embMachineCost = Math.round($rootScope.embMachineCost * 100) / 100;
+            $scope.calculateMachineCost();
+        };
+
+        $scope.embMachineCostDecrement = function () {
+            $rootScope.embMachineCost += 0.01;
+            $rootScope.embMachineCost = Math.round($rootScope.embMachineCost * 100) / 100;
+            $scope.calculateMachineCost();
+        };
+
+        $scope.machineQtyIncrement = function () {
+            $scope.embMachineqty += 1;
+            $scope.embMachineqty = Math.round($scope.embMachineqty * 100) / 100;
+            $rootScope.embMachineqty = $scope.embMachineqty;
+            $scope.calculateMachineCost();
+        };
+
+        $scope.machineQtyDecrement = function () {
+            $scope.embMachineqty -= 1;
+            $scope.embMachineqty = Math.round($scope.embMachineqty * 100) / 100;
+            $rootScope.embMachineqty = $scope.embMachineqty;
+            $scope.calculateMachineCost();
+        };
+
         $scope.calculateEmd = function () {
             $rootScope.emdTotal = $rootScope.embCost * $scope.qty;
             $rootScope.emdTotal = Math.round($rootScope.emdTotal * 100) / 100;
         };
 
-        $scope.skip = function () {
+        $scope.calculateSmvTotal = function () {
+            $rootScope.smvChargeOutTotal = $rootScope.emblishmentSmv * $rootScope.chargeOut;
+            $rootScope.smvChargeOutTotal = Math.round($rootScope.smvChargeOutTotal * 100) / 100;
+        };
+
+        $scope.calculateMachineCost = function () {
+            $rootScope.machineCost = $rootScope.embMachineCost * $scope.embMachineqty;
+            $rootScope.machineCost = Math.round($rootScope.machineCost * 100) / 100;
+            console.log($rootScope.machineCost);
+        };
+
+        $scope.skipHandEmbllishment = function () {
             $rootScope.emdTotal = 0;
         };
+        $scope.skipMachineEmbllishment = function () {
+            $rootScope.machineCost = 0;
+        };
+
 
 
         //view-8 funtions
@@ -238,6 +368,14 @@
             $rootScope.cor -= 0.01;
             $rootScope.cor = Math.round($rootScope.cor * 100) / 100;
             $scope.calculateCm();
+        };
+
+        $scope.backCupOrTrim = function () {
+            if ($rootScope.mode === "bottom") {
+                $location.path("/view-5");
+            } else {
+                $location.path("/cup-cost2");
+            }
         };
 
         //view-8 other funtions
@@ -340,75 +478,7 @@
 //            }
 //        };
         //the image
-        $scope.uploadme;
-
-        $scope.uploadImage = function () {
-            var fd = new FormData();
-            var imgBlob = dataURItoBlob($scope.uploadme);
-            fd.append('file', imgBlob);
-//            console.log(imgBlob);
-
-//            var obj = {
-//                file: imgBlob
-//            };
-//            var newObj = JSON.stringify(imgBlob);
-//            console.log(newObj);
-
-            var url = systemConfig.apiUrl + "/upload-file";
-
-            $http.post(
-                    url,
-                    fd, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': 'undefined'}
-                    }
-            )
-                    .success(function (response) {
-                        console.log('successss', response);
-                    })
-                    .error(function (response) {
-                        console.log('error', response);
-                    });
-        };
-
-
-        //you need this function to convert the dataURI
-        function dataURItoBlob(dataURI) {
-            var binary = atob(dataURI.split(',')[1]);
-            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-            var array = [];
-            for (var i = 0; i < binary.length; i++) {
-                array.push(binary.charCodeAt(i));
-            }
-            return new Blob([new Uint8Array(array)], {
-                type: mimeString
-            });
-        }
-
     };
-
-    //your directive
-    angular.module("viewModule")
-            .directive("fileread", [
-                function () {
-                    return {
-                        scope: {
-                            fileread: "="
-                        },
-                        link: function (scope, element, attributes) {
-                            element.bind("change", function (changeEvent) {
-                                var reader = new FileReader();
-                                reader.onload = function (loadEvent) {
-                                    scope.$apply(function () {
-                                        scope.fileread = loadEvent.target.result;
-                                    });
-                                },
-                                        reader.readAsDataURL(changeEvent.target.files[0]);
-                            });
-                        }
-                    };
-                }
-            ]);
 
     angular.module("viewModule")
             .controller("viewController", viewController);

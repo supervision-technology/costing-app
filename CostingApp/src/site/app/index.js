@@ -4,7 +4,8 @@
         "ngRoute",
         "ngCookies",
         "loginModule",
-        "viewModule"
+        "viewModule",
+        "adminModule"
     ]);
 
     //constants
@@ -25,6 +26,18 @@
                             templateUrl: "app/user/view/view1.html",
                             controller: "viewController"
                         })
+                        .when("/liner-cost", {
+                            templateUrl: "app/user/view/linerCost.html",
+                            controller: "viewController"
+                        })
+                        .when("/cup-cost", {
+                            templateUrl: "app/user/view/cupCost.html",
+                            controller: "viewController"
+                        })
+                        .when("/cup-cost2", {
+                            templateUrl: "app/user/view/cupCost2.html",
+                            controller: "viewController"
+                        })
                         .when("/view-2", {
                             templateUrl: "app/user/view/view2.html",
                             controller: "viewController"
@@ -43,6 +56,10 @@
                         })
                         .when("/view-6", {
                             templateUrl: "app/user/view/view6.html",
+                            controller: "viewController"
+                        })
+                        .when("/machine-embllishment", {
+                            templateUrl: "app/user/view/machineEmbliishment.html",
                             controller: "viewController"
                         })
                         .when("/view-7", {
@@ -69,18 +86,10 @@
                             templateUrl: "app/user/view/view12.html",
                             controller: "viewController"
                         })
-//                admin
+                        //admin
                         .when("/admin", {
-                            templateUrl: "app/admin/index.html"
-                        })
-                        .when("/style", {
-                            templateUrl: "app/admin/style/style.html"
-                        })
-                        .when("/summary", {
-                            templateUrl: "app/admin/summary/summary.html"
-                        })
-                        .when("/registration", {
-                            templateUrl: "app/admin/registration/registration.html"
+                            templateUrl: "app/user/admin/dashboard.html",
+                            controller: "adminController"
                         })
 
                         .otherwise({

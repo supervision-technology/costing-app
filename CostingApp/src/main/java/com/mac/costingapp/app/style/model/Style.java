@@ -1,6 +1,8 @@
 package com.mac.costingapp.app.style.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mac.costingapp.app.emblishment.model.Emblishment;
+import com.mac.costingapp.app.tier.model.Tier;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,8 +40,10 @@ public class Style implements Serializable {
     @Column(name = "picture")
     private String picture;
 
-    @Column(name = "tier")
-    private int tier;
+    @JsonIgnore
+    @JoinColumn(name = "tier", referencedColumnName = "index_no")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Tier tier;
 
     @Column(name = "solid_price")
     private double solidPrice;
@@ -62,10 +66,19 @@ public class Style implements Serializable {
     @Column(name = "cor")
     private double cor;
 
+    @Column(name = "liner_price")
+    private double linerPrice;
+
+    @Column(name = "liner_consumption")
+    private double linerConsumption;
+
+    @Column(name = "cup_cost")
+    private double cupCost;
+
     public Style() {
     }
 
-    public Style(Integer indexNo, Emblishment emblishment, String category, String styleNo, String picture, int tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor) {
+    public Style(Integer indexNo, Emblishment emblishment, String category, String styleNo, String picture, Tier tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor, double linerPrice, double linerConsumption, double cupCost) {
         this.indexNo = indexNo;
         this.emblishment = emblishment;
         this.category = category;
@@ -79,6 +92,57 @@ public class Style implements Serializable {
         this.trimCost = trimCost;
         this.smv = smv;
         this.cor = cor;
+        this.linerPrice = linerPrice;
+        this.linerConsumption = linerConsumption;
+        this.cupCost = cupCost;
+    }
+
+    public Integer getIndexNo() {
+        return indexNo;
+    }
+
+    public void setIndexNo(Integer indexNo) {
+        this.indexNo = indexNo;
+    }
+
+    public Emblishment getEmblishment() {
+        return emblishment;
+    }
+
+    public void setEmblishment(Emblishment emblishment) {
+        this.emblishment = emblishment;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getStyleNo() {
+        return styleNo;
+    }
+
+    public void setStyleNo(String styleNo) {
+        this.styleNo = styleNo;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public Tier getTier() {
+        return tier;
+    }
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
     }
 
     public double getSolidPrice() {
@@ -137,52 +201,28 @@ public class Style implements Serializable {
         this.cor = cor;
     }
 
-    public Integer getIndexNo() {
-        return indexNo;
+    public double getLinerPrice() {
+        return linerPrice;
     }
 
-    public void setIndexNo(Integer indexNo) {
-        this.indexNo = indexNo;
+    public void setLinerPrice(double linerPrice) {
+        this.linerPrice = linerPrice;
     }
 
-    public Emblishment getEmblishment() {
-        return emblishment;
+    public double getLinerConsumption() {
+        return linerConsumption;
     }
 
-    public void setEmblishment(Emblishment emblishment) {
-        this.emblishment = emblishment;
+    public void setLinerConsumption(double linerConsumption) {
+        this.linerConsumption = linerConsumption;
     }
 
-    public String getCategory() {
-        return category;
+    public double getCupCost() {
+        return cupCost;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getStyleNo() {
-        return styleNo;
-    }
-
-    public void setStyleNo(String styleNo) {
-        this.styleNo = styleNo;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public int getTier() {
-        return tier;
-    }
-
-    public void setTier(int tier) {
-        this.tier = tier;
+    public void setCupCost(double cupCost) {
+        this.cupCost = cupCost;
     }
 
 }

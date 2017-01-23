@@ -31,4 +31,9 @@ public class StyleController {
         return styleService.allTopStyles();
     }
 
+    @RequestMapping(value = "/all-style", method = RequestMethod.GET)
+    public List<Style> AllStyle() {
+        return styleService.allStyle();
+    }
+
 }

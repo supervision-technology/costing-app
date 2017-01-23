@@ -5,7 +5,7 @@
     var loginController = function ($scope, $location) {
 
         $scope.login = function (name) {
-            if (name == "admin") {
+            if (name === "admin") {
                 $location.path('/admin');
             } else {
                 $location.path('/view-1');

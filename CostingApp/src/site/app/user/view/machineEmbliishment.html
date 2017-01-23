@@ -33,8 +33,8 @@
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
-
-                <div class="col-xs-3 my-part bs-wizard-step complete" ng-show="mode === 'top'">
+                
+                  <div class="col-xs-3 my-part bs-wizard-step complete" ng-show="mode === 'top'">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
@@ -46,19 +46,19 @@
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step complete">
+                <div class="col-xs-3 my-part bs-wizard-step active">
                     <div class="text-center bs-wizard-stepnum">Emb 2</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step complete">
+                <div class="col-xs-3 my-part bs-wizard-step disabled">
                     <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step complete">
+                <div class="col-xs-3 my-part bs-wizard-step disabled">
                     <div class="text-center bs-wizard-stepnum">FOB</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
@@ -67,61 +67,67 @@
         </div>
     </div><br>
 
-    <!--cost summary-->
-    <div class="text-center"><label>Cost Summary Print</label></div>
-    <div class="container">
-        <h6>Fabric Cost = $ {{fabPrint}}</h6>
-        <input type="range" step="0.01" ng-model="fabPrint" min="0" max="2">                
-
-        <h6>Trim Cost = $ {{trimCost}}</h6>
-        <input type="range" step="0.01" ng-model="trimCost" min="0" max="2">    
-
-        <h6>Emb Cost = $ {{emdTotal}}</h6>
-        <input type="range" step="0.01" ng-model="emdTotal" min="0" max="2">    
-
-        <h6>CM Cost = $ {{cmCost}}</h6>
-        <input type="range" step="0.01" ng-model="cmCost" min="0" max="2">    
-
-        <h6>Packing Cost = $ {{packingCostPrint}}</h6>
-        <input type="range" step="0.01" ng-model="packingCostPrint" min="0" max="2">   
+    <!--category-->
+    <div class="text-center"><label>Machine Embellishment</label>
     </div>
-    <div class="col-xs-12">
-        <div class="row pull-right">
-            <label>Initial FOB = ${{calculateInitialFobPrint()}}</label>
+    <div class="category col-xs-12">
+        <div class="row mygrid-wrapper-div"  style="height: 180px">
+            <table class="table">  
+                <tbody>
+                    <tr>
+                        <td  ng-repeat="embllishment in embllishments|filter : {'type': 'machine'}">
+                            <div id="imgPanel" style="width: 150px; height: 160px;" ng-click="getMachineEmbllishmentDetails(embllishment)">
+                                <img src="./img/{{embllishment.picture}}.PNG" style="width: 150px; height: 160px;">
+                            </div>
+<!--                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src="./img/{{embllishment.picture}}.PNG" />
+                                <h6 class="text-center">${{embllishment.price}}</h6>
+                            </div>-->
+                        </td>   
+                    </tr>   
+                </tbody>
+            </table>
         </div>
     </div>
-    <table style="margin-bottom: 45px">
-        <col style="width: 30%">
-        <col style="width: 20%">
-        <col />
-        <tbody>
-            <tr>
-                <td>
-                    <h5 style="margin-left: 70px">Enter Retail Price : $</h5>
-                </td>
-                <td>
-                    <input class="form-control text-center input-sm" ng-model="retailPricePrint" ng-change="calculatTargetFobPrint()">
-                </td>
-            </tr> 
-            <tr>
-                <td>
-                    <h5 style="margin-left: 70px">Target FOB</h5>
-                </td>
-                <td>
-                    <input ng-disabled="true" class="form-control text-center input-sm" ng-model="targetFobPrint" ng-change="changeTargetFobPrint()">
-                </td>
-            </tr> 
-        </tbody>
-    </table>
+    <div class="row" id="cmd-cost">
+        <div class="col-xs-6">
+            <h6 class="text-center">Cost ($)</h6>
+            <div class="form-group">
+                <div class="input-group"> 
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="embMachineCostDecrement()">-</span>
+                    <input type="text" class="form-control input-sm text-center" ng-model="embMachineCost">
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="embMachineCostIncrement()">+</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h6 class="text-center">Qty</h6>
+            <div class="form-group">
+                <div class="input-group"> 
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="machineQtyDecrement()">-</span>
+                    <input type="text" class="form-control input-sm text-center" ng-model="embMachineqty">
+                    <span class="btn btn-primary input-group-addon" id="slider" ng-click="machineQtyIncrement()">+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12">
+        <h6 class="text-center">Total ($)</h6>
+        <input type="text" class="form-control input-sm text-center" ng-model="machineCost">
+    </div>
+
+    <a class="btn btn-default btn-xs pull-right btn-flat" id="skip-btn" href="#/view-7" ng-click="skip()">Skip if not applicable 
+        <span class="glyphicon glyphicon-arrow-right"></span>
+    </a>
 </div>
 
 <!--footer-->
 <footer class="footer">
     <div class="container-fluid" style="margin-top: 8px">
-        <a  class="btn btn-default btn-xs btn-flat" href="#/view-9">
+        <a class="btn btn-default btn-xs btn-flat" href="#/view-6">
             <span class="glyphicon glyphicon-arrow-left"></span> BACK
         </a>
-        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/view-11">NEXT
+        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/view-7">NEXT
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
     </div>

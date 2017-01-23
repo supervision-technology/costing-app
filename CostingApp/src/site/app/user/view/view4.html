@@ -1,41 +1,59 @@
-<div class="container-fluid" id="top">
-    <div class="row">
-        <div class="col-xs-5">              
-            <img class="pull-left" src="./img/maslogosmall.PNG">     
-        </div>
-        <div class="col-xs-4">
-            <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        </div>
-        <div class="col-xs-3">
-            <img class="pull-right" src="./img/pinksmall.PNG">
-            <h6 class="pull-right">Bottoms</h6>
-        </div>
+<header class="header">
+    <div class="col-xs-5" style="padding-top: 6px">              
+        <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
+    <div class="col-xs-4">
+        <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
+        <h6 class="pull-right">Bottoms</h6>
+    </div>
+    <div class="col-xs-3" style="padding-top: 6px">
+        <img class="pull-right" src="./img/pinksmall.PNG">
+    </div>
+</header>
 
+<div class="container-fluid" id="top">
     <!--stepper-->
     <div class="row">
         <div class="container">
-            <div class="bs-wizard" style="border-bottom:0;">
+            <div class="bs-wizard" style="border-bottom:0;margin-left: 2px;">
                 <div class="col-xs-3 my-part bs-wizard-step complete">
-                    <div class="text-center bs-wizard-stepnum">Fabric Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Fabric</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step active">
-                    <div class="text-center bs-wizard-stepnum">Trim Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Trim</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-show="mode === 'top'">
+                    <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled">
-                    <div class="text-center bs-wizard-stepnum">Emd Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Emb</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled">
-                    <div class="text-center bs-wizard-stepnum">CM Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Emb 2</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                    <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
@@ -51,54 +69,28 @@
 
     <!--categorys-->
     <div class="text-center"><label>Trim Cost</label></div>
-    <div class="category col-xs-12">
-        <div class="title row">
-            <label>Tier 1</label>
-        </div>
-        <div class="row mygrid-wrapper-div">
-            <table class="table">  
-                <tbody>
-                    <tr>
-                        <td ng-repeat="style in styles|filter: {'tier':'1'}">
-                            <a href="#/view-5"><div class="col-lg-4" id="imgPanel" ng-click="getTrimCostDetails(style)"><img src=".\img\{{style.picture}}.PNG"/></div></a>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="category col-xs-12" >
-        <div class="title row">
-            <label>Tier 2</label>
-        </div>
-        <div class="row mygrid-wrapper-div">
-            <table class="table">  
-                <tbody>
-                    <tr>
-                        <td ng-repeat="style in styles|filter: {'tier':'2'}">
-                            <a href="#/view-5"><div class="col-lg-4" id="imgPanel" ng-click="getTrimCostDetails(style)"><img src=".\img\{{style.picture}}.PNG"/></div></a>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
+    <div style="margin-bottom: 45px" class="col-xs-12">
+        <div class="category" ng-repeat="tier in tiers">
+            <div class="title row">
+                <label>{{tier.name}}</label>
+            </div>
+            <div class="row mygrid-wrapper-div">
+                <table class="table">  
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="style in tier.style| filter:{'category':mode}">
+                                <a href="#/view-5"><div id="imgPanel" style="width: 70px; height: 50px;" ng-click="getTrimCostDetails(style)">
+                                        <img src="./img/{{style.picture}}.PNG" style="width: 70px; height: 50px;">
+                                    </div></a>
+                                <!--<a href="#/view-5"><div class="col-lg-4" id="imgPanel" ng-click="getTrimCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>-->
+                            </td>
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="category col-xs-12">
-        <div class="title row">
-            <label>Tier 3</label>
-        </div>
-        <div class="row mygrid-wrapper-div">
-            <table class="table">  
-                <tbody>
-                    <tr>
-                        <td ng-repeat="style in styles|filter: {'tier':'3'}">
-                            <a href="#/view-5"><div class="col-lg-4" id="imgPanel" ng-click="getTrimCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
+
 
 
 </div>
@@ -106,7 +98,7 @@
 <!--footer-->
 <footer class="footer">
     <div class="container-fluid" style="margin-top: 8px">
-        <a class="btn btn-default btn-xs btn-flat" href="#/view-3">
+        <a class="btn btn-default btn-xs btn-flat" href="#/liner-cost">
             <span class="glyphicon glyphicon-arrow-left"></span> BACK
         </a>
     </div>

@@ -1,41 +1,59 @@
-<div class="container-fluid" id="top">
-    <div class="row">
-        <div class="col-xs-5">              
-            <img class="pull-left" src="./img/maslogosmall.PNG">     
-        </div>
-        <div class="col-xs-4">
-            <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        </div>
-        <div class="col-xs-3">
-            <img class="pull-right" src="./img/pinksmall.PNG">
-            <h6 class="pull-right">Bottoms</h6>
-        </div>
+<header class="header">
+    <div class="col-xs-5" style="padding-top: 6px">              
+        <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
+    <div class="col-xs-4">
+        <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
+        <h6 class="pull-right">Bottoms</h6>
+    </div>
+    <div class="col-xs-3" style="padding-top: 6px">
+        <img class="pull-right" src="./img/pinksmall.PNG">
+    </div>
+</header>
 
+<div class="container-fluid" id="top">
     <!--stepper-->
-    <div class="form-group row">
+    <div class="row">
         <div class="container">
-            <div class="bs-wizard" style="border-bottom:0;">
+            <div class="bs-wizard" style="border-bottom:0;margin-left: 2px;">
                 <div class="col-xs-3 my-part bs-wizard-step complete">
-                    <div class="text-center bs-wizard-stepnum">Fabric Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Fabric</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete">
-                    <div class="text-center bs-wizard-stepnum">Trim Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete">
-                    <div class="text-center bs-wizard-stepnum">Emd Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Trim</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-show="mode === 'top'">
+                    <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete">
-                    <div class="text-center bs-wizard-stepnum">CM Cost</div>
+                    <div class="text-center bs-wizard-stepnum">Emb</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum">Emb 2</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete">
+                    <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
@@ -67,12 +85,12 @@
         <h6>Packing Cost = $ {{packingCostSolid}}</h6>
         <input type="range" step="0.01" ng-model="packingCostSolid" min="0" max="2">    
     </div>
-    <div class="container">
-        <div class="pull-right">
-            <h6>Initial FOB = ${{calculateInitialFobSolid()}}</h6>
+    <div class="col-xs-12">
+        <div class="row pull-right">
+            <label>Initial FOB = ${{calculateInitialFobSolid()}}</label>
         </div>
     </div>
-    
+
     <table style="margin-bottom: 45px">
         <col style="width: 30%">
         <col style="width: 20%">
@@ -80,18 +98,18 @@
         <tbody>
             <tr>
                 <td>
-                    <h5 style="margin-left: 104px">Enter Retail Price</h5>
+                    <h5 style="margin-left: 70px">Enter Retail Price : $</h5>
                 </td>
                 <td>
-                    <input class="form-control text-center" ng-model="retailPriceSolid" ng-change="calculatTargetFobSolid()">
+                    <input class="form-control text-center input-sm" ng-model="retailPriceSolid" ng-change="calculatTargetFobSolid()">
                 </td>
             </tr> 
             <tr>
                 <td>
-                    <h5 style="margin-left: 104px">Target FOB</h5>
+                    <h5 style="margin-left: 70px">Target FOB</h5>
                 </td>
                 <td>
-                    <input class="form-control text-center" ng-model="targetFobSolid" ng-change="changeTargetFobSolid()">
+                    <input ng-disabled="true" class="form-control text-center input-sm" ng-model="targetFobSolid" ng-change="changeTargetFobSolid()">
                 </td>
             </tr> 
         </tbody>
