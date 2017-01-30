@@ -27,7 +27,7 @@ public class Emblishment implements Serializable {
     private Integer indexNo;
 
     @Column(name = "picture")
-    private String picture;
+    private byte picture;
 
     @Column(name = "price")
     private double price;
@@ -44,7 +44,7 @@ public class Emblishment implements Serializable {
     public Emblishment() {
     }
 
-    public Emblishment(Integer indexNo, String picture, double price, String type, double smv, double chargeOut) {
+    public Emblishment(Integer indexNo, byte picture, double price, String type, double smv, double chargeOut) {
         this.indexNo = indexNo;
         this.picture = picture;
         this.price = price;
@@ -61,11 +61,11 @@ public class Emblishment implements Serializable {
         this.indexNo = indexNo;
     }
 
-    public String getPicture() {
+    public byte getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(byte picture) {
         this.picture = picture;
     }
 
@@ -100,6 +100,6 @@ public class Emblishment implements Serializable {
     public void setChargeOut(double chargeOut) {
         this.chargeOut = chargeOut;
     }
-
+    
     
 }

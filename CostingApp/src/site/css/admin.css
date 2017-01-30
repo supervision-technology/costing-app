@@ -1,4 +1,4 @@
-/*.navbar{
+.navbar{
     position: fixed;
     position: fixed;
     bottom: 0px;
@@ -14,9 +14,9 @@
 }
 .search-input{
     border-radius: 35px !important;
-}
+}/*
 
-.fab-container{
+*/.fab-container{
     position: absolute;
     display: block;
     right: 24px;
@@ -93,11 +93,20 @@
     display: none;
 }
 
-table {
-    width: 100%;
+/*tbody {
+    height: 360px;
+    overflow-y: auto;
 }
 
 thead, tbody, tr, td, th { display: block; }
+*/
+
+
+/*table {
+    width: 100%;
+}
+
+
 
 tr:after {
     content: ' ';
@@ -111,14 +120,11 @@ thead th {
     font-size: 14px;
 
     text-align: left;
-}
+}*/
 
-tbody {
-    height: 360px;
-    overflow-y: auto;
-}
 
-thead {
+
+/*thead {
      fallback 
 }
 
@@ -130,6 +136,6 @@ tbody td{
 thead th {
     width: 16%;
     float: left;
-}
+}*/
 
-*/
+

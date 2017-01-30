@@ -33,7 +33,16 @@ public class StyleService {
     public List<Style> allTopStyles() {
         return styleRepository.findByCategory(TOP);
     }
-    public List<Style> allStyle(){
+//    public List<Style> allStyle(){
+//        return styleRepository.findAll();
+//    }
+
+    public List<Style> findAll() {
         return styleRepository.findAll();
+//        for (Style style : findAll) {
+//            byte[] picture = style.getPicture();
+////            System.out.println(style.getPicture());
+//        }
+//        return findAll;
     }
 }

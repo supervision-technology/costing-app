@@ -1,8 +1,7 @@
 (function () {
     angular.module("viewModule", ["ngAnimate"]);
 
-    var viewController = function ($http, $scope, $rootScope, systemConfig, $location) {
-
+    var viewController = function ($http, $scope, $rootScope, systemConfig, $location, $uibModal, $uibModalStack) {
         if (!$rootScope.qty) {
             $scope.qty = 1;
         }
@@ -41,6 +40,7 @@
             $http.get(url)
                     .success(function (data) {
                         $scope.tiers = data;
+                        console.log($scope.tiers);
                     });
 
         }
@@ -55,6 +55,8 @@
             $rootScope.mode = "bottom";
             $rootScope.bottom = $scope.bottom;
         };
+
+
 
 
         //----------------ui funtions-----------------------
@@ -117,6 +119,8 @@
         $scope.yardBtnClick = function () {
 //           $scope.yardMode = 1;
         };
+
+
 
         $scope.solidIncrement = function () {
             $rootScope.solidPrice += 0.01;
@@ -244,6 +248,35 @@
 
 
         //view-6 funtions
+        $scope.modalOpen = function () {
+            $rootScope.embellishmentMode = "hand";
+            $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/user/view/embellishmentPopUp.html',
+                controller: 'viewController',
+                size: 'lg'
+            });
+        };
+
+        $scope.openMachineEmbellishment = function () {
+             $rootScope.embellishmentMode = "machine";
+            $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/user/view/embellishmentPopUp.html',
+                controller: 'viewController',
+                size: 'lg'
+            });
+        };
+
+        //pop up dialog funtions
+        $scope.close = function () {
+            $uibModalStack.dismissAll();
+        };
+
         $scope.embCostIncrement = function () {
             $rootScope.embCost += 0.01;
             $rootScope.embCost = Math.round($rootScope.embCost * 100) / 100;
@@ -484,5 +517,3 @@
             .controller("viewController", viewController);
 
 }());
-
-

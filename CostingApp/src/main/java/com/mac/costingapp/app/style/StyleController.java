@@ -1,4 +1,4 @@
-package com.mac.masapp.app.style;
+package com.mac.costingapp.app.style;
 
 import com.mac.costingapp.app.style.StyleService;
 import com.mac.costingapp.app.style.model.Style;
@@ -33,7 +33,7 @@ public class StyleController {
 
     @RequestMapping(value = "/all-style", method = RequestMethod.GET)
     public List<Style> AllStyle() {
-        return styleService.allStyle();
+        return styleService.findAll();
     }
 
 }

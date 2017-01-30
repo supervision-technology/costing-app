@@ -38,7 +38,7 @@ public class Style implements Serializable {
     private String styleNo;
 
     @Column(name = "picture")
-    private String picture;
+    private byte picture;
 
     @JsonIgnore
     @JoinColumn(name = "tier", referencedColumnName = "index_no")
@@ -78,7 +78,7 @@ public class Style implements Serializable {
     public Style() {
     }
 
-    public Style(Integer indexNo, Emblishment emblishment, String category, String styleNo, String picture, Tier tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor, double linerPrice, double linerConsumption, double cupCost) {
+    public Style(Integer indexNo, Emblishment emblishment, String category, String styleNo, byte picture, Tier tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor, double linerPrice, double linerConsumption, double cupCost) {
         this.indexNo = indexNo;
         this.emblishment = emblishment;
         this.category = category;
@@ -129,11 +129,11 @@ public class Style implements Serializable {
         this.styleNo = styleNo;
     }
 
-    public String getPicture() {
+    public byte getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(byte picture) {
         this.picture = picture;
     }
 
@@ -225,4 +225,5 @@ public class Style implements Serializable {
         this.cupCost = cupCost;
     }
 
+    
 }

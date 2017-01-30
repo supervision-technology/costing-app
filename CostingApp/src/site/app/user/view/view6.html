@@ -1,10 +1,10 @@
 <header class="header">
-    <div class="col-xs-5" style="padding-top: 6px">              
+    <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-5">
         <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        <h6 class="pull-right">Bottoms</h6>
+        <h6 style="margin-left: 47px; margin-top: 13px;">Bottoms</h6>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
@@ -71,7 +71,8 @@
     <!--    <div class="text-center"><label>Embellishment Cost Trim making cost</label>-->
     <div class="text-center"><label>Hand Embellishment</label>
     </div>
-    <div class="category col-xs-12">
+    <input type="button"  value="Embellishments" ng-click="modalOpen()" class="btn btn-primary btn-xs pull-right"/>  
+    <div class="col-xs-12">
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
@@ -79,7 +80,7 @@
                         <td  ng-repeat="embllishment in embllishments| filter : {'type': 'hand'}">
                             <div id="imgPanel" style="width: 65px; height: 65px;" ng-click="getHandEmbllishmentDetails(embllishment)">
                                 <img src="./img/{{embllishment.picture}}.PNG" style="width: 60px; height: 38px;"/>
-                                 <h6 class="text-center">${{embllishment.price}}</h6>
+                                <h6 class="text-center">${{embllishment.price}}</h6>
                             </div>
                             <!--                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src="./img/{{embllishment.picture}}.PNG" />
                                                             <h6 class="text-center">${{embllishment.price}}</h6>
@@ -113,7 +114,7 @@
         </div>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="margin-top: -10px">
         <h6 class="text-center">Total ($)</h6>
         <div class="col-xs-2"></div>
         <div class="col-xs-8 text-center">
@@ -145,7 +146,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="margin-top: -10px">
         <h6 class="text-center">Total ($)</h6>
         <div class="col-xs-2"></div>
         <div class="col-xs-8 text-center">
@@ -158,6 +159,26 @@
         <span class="glyphicon glyphicon-arrow-right"></span>
     </a>
 </div>
+<!--    <div class="row col-xs-12">
+//            <div class="row col-xs-4" ng-repeat="embllishment in embllishments| filter : {'type': 'hand'}">
+//                <div id="imgPanel" style="width: 65px; height: 65px;" ng-click="getHandEmbllishmentDetails(embllishment)">
+//                    <img src="./img/{{embllishment.picture}}.PNG" style="width: 60px; height: 38px;"/>
+//                    <h6 class="text-center">${{embllishment.price}}</h6>
+//                </div>
+//            </div>
+//        </div>-->
+
+<!--<div class="row">
+    <script type="text/ng-template" id="embellishmentPopUp.html"> 
+    <div class="modal-body">
+             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel vehicula erat. Phasellus vestibulum leo eu mi tempor blandit. Suspendisse eget iaculis lectus. Donec vitae tempus enim, quis tristique magna. Donec lobortis, sem ac pretium viverra, leo nisl consequat arcu, sit amet ullamcorper nunc turpis ac erat. In rutrum auctor ligula, quis mattis enim lacinia eu. Aliquam at magna a erat laoreet iaculis quis a justo. Donec porttitor vulputate massa, nec suscipit nisi mollis sed.</p>
+                <p>Praesent sit amet porttitor magna, auctor feugiat tellus. Sed venenatis tortor turpis, vel vestibulum eros pulvinar et. Pellentesque hendrerit diam quis dui euismod tincidunt. Sed sit amet mauris ipsum. Integer in magna tellus. In tincidunt mi quis nunc gravida sollicitudin. Aliquam ac dui eget erat consequat volutpat in eu magna.</p>
+                <p>Sed feugiat bibendum leo consequat convallis. Donec facilisis, turpis a scelerisque venenatis, felis diam dictum tortor, vitae imperdiet tortor ligula eu lectus. Donec iaculis semper elementum. Nullam dapibus porttitor magna quis convallis. Morbi porttitor quam non magna ullamcorper rhoncus. Phasellus sit amet nunc at turpis pharetra luctus a a massa. Praesent luctus massa in odio faucibus eleifend.</p>
+                <p>In eget lobortis leo, ut luctus odio. Mauris pharetra erat ac tellus hendrerit semper. Cras faucibus ipsum id ante hendrerit rutrum. Donec vitae ullamcorper arcu. Aliquam pellentesque faucibus placerat. Aliquam erat volutpat. In tincidunt metus sit amet ligula sagittis vehicula. Pellentesque velit quam, hendrerit a erat ac, fermentum tincidunt enim. Cras suscipit justo nec consectetur lacinia.</p>
+                <p>Cras pellentesque urna a leo egestas, at ullamcorper augue suscipit. Nulla id lacinia magna, non iaculis est. Praesent a placerat augue, eget eleifend purus. Aenean dignissim, orci et rutrum facilisis, tellus massa porta nulla, quis hendrerit dui ipsum vitae urna. In mattis lectus dolor, id venenatis lectus pellentesque at. Suspendisse posuere metus vel bibendum dignissim. Fusce interdum magna id libero scelerisque suscipit. Duis orci augue, rhoncus eget pharetra ac, viverra nec magna. In accumsan nulla ac suscipit pellentesque. Nulla iaculis luctus tellus, at ultricies urna hendrerit a. Aenean vehicula sodales varius. Duis sodales hendrerit odio non sagittis.</p>
+    </div>
+    </script>
+</div>-->
 
 <!--footer-->
 <footer class="footer">

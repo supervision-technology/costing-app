@@ -1,10 +1,10 @@
 <header class="header">
-    <div class="col-xs-5" style="padding-top: 6px">              
+    <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-5">
         <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        <h6 class="pull-right">Bottoms</h6>
+        <h6 style="margin-left: 47px; margin-top: 13px;">Bottoms</h6>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
@@ -33,7 +33,7 @@
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
-                
+
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-show="mode === 'top'">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
@@ -68,13 +68,6 @@
     </div><br>
 
     <div class="text-center"><label style="margin-left: 45px;">Liner Cost</label>
-        <div class="form-group pull-right">
-            <label>{{checkModel}}</label>
-            <div class="btn-group">
-                <label ng-click="yardBtnClick()" class="btn btn-default btn-xs" ng-model="yardMode">yd</label>
-                <label ng-click="meterBtnClick()" class="btn btn-default btn-xs" ng-model="meterMode">m</label>
-            </div>
-        </div>
     </div>
     <div class="tier col-xs-12">
         <div class="title row">
@@ -94,9 +87,13 @@
 
     <div class="container-fluid" id="default-price">
         <div class="row">
-            <div class="col-xs-6">
-                <div class="row">
-                    <u><h6>Default Prices</h6></u>
+            <div class="row col-xs-6">
+                <u><h6>Default Prices</h6></u>
+            </div>
+            <div class="form-group pull-right">
+                <div class="btn-group" style="padding-top: 5px;">
+                    <label ng-click="yardBtnClick()" class="btn btn-default btn-xs" ng-model="yardMode">yd</label>
+                    <label ng-click="meterBtnClick()" class="btn btn-default btn-xs" ng-model="meterMode">m</label>
                 </div>
             </div>
         </div>
@@ -131,7 +128,7 @@
         <div class="col-xs-"></div>
     </div>
 
-    <a class="btn btn-default btn-xs pull-right btn-flat" style="margin-bottom: 45px; margin-top: 80px" href="#/view-4" ng-click="skip()">Skip if not applicable 
+    <a class="btn btn-default btn-xs pull-right btn-flat" style="margin-bottom: 45px; margin-top: 60px" href="#/view-4" ng-click="skip()">Skip if not applicable 
         <span class="glyphicon glyphicon-arrow-right"></span>
     </a>
 </div>

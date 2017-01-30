@@ -3,8 +3,9 @@
     angular.module("indexModule", [
         "ngRoute",
         "ngCookies",
-        "loginModule",
+        "ui.bootstrap",
         "viewModule",
+        "loginModule",
         "adminModule"
     ]);
 
