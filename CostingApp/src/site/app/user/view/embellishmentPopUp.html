@@ -6,7 +6,7 @@
     <div class="col-xs-12" style="padding-left: 0px" ng-show="embellishmentMode === 'hand'">
         <div class="col-xs-3" ng-repeat="embllishment in embllishments| filter : {'type': 'hand'}">
             <div id="imgPanel" style="width: 65px; height: 65px; margin-bottom: 8px" ng-click="getHandEmbllishmentDetails(embllishment)">
-                <img src="./img/{{embllishment.picture}}" style="width: 60px; height: 38px;"/>
+                <img src="/{{embllishment.picture}}" style="width: 60px; height: 38px;"/>
                 <h6 class="text-center">${{embllishment.price}}</h6>
             </div>
         </div>
@@ -14,7 +14,7 @@
     <div class="col-xs-12" style="padding-left: 0px" ng-show="embellishmentMode === 'machine'">
         <div class="col-xs-3" ng-repeat="embllishment in embllishments| filter : {'type': 'machine'}">
             <div id="imgPanel" style="width: 65px; height: 65px; margin-bottom: 8px" ng-click="getHandEmbllishmentDetails(embllishment)">
-                <img src="./img/{{embllishment.picture}}" style="width: 60px; height: 38px;"/>
+                <img src="/{{embllishment.picture}}" style="width: 60px; height: 38px;"/>
                 <h6 class="text-center">${{embllishment.price}}</h6>
             </div>
         </div>

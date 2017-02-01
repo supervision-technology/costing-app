@@ -79,12 +79,9 @@
                     <tr>
                         <td  ng-repeat="embllishment in embllishments| filter : {'type': 'hand'}">
                             <div id="imgPanel" style="width: 65px; height: 65px;" ng-click="getHandEmbllishmentDetails(embllishment)">
-                                <img src="./img/{{embllishment.picture}}.PNG" style="width: 60px; height: 38px;"/>
+                                <img src="/{{embllishment.picture}}" style="width: 60px; height: 38px;"/>
                                 <h6 class="text-center">${{embllishment.price}}</h6>
                             </div>
-                            <!--                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src="./img/{{embllishment.picture}}.PNG" />
-                                                            <h6 class="text-center">${{embllishment.price}}</h6>
-                                                        </div>-->
                         </td>   
                     </tr>   
                 </tbody>

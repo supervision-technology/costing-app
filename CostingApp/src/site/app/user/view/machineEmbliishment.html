@@ -78,11 +78,8 @@
                     <tr>
                         <td  ng-repeat="embllishment in embllishments|filter : {'type': 'machine'}">
                             <div id="imgPanel" style="width: 150px; height: 160px;" ng-click="getMachineEmbllishmentDetails(embllishment)">
-                                <img src="./img/{{embllishment.picture}}.PNG" style="width: 150px; height: 160px;">
+                                <img src="/{{embllishment.picture}}" style="width: 150px; height: 160px;">
                             </div>
-<!--                            <div class="col-lg-4" id="imgPanel" ng-click="getEmbllishmentCostDetails(embllishment)"><img src="./img/{{embllishment.picture}}.PNG" />
-                                <h6 class="text-center">${{embllishment.price}}</h6>
-                            </div>-->
                         </td>   
                     </tr>   
                 </tbody>

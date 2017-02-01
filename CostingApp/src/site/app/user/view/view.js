@@ -368,6 +368,10 @@
             $rootScope.machineCost = Math.round($rootScope.machineCost * 100) / 100;
             console.log($rootScope.machineCost);
         };
+        
+        $scope.handEmbellishmentCost = function (){
+          $rootScope.handEmbellihshmentCost = $rootScope.emdTotal + $rootScope.smvChargeOutTotal;  
+        };
 
         $scope.skipHandEmbllishment = function () {
             $rootScope.emdTotal = 0;

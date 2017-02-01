@@ -84,6 +84,12 @@ gulp.task('build-other', function () {
     gulp.src('src/site/img/*.*')
             .pipe(debug())
             .pipe(gulp.dest('src/main/resources/static/img'));
+    
+    //images
+    gulp.src('src/site/images/**/*.*')
+            .pipe(debug())
+            .pipe(gulp.dest('src/main/resources/static/images'));
+    
     //web fonts
     gulp.src('bower_components/bootstrap/dist/fonts/*.*')
             .pipe(debug())
