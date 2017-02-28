@@ -5,6 +5,7 @@ import com.mac.costingapp.app.style.model.Style;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,19 +22,13 @@ public class StyleController {
     @Autowired
     private StyleService styleService;
 
-    @RequestMapping(value = "/all-bottom-style", method = RequestMethod.GET)
-    public List<Style> AllBottomStyles() {
-        return styleService.allBottomStyles();
+    @RequestMapping(value = "/all-style/{category}", method = RequestMethod.GET)
+    public List<Style> AllTopStyles(@PathVariable String category) {
+        return styleService.allStyle(category);
     }
-
-    @RequestMapping(value = "/all-top-style", method = RequestMethod.GET)
-    public List<Style> AllTopStyles() {
-        return styleService.allTopStyles();
+    
+     @RequestMapping(method = RequestMethod.GET)
+    public List<Style> AllStyles() {
+        return styleService.styles();
     }
-
-    @RequestMapping(value = "/all-style", method = RequestMethod.GET)
-    public List<Style> AllStyle() {
-        return styleService.findAll();
-    }
-
 }

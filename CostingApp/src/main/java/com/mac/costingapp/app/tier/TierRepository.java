@@ -16,6 +16,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TierRepository extends JpaRepository<Tier, Integer>{
 
-    public List<Tier> findByStyleCategory(String CATEGORY);
+//    public List<Tier> findByStyleCategory(String CATEGORY);
     
 }

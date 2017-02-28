@@ -20,29 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class StyleService {
 
-    private static final String BOTTOM = "bottom";
-    private static final String TOP = "top";
-
     @Autowired
     private StyleRepository styleRepository;
 
-    public List<Style> allBottomStyles() {
-        return styleRepository.findByCategory(BOTTOM);
+    List<Style> allStyle(String category) {
+        return styleRepository.findByCategory(category);
     }
 
-    public List<Style> allTopStyles() {
-        return styleRepository.findByCategory(TOP);
+    List<Style> styles() {
+       return styleRepository.findAll();
     }
-//    public List<Style> allStyle(){
-//        return styleRepository.findAll();
-//    }
 
-    public List<Style> findAll() {
-        return styleRepository.findAll();
-//        for (Style style : findAll) {
-//            byte[] picture = style.getPicture();
-////            System.out.println(style.getPicture());
-//        }
-//        return findAll;
-    }
 }

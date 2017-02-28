@@ -34,16 +34,13 @@ public class Tier implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tier", fetch = FetchType.EAGER, orphanRemoval = true)
-    private Collection<Style> style;
 
     public Tier() {
     }
 
-    public Tier(Integer indexNo, String name, Collection<Style> style) {
+    public Tier(Integer indexNo, String name) {
         this.indexNo = indexNo;
         this.name = name;
-        this.style = style;
     }
 
     public Integer getIndexNo() {
@@ -61,13 +58,5 @@ public class Tier implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Collection<Style> getStyle() {
-        return style;
-    }
-
-    public void setStyle(Collection<Style> style) {
-        this.style = style;
-    }
-
+    
 }

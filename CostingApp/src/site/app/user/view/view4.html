@@ -3,8 +3,10 @@
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
-        <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        <h6 style="margin-left: 47px; margin-top: 13px;">Bottoms</h6>
+        <label>
+            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 10px" id="top-img">
+            {{mode}}
+        </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
@@ -70,19 +72,18 @@
     <!--categorys-->
     <div class="text-center"><label>Trim Cost</label></div>
     <div style="margin-bottom: 45px" class="col-xs-12">
-        <div class="category" ng-repeat="tier in tiers">
+        <div class="category" ng-repeat="(key, value) in styleList | groupBy:'tier.name'">
             <div class="title row">
-                <label>{{tier.name}}</label>
+                <label>{{key}}</label>
             </div>
             <div class="row mygrid-wrapper-div">
                 <table class="table">  
                     <tbody>
                         <tr>
-                            <td ng-repeat="style in tier.style| filter:{'category':mode}">
+                            <td ng-repeat="style in value">
                                 <a href="#/view-5"><div id="imgPanel" style="width: 70px; height: 50px;" ng-click="getTrimCostDetails(style)">
                                         <img src="/{{style.picture}}" style="width: 70px; height: 50px;">
                                     </div></a>
-                                <!--<a href="#/view-5"><div class="col-lg-4" id="imgPanel" ng-click="getTrimCostDetails(style)"><img  src=".\img\{{style.picture}}.PNG"/></div></a>-->
                             </td>
                         </tr>   
                     </tbody>

@@ -1,68 +1,22 @@
 (function () {
-    angular.module("viewModule", ["ngAnimate"]);
+    angular.module("viewModule", ["ngAnimate", "ui.bootstrap", "angular.filter"]);
 
     var viewController = function ($http, $scope, $rootScope, systemConfig, $location, $uibModal, $uibModalStack) {
-        if (!$rootScope.qty) {
-            $scope.qty = 1;
-        }
-        if (!$rootScope.embMachineqty) {
-            $scope.embMachineqty = 1;
-        }
-        if (!$rootScope.packingCostSolid) {
-            $scope.packingCostSolid = 0.36;
-        }
-        if (!$rootScope.packingCostPrint) {
-            $scope.packingCostPrint = 0.36;
-        }
-
-        //----------------http funtions with privilages--------------------
-        //get emblishment details
-        var url = systemConfig.apiUrl + "/api/emblishment/all-emblishment";
-
-        $http.get(url)
-                .success(function (data) {
-                    $scope.embllishments = data;
-                });
-
-        //get tier details 
-        if ($rootScope.mode === "top") {
-            var url = systemConfig.apiUrl + "/api/tiers/all-tiers";
-
-            $http.get(url)
-                    .success(function (data) {
-                        $scope.tiers = data;
-                    });
-        }
-
-        if ($rootScope.mode === "bottom") {
-            var url = systemConfig.apiUrl + "/api/tiers/all-tiers";
-
-            $http.get(url)
-                    .success(function (data) {
-                        $scope.tiers = data;
-                        console.log($scope.tiers);
-                    });
-
-        }
 
         //menu funtions
         $scope.selectTop = function () {
             $rootScope.mode = "top";
-            $rootScope.top = $scope.top;
         };
 
         $scope.selectBottom = function () {
             $rootScope.mode = "bottom";
-            $rootScope.bottom = $scope.bottom;
         };
-
-
-
 
         //----------------ui funtions-----------------------
         //get fabric cost
         $scope.getfabricCostDetails = function (styles) {
             $scope.fabricCost = styles;
+            $rootScope.tier = $scope.fabricCost.tier.name;
             $rootScope.selectPicture = $scope.fabricCost.picture;
             $rootScope.solidPrice = $scope.fabricCost.solidPrice;
             $rootScope.solidConsumption = $scope.fabricCost.solidConsumption;
@@ -85,11 +39,15 @@
         $scope.getTrimCostDetails = function (styles) {
             $scope.trimCost = styles.trimCost;
             $rootScope.trimCost = $scope.trimCost;
+            $rootScope.tier = styles.tier.name;
+            $rootScope.selectPicture = styles.picture;
         };
 
         $scope.getCupCostDetails = function (styles) {
             $scope.cupCost = styles.cupCost;
             $rootScope.cupCost = $scope.cupCost;
+            $rootScope.tier = styles.tier.name;
+            $rootScope.selectPicture = styles.picture;
         };
 
         //get embllishment cost
@@ -108,6 +66,8 @@
 
         //get cm and smv cost 
         $scope.getCMCostDetails = function (styles) {
+            $rootScope.tier = styles.tier.name;
+            $rootScope.selectPicture = styles.picture;
             $rootScope.smv = styles.smv;
             $rootScope.cor = styles.cor;
 
@@ -116,11 +76,25 @@
         };
 
         //view-3 funtions
-        $scope.yardBtnClick = function () {
-//           $scope.yardMode = 1;
+        $scope.changeYardToMeter = function (value) {
+            if (value === true) {
+                $rootScope.checkboxModel = true;
+                $rootScope.solidPrice = $rootScope.solidPrice * 1.094;
+                $rootScope.solidConsumption = $rootScope.solidConsumption / 1.094;
+                $rootScope.printPrice = $rootScope.printPrice * 1.094;
+                $rootScope.printConsumption = $rootScope.printConsumption / 1.094;
+                $scope.calculatePrint();
+                $scope.calculateSolid();
+            } else {
+                $rootScope.checkboxModel = false;
+                $rootScope.solidPrice = $rootScope.solidPrice / 1.094;
+                $rootScope.solidConsumption = $rootScope.solidConsumption * 1.094;
+                $rootScope.printPrice = $rootScope.printPrice / 1.094;
+                $rootScope.printConsumption = $rootScope.printConsumption * 1.094;
+                $scope.calculatePrint();
+                $scope.calculateSolid();
+            }
         };
-
-
 
         $scope.solidIncrement = function () {
             $rootScope.solidPrice += 0.01;
@@ -181,6 +155,18 @@
         };
 
         //liner cost funtion
+        $scope.changeYardToMeter2 = function (value) {
+            if (value === true) {
+                $rootScope.checkboxModel2 = true;
+                $rootScope.linerPrice = $rootScope.linerPrice * 1.094;
+                $rootScope.linerConsumption = $rootScope.linerConsumption / 1.094;
+            } else {
+                $rootScope.checkboxModel2 = false;
+                $rootScope.linerPrice = $rootScope.linerPrice / 1.094;
+                $rootScope.linerConsumption = $rootScope.linerConsumption * 1.094;
+            }
+        };
+
         $scope.linerPriceIncrement = function () {
             $rootScope.linerPrice += 0.01;
             $rootScope.linerPrice = Math.round($rootScope.linerPrice * 100) / 100;
@@ -261,7 +247,7 @@
         };
 
         $scope.openMachineEmbellishment = function () {
-             $rootScope.embellishmentMode = "machine";
+            $rootScope.embellishmentMode = "machine";
             $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
@@ -366,11 +352,10 @@
         $scope.calculateMachineCost = function () {
             $rootScope.machineCost = $rootScope.embMachineCost * $scope.embMachineqty;
             $rootScope.machineCost = Math.round($rootScope.machineCost * 100) / 100;
-            console.log($rootScope.machineCost);
         };
-        
-        $scope.handEmbellishmentCost = function (){
-          $rootScope.handEmbellihshmentCost = $rootScope.emdTotal + $rootScope.smvChargeOutTotal;  
+
+        $scope.handEmbellishmentCost = function () {
+            $rootScope.handEmbellihshmentCost = $rootScope.emdTotal + $rootScope.smvChargeOutTotal;
         };
 
         $scope.skipHandEmbllishment = function () {
@@ -379,8 +364,6 @@
         $scope.skipMachineEmbllishment = function () {
             $rootScope.machineCost = 0;
         };
-
-
 
         //view-8 funtions
         $scope.smvIncrement = function () {
@@ -415,7 +398,6 @@
             }
         };
 
-        //view-8 other funtions
         $scope.calculateCm = function () {
             $rootScope.cmCost = $rootScope.smv * $rootScope.cor;
             $rootScope.cmCost = Math.round($rootScope.cmCost * 100) / 100;
@@ -501,23 +483,71 @@
             $rootScope.targetFobPrint = $scope.targetFobPrint;
         };
 
-        //view-12 funtiions
-//        $scope.imageSelected = function (input) {
-//            if (input.files) {
-//                var reader = new FileReader();
-//
-//                reader.onload = function (e) {
-//                    angular.element(document.querySelector('#img-save'))
-//                            .attr('src', e.target.result);
-//                };
-//
-//                reader.readAsDataURL(input.files[0]);
-//            }
-//        };
-        //the image
+
+
+        $scope.inint = function () {
+            //get emblishment
+            var url = systemConfig.apiUrl + "/api/emblishment/all-emblishment";
+            $http.get(url)
+                    .success(function (data) {
+                        $scope.embllishments = data;
+                    });
+
+
+            // get all style
+            if ($rootScope.mode === 'bottom') {
+                var url = systemConfig.apiUrl + "/api/style/all-style/" + $rootScope.mode;
+
+                $http.get(url)
+                        .success(function (data) {
+                            $scope.styleList = data;
+                            console.log($scope.styleList);
+                        });
+
+            }
+            ;
+
+            if ($rootScope.mode === 'top') {
+                var url = systemConfig.apiUrl + "/api/style/all-style/" + $rootScope.mode;
+
+                $http.get(url)
+                        .success(function (data) {
+                            $scope.styleList = data;
+                            console.log($scope.styleList);
+                        });
+
+            }
+            ;
+
+            if (!$rootScope.qty) {
+                $scope.qty = 1;
+            }
+            if (!$rootScope.embMachineqty) {
+                $scope.embMachineqty = 1;
+            }
+            if (!$rootScope.packingCostSolid) {
+                $scope.packingCostSolid = 0.36;
+            }
+            if (!$rootScope.packingCostPrint) {
+                $scope.packingCostPrint = 0.36;
+            }
+
+            if (!$rootScope.checkboxModel === true) {
+                $rootScope.checkboxModel = false;
+            } else {
+                $rootScope.checkboxModel = true;
+            }
+
+            if (!$rootScope.checkboxModel2 === true) {
+                $rootScope.checkboxModel2 = false;
+            } else {
+                $rootScope.checkboxModel2 = true;
+            }
+        };
+
+        $scope.inint();
     };
 
     angular.module("viewModule")
             .controller("viewController", viewController);
-
 }());

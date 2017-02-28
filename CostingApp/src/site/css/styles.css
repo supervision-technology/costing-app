@@ -1,17 +1,4 @@
-/*
-Lumino Admin Bootstrap Template
-Version 1.0
-*/
-
-
-/*Global Styles*/
-
-/*body {
-    background: #ffffff;
-    padding-top: 50px;
-    color: #5f6468;
-}*/
-p {
+/*p {
     color: #777;
 }
 
@@ -104,7 +91,7 @@ h3, h4 {
     color: #ff1c00;
 }
 
-/*Buttons*/
+Buttons
 
 a.btn:hover,
 button:hover {
@@ -144,9 +131,9 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-/*    background-color: #e9ecf2;
+    background-color: #e9ecf2;
     border-color: #e9ecf2;
-    color: #1b3548;*/
+    color: #1b3548;
 }
 
 .btn-primary,
@@ -170,8 +157,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-/*  background-color: #30a5ff;
-    border-color: #30a5ff;*/
+  background-color: #30a5ff;
+    border-color: #30a5ff;
 }
 
 .btn-success,
@@ -195,8 +182,8 @@ fieldset[disabled] .btn-success:active,
 .btn-success.disabled.active,
 .btn-success[disabled].active,
 fieldset[disabled] .btn-success.active {
-/*    background-color: #8ad919;
-    border-color: #8ad919;*/
+    background-color: #8ad919;
+    border-color: #8ad919;
 }
 
 .btn-warning,
@@ -220,8 +207,8 @@ fieldset[disabled] .btn-warning:active,
 .btn-warning.disabled.active,
 .btn-warning[disabled].active,
 fieldset[disabled] .btn-warning.active {
-/*    background-color: #ffb53e;
-    border-color: #ffb53e;*/
+    background-color: #ffb53e;
+    border-color: #ffb53e;
 }
 
 .btn-danger,
@@ -245,11 +232,11 @@ fieldset[disabled] .btn-danger:active,
 .btn-danger.disabled.active,
 .btn-danger[disabled].active,
 fieldset[disabled] .btn-danger.active {
-/*    background-color: #f9243f;
-    border-color: #f9243f;*/
+    background-color: #f9243f;
+    border-color: #f9243f;
 }
 
-/*Backgrounds*/
+Backgrounds
 
 .bg-primary {
     color: #1b3548;
@@ -299,7 +286,7 @@ a.bg-danger:hover {
     color: rgba(255, 255, 255, .75);
 }
 
-/*Panels*/
+Panels
 
 .panel {
     border: 0;
@@ -307,11 +294,11 @@ a.bg-danger:hover {
 }
 
 .panel-heading {
-    /*font-size: 18px;*/
+    font-size: 18px;
     font-weight: 300;
     letter-spacing: 0.025em;
-    /*height: 66px;*/
-    /*line-height: 45px;*/
+    height: 66px;
+    line-height: 45px;
 }
 
 .panel-default .panel-heading {
@@ -444,7 +431,7 @@ a.bg-danger:hover {
     background: #fff;
 }
 
-/*Jumbotron*/
+Jumbotron
 
 .jumbotron {
     background: #fff;
@@ -452,7 +439,7 @@ a.bg-danger:hover {
     color: #5f6468;
 }
 
-/*Tabs*/
+Tabs
 
 .panel .tabs {
     margin: 0;
@@ -499,7 +486,7 @@ a.bg-danger:hover {
 }
 
 
-/*Navbar*/
+Navbar
 
 .navbar {
     border: 0;
@@ -536,11 +523,11 @@ a.bg-danger:hover {
     text-decoration: none;
 }
 
-/* Sidebar */
+ Sidebar 
 
 .sidebar {
     display: block;
-    /*background-color: #fff;*/
+    background-color: #fff;
     padding: 0;
     display: none;
 }
@@ -564,7 +551,7 @@ a.bg-danger:hover {
         padding: 0;
         overflow-x: hidden;
         overflow-y: auto; 
-        /*background-color: #ffffff;*/
+        background-color: #ffffff;
         box-shadow: 1px 0px 10px rgba(0, 0, 0, .05);
     }
     .navbar-header {
@@ -636,7 +623,7 @@ a.bg-danger:hover {
     font-size: 12px;
 }
 
-/*Breadcrumbs*/
+Breadcrumbs
 
 .breadcrumb {
     border-radius: 0;
@@ -651,7 +638,7 @@ h1.page-header {
     border-bottom: 0;
 }
 
-/*Charts*/
+Charts
 
 .main-chart {
     background: #fff;
@@ -692,7 +679,7 @@ h1.page-header {
 #easypiechart-orange .percent { color: #ffb53e;}
 #easypiechart-red .percent { color: #ef4040;}
 
-/*Calendar Widget*/
+Calendar Widget
 
 #calendar, .datepicker-inline {
     width: 100%;
@@ -748,7 +735,7 @@ h1.page-header {
     margin-right: 10px;
 }
 
-/*Todo List Widget*/
+Todo List Widget
 
 .todo-list-item .glyphicon { 
     margin-right:5px; 
@@ -797,7 +784,7 @@ h1.page-header {
 }
 
 
-/*Chat Widget*/
+Chat Widget
 
 .chat ul {
     list-style: none;
@@ -831,7 +818,7 @@ h1.page-header {
     margin-left: 5px;
 }
 
-/*Tables*/
+Tables
 .table {
     background: #fff;
 }
@@ -870,7 +857,7 @@ h1.page-header {
     margin-top: 20px;
 }
 
-/*Icons*/
+Icons
 
 
 .sidebar .glyph, .user-menu .glyph {
@@ -914,7 +901,7 @@ h1.page-header {
     border: none;
 }
 
-/*Icon Grid*/
+Icon Grid
 
 .icon-grid div {
     border: 1px solid #ddd;
@@ -945,7 +932,7 @@ h1.page-header {
 
 .dropdown:hover .dropdown-menu {
     display: block;
-}
+}*/
 
 
 

@@ -40,7 +40,6 @@ public class Style implements Serializable {
     @Column(name = "picture")
     private String picture;
 
-    @JsonIgnore
     @JoinColumn(name = "tier", referencedColumnName = "index_no")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Tier tier;

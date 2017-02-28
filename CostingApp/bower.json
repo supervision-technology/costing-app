@@ -16,7 +16,8 @@
         "animate.css": "3.5.2",
         "angular-ui-notification": "latest",
         "chart.js": "npm:chart.js#2.2.2",
-        "ngCordova": "~0.1.9-alpha"
+        "ngCordova": "~0.1.9-alpha",
+        "angular-filter":"0.5.15" 
     },
     "devDependencies": {}
 }

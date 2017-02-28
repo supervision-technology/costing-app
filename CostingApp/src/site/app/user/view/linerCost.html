@@ -3,13 +3,16 @@
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
-        <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        <h6 style="margin-left: 47px; margin-top: 13px;">Bottoms</h6>
+        <label>
+            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 10px" id="top-img">
+            {{mode}}
+        </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
 </header>
+
 
 <div class="container-fluid" id="top">
     <!--stepper-->
@@ -71,13 +74,13 @@
     </div>
     <div class="tier col-xs-12">
         <div class="title row">
-            <label>Tier 1</label>
+            <label>{{tier}}</label>
         </div>
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
                     <tr>
-                         <td>
+                        <td>
                             <div id="imgPanel" style="width: 70px; height: 50px;">
                                 <img src="/{{selectPicture}}" style="width: 70px; height: 50px;">
                             </div>
@@ -95,10 +98,13 @@
                 <u><h6>Default Prices</h6></u>
             </div>
             <div class="form-group pull-right">
-                <div class="btn-group" style="padding-top: 5px;">
-                    <label ng-click="yardBtnClick()" class="btn btn-default btn-xs" ng-model="yardMode">yd</label>
-                    <label ng-click="meterBtnClick()" class="btn btn-default btn-xs" ng-model="meterMode">m</label>
-                </div>
+                <label class="switch">
+                    <input type="checkbox" ng-model="checkboxModel2" ng-change="changeYardToMeter2(checkboxModel2)">
+                    <div class="slider round">
+                        <span><h5 class="pull-right" style="margin-right: 9px;margin-top: 9px;color: #ffffff">Y</h5></span>
+                        <span><h5 style="margin-left: 9px;margin-top: 9px;color: #ffffff">M</h5></span>
+                    </div>
+                </label>
             </div>
         </div>
         <form class="row">
