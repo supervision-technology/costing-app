@@ -33,9 +33,9 @@
     margin-bottom: 0px !important;
 }
 
-.my-part{
-    width: 14% !important;
-}
+/*.my-part{
+    width: 14%;
+}*/
 .category{
     width: 100%;
     height: auto;
@@ -65,7 +65,7 @@
     margin-bottom: 0px !important;
 }*/
 #default-price{
-    margin-top: 91px;
+    margin-top: 90px;
 }
 #range-bar{
     margin-top: 100px;
@@ -104,15 +104,6 @@
     border: 3px solid #f1f1f1;
 }*/
 
-.login-text{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    height: 30px;
-}
 
 /* Set a style for all buttons */
 #login-btn{
@@ -177,7 +168,7 @@ input[type=range] {
 
     /*fix for FF unable to apply focus style bug */
     border: 1px solid white;
-    margin-top: 26px;
+    margin-top: 21px;
 }
 input[type=range]::-webkit-slider-runnable-track {
     /*width: 300px;*/
@@ -268,6 +259,16 @@ input[type=range]:focus::-ms-fill-upper {
 
 input[type=text]{
     border-radius: 0px !important;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }
 
 .input-group-addon{

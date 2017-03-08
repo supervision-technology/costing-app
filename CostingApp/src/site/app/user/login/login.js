@@ -4,6 +4,7 @@
 
     var loginController = function ($scope, $location) {
 
+
         $scope.login = function (name) {
             if (name === "admin") {
                 $location.path('/admin');
@@ -12,6 +13,8 @@
             }
 
         };
+
+
     };
 
 

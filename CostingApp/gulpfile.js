@@ -48,7 +48,9 @@ gulp.task('build-js', function () {
         "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
         "bower_components/angular-ui-notification/dist/angular-ui-notification.min.js",
         "bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js",
-        "bower_components/angular-filter/dist/angular-filter.js"
+        "bower_components/angular-filter/dist/angular-filter.js",
+        "bower_components/boostrap/dist/css/bootstrap.min.css",
+        "bower_components/boostrap/dist/js/bootstrap.min.js"
     ])
             .pipe(debug())
             .pipe(concat('vendor.js'))

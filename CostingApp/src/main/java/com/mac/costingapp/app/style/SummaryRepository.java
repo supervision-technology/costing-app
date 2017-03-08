@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mac.costingapp.app.tier;
+package com.mac.costingapp.app.style;
 
-import com.mac.costingapp.app.tier.model.Tier;
+import com.mac.costingapp.app.style.model.Summary;
 import java.io.Serializable;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Nidura Prageeth
  */
-public interface TierRepository extends JpaRepository<Tier, Integer>{
-
+public interface SummaryRepository extends JpaRepository<Summary, Integer>{
     
 }

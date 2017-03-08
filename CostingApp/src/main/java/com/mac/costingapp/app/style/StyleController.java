@@ -22,13 +22,19 @@ public class StyleController {
     @Autowired
     private StyleService styleService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Style> AllStyles() {
+        return styleService.allStyles();
+    }
+
     @RequestMapping(value = "/all-style/{category}", method = RequestMethod.GET)
-    public List<Style> AllTopStyles(@PathVariable String category) {
+    public List<Style> AllStyle(@PathVariable String category) {
         return styleService.allStyle(category);
     }
-    
-     @RequestMapping(method = RequestMethod.GET)
-    public List<Style> AllStyles() {
-        return styleService.styles();
+
+    @RequestMapping(value = "/save-style", method = RequestMethod.POST)
+    public Style saveStyle(@RequestBody Style style) {
+        System.out.println(style.toString());
+        return styleService.saveStyle(style);
     }
 }

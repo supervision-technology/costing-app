@@ -6,6 +6,9 @@
 package com.mac.costingapp.app.style;
 
 import com.mac.costingapp.app.style.model.Style;
+import com.mac.costingapp.app.style.model.Summary;
+import com.mac.costingapp.app.tier.TierRepository;
+import com.mac.costingapp.app.tier.model.Tier;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +26,29 @@ public class StyleService {
     @Autowired
     private StyleRepository styleRepository;
 
-    List<Style> allStyle(String category) {
+    @Autowired
+    private TierRepository tierRepository;
+
+    public List<Style> allStyles() {
+        return styleRepository.findAll();
+    }
+
+    public List<Style> allStyle(String category) {
         return styleRepository.findByCategory(category);
     }
 
-    List<Style> styles() {
-       return styleRepository.findAll();
+    public Style saveStyle(Style style) {
+        Tier tier = tierRepository.findOne(1);
+        style.setTier(tier);
+
+        Style style1 = styleRepository.save(style);
+        System.out.println(style1);
+
+        Summary summary = style.getSummary();
+        summary.setStyle(style1);
+        System.out.println(summary);
+
+        return style1;
     }
 
 }

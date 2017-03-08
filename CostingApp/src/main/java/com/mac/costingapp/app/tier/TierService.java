@@ -28,4 +28,12 @@ public class TierService {
         return tierRepository.findAll();
     }
 
+    public Tier saveTier(Tier tier) {
+        return tierRepository.save(tier);
+    }
+
+    public void deleteTier(Integer indexNo) {
+        tierRepository.delete(indexNo);
+    }
+
 }

@@ -9,16 +9,14 @@
     </div>
 </div>
 
-<div class="content">
+<div class="content" style="margin-top: 37%;">
     <div class="row" style="font-family: serif;"><h1 class="text-center" style="font-size: 40px; color:#ffffff; -webkit-text-stroke: 2px pink;font-weight: 900">PINK</h1></div>
     <div class="form-group has-feedback" style="margin-top: 30px">
-        <input type="text" class="form-control" placeholder="user name" ng-model="name" style=" background: transparent;
-               border-top: none; border-right: none;border-left: none; border-bottom-color: #cc0033">
+        <input type="text" class="form-control" id="login-text" placeholder="user name" ng-model="name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
     </div>
     <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" ng-model="password" style=" background: transparent;
-               border-top: none; border-right: none;border-left: none; border-bottom-color: #cc0033">
+        <input type="password" id="login-text" class="form-control" placeholder="Password" ng-model="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
     </div>
     <button class="btn btn-lg btn-danger btn-block btn-flat" style="margin-top:65px" type="submit" ng-click="login(name)">LOGIN</button>   

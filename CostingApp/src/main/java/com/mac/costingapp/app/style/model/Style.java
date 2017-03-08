@@ -1,9 +1,10 @@
 package com.mac.costingapp.app.style.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mac.costingapp.app.emblishment.model.Emblishment;
 import com.mac.costingapp.app.tier.model.Tier;
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,23 +14,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  *
  * @author Nidura Prageeth
  */
-@Entity()
+@Entity
 @Table(name = "style")
 public class Style implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "index_no")
     private Integer indexNo;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "embellishment_cost")
-    private Emblishment emblishment;
+    @Column(name = "machine_embellishment")
+    private int machineEmblishment;
+    
+    @Column(name = "hand_embellishment")
+    private int handEmblishment;
 
     @Column(name = "category")
     private String category;
@@ -73,13 +78,23 @@ public class Style implements Serializable {
 
     @Column(name = "cup_cost")
     private double cupCost;
+    
+    @Column(name = "hand_embellishment_cost")
+    private double handEmbellishmentCost;
+    
+    @Column(name = "machine_embellishment_cost")
+    private double machineEmbellishmentCost;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "style", fetch = FetchType.EAGER, orphanRemoval = true)
+    private Summary summary;
 
     public Style() {
     }
 
-    public Style(Integer indexNo, Emblishment emblishment, String category, String styleNo, String picture, Tier tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor, double linerPrice, double linerConsumption, double cupCost) {
+    public Style(Integer indexNo, int machineEmblishment, int handEmblishment, String category, String styleNo, String picture, Tier tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor, double linerPrice, double linerConsumption, double cupCost, double handEmbellishmentCost, double machineEmbellishmentCost, Summary summary) {
         this.indexNo = indexNo;
-        this.emblishment = emblishment;
+        this.machineEmblishment = machineEmblishment;
+        this.handEmblishment = handEmblishment;
         this.category = category;
         this.styleNo = styleNo;
         this.picture = picture;
@@ -94,6 +109,9 @@ public class Style implements Serializable {
         this.linerPrice = linerPrice;
         this.linerConsumption = linerConsumption;
         this.cupCost = cupCost;
+        this.handEmbellishmentCost = handEmbellishmentCost;
+        this.machineEmbellishmentCost = machineEmbellishmentCost;
+        this.summary = summary;
     }
 
     public Integer getIndexNo() {
@@ -104,12 +122,20 @@ public class Style implements Serializable {
         this.indexNo = indexNo;
     }
 
-    public Emblishment getEmblishment() {
-        return emblishment;
+    public int getMachineEmblishment() {
+        return machineEmblishment;
     }
 
-    public void setEmblishment(Emblishment emblishment) {
-        this.emblishment = emblishment;
+    public void setMachineEmblishment(int machineEmblishment) {
+        this.machineEmblishment = machineEmblishment;
+    }
+
+    public int getHandEmblishment() {
+        return handEmblishment;
+    }
+
+    public void setHandEmblishment(int handEmblishment) {
+        this.handEmblishment = handEmblishment;
     }
 
     public String getCategory() {
@@ -224,4 +250,27 @@ public class Style implements Serializable {
         this.cupCost = cupCost;
     }
 
+    public double getHandEmbellishmentCost() {
+        return handEmbellishmentCost;
+    }
+
+    public void setHandEmbellishmentCost(double handEmbellishmentCost) {
+        this.handEmbellishmentCost = handEmbellishmentCost;
+    }
+
+    public double getMachineEmbellishmentCost() {
+        return machineEmbellishmentCost;
+    }
+
+    public void setMachineEmbellishmentCost(double machineEmbellishmentCost) {
+        this.machineEmbellishmentCost = machineEmbellishmentCost;
+    }
+
+    public Summary getSummary() {
+        return summary;
+    }
+
+    public void setSummary(Summary summary) {
+        this.summary = summary;
+    }
 }

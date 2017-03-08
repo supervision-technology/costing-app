@@ -6,13 +6,20 @@
         "ui.bootstrap",
         "viewModule",
         "loginModule",
-        "adminModule"
+        "adminModule",
+        "tierModule",
+        "embellishmentModule",
+        "styleModule"
     ]);
 
-    //constants
-    angular.module("indexModule").constant("systemConfig", {
-        apiUrl: "http://localhost:8080"
-    });
+     //constants
+    angular.module("indexModule")
+            .constant("systemConfig", {
+                apiUrl:
+                        location.hostname === 'localhost'
+                        ? "http://localhost:8080"
+                        : location.protocol + "//" + location.hostname
+            });
 
     //route config
     angular.module("indexModule")
@@ -89,8 +96,20 @@
                         })
                         //admin
                         .when("/admin", {
-                            templateUrl: "app/user/admin/dashboard.html",
-                            controller: "adminController"
+                            templateUrl: "app/user/admin/style/new-style.html",
+                            controller: "styleController"
+                        })
+                        .when("/admin/styles", {
+                            templateUrl: "app/user/admin/style/all-styles.html",
+                            controller: "styleController"
+                        })
+                        .when("/admin/embelleshment", {
+                            templateUrl: "app/user/admin/embellishment/embellishment.html",
+                            controller: "embellishmentController"
+                        })
+                        .when("/admin/tiers", {
+                            templateUrl: "app/user/admin/tier/tier.html",
+                            controller: "tierController"
                         })
 
                         .otherwise({

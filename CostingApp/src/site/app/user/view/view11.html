@@ -4,7 +4,7 @@
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 10px" id="top-img">
+            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
@@ -16,7 +16,7 @@
 <div class="container-fluid" id="top">
     <!--initial cost summary-->
     <div class="text-center" style="margin-top: 10px"><label>Initial Cost Summary</label></div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-bottom: 45px">
         <table class="table">
             <thead>
                 <tr>           
@@ -42,9 +42,14 @@
                     <td>${{trimCost}}</td>
                 </tr>
                 <tr>
-                    <td>Emb Cost</td>
-                    <td>${{embCost}}</td>
-                    <td>${{embCost}}</td>
+                    <td>hand Emb Cost</td>
+                    <td>${{handEmbellihshmentCost}}</td>
+                    <td>${{handEmbellihshmentCost}}</td>
+                </tr>
+                 <tr>
+                    <td>machine Emb Cost</td>
+                    <td>${{machineCost}}</td>
+                    <td>${{machineCost}}</td>
                 </tr>
                 <tr>
                     <td>CM Cost</td>

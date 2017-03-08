@@ -5,10 +5,12 @@
  */
 package com.mac.costingapp.app.emblishment;
 
-import com.mac.costingapp.app.emblishment.model.Emblishment;
+import com.mac.costingapp.app.emblishment.model.Embellishment;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,14 +21,24 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/api/emblishment")
+@RequestMapping("/api/embellishment")
 public class EmblishmentController {
 
     @Autowired
     private EmblishmentService emblishmentService;
 
-    @RequestMapping(value = "/all-emblishment",method = RequestMethod.GET)
-    public List<Emblishment> allEmblishment() {
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Embellishment> allEmblishment() {
         return emblishmentService.allEmblishment();
+    }
+
+    @RequestMapping(value = "/save-embellishment", method = RequestMethod.POST)
+    public Embellishment saveEmbellishment(@RequestBody Embellishment embellishment) {
+        return emblishmentService.saveEmbellishment(embellishment);
+    }
+    
+    @RequestMapping(value = "/delete-embellishment/{indexNo}",method = RequestMethod.DELETE)
+    public void deleteEmbellshment(@PathVariable Integer indexNo){
+        emblishmentService.deleteEmbellishment(indexNo);
     }
 }

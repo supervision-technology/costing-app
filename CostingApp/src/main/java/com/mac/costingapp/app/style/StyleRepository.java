@@ -13,5 +13,4 @@ public interface StyleRepository extends JpaRepository<Style, Integer> {
 
     public List<Style> findByCategory(String BOTTOM);
 
-
 }

@@ -3,8 +3,10 @@
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
-        <img src="./img/bottom.PNG" class="img-circle pull-left" id="top-img">
-        <h6 style="margin-left: 47px; margin-top: 13px;">Bottoms</h6>
+        <label>
+            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            {{mode}}
+        </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
@@ -16,49 +18,49 @@
     <div class="row">
         <div class="container">
             <div class="bs-wizard" style="border-bottom:0;margin-left: 2px;">
-                <div class="col-xs-3 my-part bs-wizard-step complete">
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Fabric</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step complete">
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step complete">
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Trim</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step active" ng-show="mode === 'top'">
+                <div class="col-xs-3 my-part bs-wizard-step active" ng-show="mode === 'top'" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb 2</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step disabled">
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">FOB</div>
                     <div class="progress"><div class="progress-bar"></div></div>
                     <a href="#" class="bs-wizard-dot"></a>
@@ -79,8 +81,8 @@
                     <tbody>
                         <tr>
                             <td ng-repeat="style in value">
-                                <a href="#/cup-cost2"><div id="imgPanel" style="width: 70px; height: 50px;" ng-click="getCupCostDetails(style)">
-                                        <img src="/{{style.picture}}" style="width: 70px; height: 50px;">
+                                <a href="#/cup-cost2"><div id="imgPanel" style="width: 60px; height: 50px;" ng-click="getCupCostDetails(style)">
+                                        <img src="/{{style.picture}}" style="width: 60px; height: 50px;">
                                     </div></a>
                             </td>
                         </tr>   

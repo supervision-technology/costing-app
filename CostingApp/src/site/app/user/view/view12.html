@@ -11,31 +11,32 @@
 <div class="container-fluid" id="top">
     <div class="container-fluid">
         <br>
-        <label>Style No :</label>
-        <input type="text" class="form-control input-sm text-center"><br>
+        <label>Style No</label>
+        <input type="text" class="form-control input-sm text-center" ng-model="styleModal.styleNo" ><br>
+
+        <label>Tier</label>
+        <select class="form-control" ng-model="sample" ng-change="changeTiers(tier)">
+            <option ng-repeat="tier in tiers">{{tier.name}}</option>
+        </select>
+        <br>
 
 
-        <!--<label>Image :</label>-->
-        <!--        <form>
-                    <input type='file' onchange="angular.element(this).scope().imageSelected(this)"/>
-                </form><br>
-                <div style="width: 100%; height: 180px; border: 1px solid #333333">
-                    <img id="img-save" src="./img/placeholder.png" alt="your image" ng-model="image" style="width: 100%; height:100%" />
-                </div><br>-->
-        
-         <label>Image :</label>
-        <input type="file" fileread="uploadme"/>
-        <!--<div class="col-xs-3 row"><button class="btn btn-primary btn-flat btn-xs" ng-click="uploadImage()">upload image</button></div>-->
-        <!--<span><input type="file" fileread="uploadme" /><button class="btn btn-primary btn-flat btn-xs" ng-click="uploadImage()">upload image</button></span>-->
-        <div style="width: 100%; height: 180px; border: 1px solid #333333">
-            <img src="{{uploadme}}" style="width: 100%; height:100%">
-        </div><br>   
-        <button class="btn btn-default col-xs-5 pull-left btn-flat">Share</button>
-        <button class="btn btn-primary col-xs-5 pull-right btn-flat" ng-click="saveStyle()">Save</button>
-    </div><br>
+        <label for="file-upload" class="custom-file-upload">
+            <i class="glyphicon glyphicon-camera"></i> Upload Image
+        </label>
+        <input id="file-upload" type="file" onchange="angular.element(this).scope().imageUpload(event)"><br>
+        <img src="{{imagemodel}}" style="width: 46%; height:20%">
+    </div><br>  
+    <div class="col-xs-12" style="margin-top: 50px">
+        <a class="btn btn-default col-xs-5 btn-flat pull-left">
+            <span class="glyphicon glyphicon-share"></span> Share
+        </a>
+        <a class="btn btn-success col-xs-5 btn-flat pull-right" ng-click="saveStyle()">
+            <span class="glyphicon glyphicon-save"></span> Save
+        </a>
+    </div>
 </div>
 
-<!--footer-->
 <footer class="footer">
     <div class="container-fluid" style="margin-top: 8px">
         <a class="btn btn-default btn-xs pull-right btn-flat" href="#/view-1">
