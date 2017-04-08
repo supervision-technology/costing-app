@@ -5,7 +5,7 @@
  */
 package com.mac.costingapp.app.emblishment;
 
-import com.mac.costingapp.app.emblishment.model.Embellishment;
+import com.mac.costingapp.app.emblishment.model.Emblishment;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,12 +28,12 @@ public class EmblishmentController {
     private EmblishmentService emblishmentService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Embellishment> allEmblishment() {
+    public List<Emblishment> allEmblishment() {
         return emblishmentService.allEmblishment();
     }
 
     @RequestMapping(value = "/save-embellishment", method = RequestMethod.POST)
-    public Embellishment saveEmbellishment(@RequestBody Embellishment embellishment) {
+    public Emblishment saveEmbellishment(@RequestBody Emblishment embellishment) {
         return emblishmentService.saveEmbellishment(embellishment);
     }
     

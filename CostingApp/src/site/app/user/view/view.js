@@ -1,13 +1,14 @@
 (function () {
-    angular.module("viewModule", ["ngAnimate", "ui.bootstrap", "angular.filter"]);
+    angular.module("viewModule", ["ngAnimate", "ui.bootstrap", "angular.filter", "base64"]);
 
-    var viewController = function ($http, $scope, $rootScope, systemConfig, $location, $uibModal, $uibModalStack) {
+    var viewController = function ($http, $base64, $scope, $rootScope, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
+
 
         $scope.styleModal = {
             styleNo: null,
             category: null,
             picture: null,
-            tier: null,
+            tier: {},
             solidPrice: null,
             solidConsumption: null,
             printPrice: null,
@@ -18,12 +19,14 @@
             smv: null,
             cor: null,
             cupCost: null,
-            machineEmblishment: null,
-            handEmblishment: null,
+            machineEmbellishment: {},
+            handEmbellishment: {},
+            handEmbellishmentCost: null,
+            machineEmbellishmentCost: null,
             summary:
                     {
-//                style: null,
-                        trimCost: null,
+                        //style: null,
+//                            trimCost: null,
                         fabricCostSolid: null,
                         fabricCostPrint: null,
                         linerCost: null,
@@ -43,9 +46,56 @@
 
         };
 
+//        $scope.resetModel = function () {
+//            $scope.styleModal = {
+//                styleNo: null,
+//                category: null,
+//                picture: null,
+//                tier: {},
+//                solidPrice: null,
+//                solidConsumption: null,
+//                printPrice: null,
+//                printConsumption: null,
+//                linerPrice: null,
+//                linerConsumption: null,
+//                trimCost: null,
+//                smv: null,
+//                cor: null,
+//                cupCost: null,
+//                machineEmbellishment: {},
+//                handEmbellishment: {},
+//                handEmbellishmentCost: null,
+//                machineEmbellishmentCost: null,
+//                summary:
+//                        {
+//                            //style: null,
+////                            trimCost: null,
+//                            fabricCostSolid: null,
+//                            fabricCostPrint: null,
+//                            linerCost: null,
+//                            machineEmb: null,
+//                            handEmb: null,
+//                            cmCost: null,
+//                            packingCost: null,
+//                            initialFobSolid: null,
+//                            initialFobPrint: null,
+//                            retailPriceSolid: null,
+//                            retailPricePrint: null,
+//                            seaImuSolid: 80,
+//                            seaImuPrint: 70,
+//                            airImuSolid: 50,
+//                            airImuPrint: 60
+//                        }
+//
+//            };
+//        };
+
+
         //--------------------http funtion------------------------
 
         $scope.saveStyle = function () {
+            $scope.styleModal.machineEmbellishment = $rootScope.machineEmbellishmentIndexNo;
+            $scope.styleModal.handEmbellishment = $rootScope.handEmbellishmentIndexNo;
             $scope.styleModal.category = $rootScope.mode;
             $scope.styleModal.solidPrice = $rootScope.solidPrice;
             $scope.styleModal.solidConsumption = $rootScope.solidConsumption;
@@ -57,33 +107,73 @@
             $scope.styleModal.smv = $rootScope.smv;
             $scope.styleModal.cor = $rootScope.cor;
             $scope.styleModal.cupCost = $rootScope.cupCost;
-            $scope.styleModal.machineEmblishment = $rootScope.machineEmbellishment;
-            $scope.styleModal.handEmblishment = $rootScope.handEmbellishment;
+            $scope.styleModal.handEmbellishmentCost = $rootScope.handEmbellihshmentCost;
+            $scope.styleModal.machineEmbellishmentCost = $rootScope.machineCost;
 
-            $scope.styleModal.summary.trimCost = $rootScope.trimCost;
-            $scope.styleModal.summary.fabricCostSolid = $rootScope.fabSolid;
-            $scope.styleModal.summary.fabricCostPrint = $rootScope.fabPrint;
-            $scope.styleModal.summary.linerCost = $rootScope.linerCost;
-            $scope.styleModal.summary.machineEmb = $rootScope.machineCost;
-            $scope.styleModal.summary.handEmb = $rootScope.handEmbellihshmentCost;
-            $scope.styleModal.summary.cmCost = $rootScope.cmCost;
-            $scope.styleModal.summary.packingCost = $rootScope.packingCostSolid;
-            $scope.styleModal.summary.initialFobSolid = $rootScope.calculateInitialFobSolid();
-            $scope.styleModal.summary.initialFobPrint = $rootScope.calculateInitialFobPrint();
-            $scope.styleModal.summary.retailPriceSolid = $rootScope.retailPriceSolid;
-            $scope.styleModal.summary.retailPricePrint = $rootScope.retailPricePrint;
+
+
+//            $scope.styleModal.summary.trimCost = $rootScope.trimCost;
+//            $scope.styleModal.summary.fabricCostSolid = $rootScope.fabSolid;
+//            $scope.styleModal.summary.fabricCostPrint = $rootScope.fabPrint;
+//            $scope.styleModal.summary.linerCost = $rootScope.linerCost;
+//            $scope.styleModal.summary.machineEmb = $rootScope.machineCost;
+//            $scope.styleModal.summary.handEmb = $rootScope.handEmbellihshmentCost;
+//            $scope.styleModal.summary.cmCost = $rootScope.cmCost;
+//            $scope.styleModal.summary.packingCost = $rootScope.packingCostSolid;
+//            $scope.styleModal.summary.initialFobSolid = $rootScope.calculateInitialFobSolid();
+//            $scope.styleModal.summary.initialFobPrint = $rootScope.calculateInitialFobPrint();
+//            $scope.styleModal.summary.retailPriceSolid = $rootScope.retailPriceSolid;
+//            $scope.styleModal.summary.retailPricePrint = $rootScope.retailPricePrint;
+
+
+
+            var url = systemConfig.apiUrl + "/api/style/save-style";
+
+            var formData = new FormData();
+            var file = document.getElementById('file-upload').files[0];
+            var json = $scope.styleModal;
+
+            formData.append("file", file);
+            formData.append("ad", JSON.stringify(json));//important: convert to JSON!
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url);
+            xhr.send(formData);
+//            xhr.onreadystatechange = function () {
+//                if (xhr.readyState === XMLHttpRequest.DONE) {
+////                    $scope.styleModal = [];
+//                    Notification.success("style save Success..");
+//                }
+//            };
+
+
+
+
+//            $scope.styleModal.summary.trimCost = $rootScope.trimCost;
+//            $scope.styleModal.summary.fabricCostSolid = $rootScope.fabSolid;
+//            $scope.styleModal.summary.fabricCostPrint = $rootScope.fabPrint;
+//            $scope.styleModal.summary.linerCost = $rootScope.linerCost;
+//            $scope.styleModal.summary.machineEmb = $rootScope.machineCost;
+//            $scope.styleModal.summary.handEmb = $rootScope.handEmbellihshmentCost;
+//            $scope.styleModal.summary.cmCost = $rootScope.cmCost;
+//            $scope.styleModal.summary.packingCost = $rootScope.packingCostSolid;
+//            $scope.styleModal.summary.initialFobSolid = $rootScope.calculateInitialFobSolid();
+//            $scope.styleModal.summary.initialFobPrint = $rootScope.calculateInitialFobPrint();
+//            $scope.styleModal.summary.retailPriceSolid = $rootScope.retailPriceSolid;
+//            $scope.styleModal.summary.retailPricePrint = $rootScope.retailPricePrint;
 
 
 //            var detail = $scope.styleModal;
 //            var detailJSON = JSON.stringify(detail);
 //
 //            console.log(detailJSON);
-//
+
 //            var url = systemConfig.apiUrl + "/api/style/save-style";
 //
 //            $http.post(url, detailJSON)
 //                    .success(function (data, states, headers) {
-//                        console.log(data);
+//                        Notification.success(data.indexNo + "save successfuly..");
+////                        $scope.resetModel();
 //                    })
 //                    .error(function (data, states, headers) {
 //                    });
@@ -363,31 +453,40 @@
             $uibModalStack.dismissAll();
         };
 
-        //--------------------hand embellishment-----------------
+        //--------------------hand embellishment funtion-----------------
+
+        $scope.nextMachineEmb = function () {
+            if (!$rootScope.handEmbellishmentIndexNo) {
+                Notification.error("select a embllishment or click skip button");
+            } else {
+                $location.path("/machine-embllishment");
+            }
+
+        };
 
         //select hand embllishment cost
         $scope.getHandEmbllishmentDetails = function (embllishment) {
-            $rootScope.handEmbellishment = embllishment.indexNo;
+            $rootScope.handEmbellishmentIndexNo = embllishment;
             $rootScope.embCost = embllishment.price;
             $rootScope.emblishmentSmv = embllishment.smv;
             $rootScope.chargeOut = embllishment.chargeOut;
             $scope.calculateEmd();
             $scope.calculateSmvTotal();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.embCostIncrement = function () {
             $rootScope.embCost += 0.01;
             $rootScope.embCost = Math.round($rootScope.embCost * 100) / 100;
             $scope.calculateEmd();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.embCostDecrement = function () {
             $rootScope.embCost -= 0.01;
             $rootScope.embCost = Math.round($rootScope.embCost * 100) / 100;
             $scope.calculateEmd();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.qtyIncrement = function () {
@@ -400,35 +499,35 @@
             $rootScope.qty -= 1;
             $rootScope.qty = Math.round($scope.qty * 100) / 100;
             $scope.calculateEmd();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.embSmvIncrement = function () {
             $rootScope.emblishmentSmv += 0.01;
             $rootScope.emblishmentSmv = Math.round($rootScope.emblishmentSmv * 100) / 100;
             $scope.calculateSmvTotal();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.embSmvDecrement = function () {
             $rootScope.emblishmentSmv += 0.01;
             $rootScope.emblishmentSmv = Math.round($rootScope.emblishmentSmv * 100) / 100;
             $scope.calculateSmvTotal();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.embChargeOutIncrement = function () {
             $rootScope.chargeOut += 0.01;
             $rootScope.chargeOut = Math.round($rootScope.chargeOut * 100) / 100;
             $scope.calculateSmvTotal();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.embChargeOutDecrement = function () {
             $rootScope.chargeOut += 0.01;
             $rootScope.chargeOut = Math.round($rootScope.chargeOut * 100) / 100;
             $scope.calculateSmvTotal();
-            $scope.handEmbellishmentCost();
+            $scope.handEmbellishmentIndexNoCost();
         };
 
         $scope.calculateSmvTotal = function () {
@@ -441,21 +540,37 @@
             $rootScope.emdTotal = Math.round($rootScope.emdTotal * 100) / 100;
         };
 
-        $scope.handEmbellishmentCost = function () {
+        $scope.handEmbellishmentIndexNoCost = function () {
             $rootScope.handEmbellihshmentCost = $rootScope.emdTotal + $rootScope.smvChargeOutTotal;
             $rootScope.handEmbellihshmentCost = Math.round($rootScope.handEmbellihshmentCost * 100) / 100;
         };
 
         $scope.skipHandEmbllishment = function () {
+            $rootScope.handEmbellishmentIndexNo = null;
             $rootScope.handEmbellihshmentCost = 0;
+            $rootScope.emdTotal = "";
+            $rootScope.smvChargeOutTotal = "";
+            $rootScope.embCost = "";
+            $rootScope.qty = "";
+            $rootScope.emblishmentSmv = "";
+            $rootScope.chargeOut = "";
         };
 
 
         //-------------- machine embellishment---------------------
 
+        $scope.nextCmCost = function () {
+            if (!$rootScope.machineEmbellishmentIndexNo) {
+                Notification.error("select a embllishment or click skip button");
+            } else {
+                $location.path("/view-7");
+            }
+
+        };
+
         //select machine embllishment cost
         $scope.getMachineEmbllishmentDetails = function (embllishment) {
-            $rootScope.machineEmbellishment = embllishment.indexNo;
+            $rootScope.machineEmbellishmentIndexNo = embllishment;
             $rootScope.embMachineCost = embllishment.price;
             $scope.calculateMachineCost();
         };
@@ -493,7 +608,10 @@
         };
 
         $scope.skipMachineEmbllishment = function () {
+            $rootScope.machineEmbellishmentIndexNo = null;
             $rootScope.machineCost = 0;
+            $rootScope.embMachineCost = "";
+            $scope.embMachineqty = "";
         };
 
         //--------------------view-8 funtions--------------------
@@ -548,7 +666,17 @@
         };
 
 
-        //view-9 funtions
+        //-----------------view-9 funtions------------
+
+        $scope.nextSolidSummary = function () {
+            if (!$rootScope.retailPriceSolid) {
+                Notification.error("please enter retail price");
+            } else {
+                $location.path("/view-10");
+            }
+
+        };
+
         $rootScope.calculateInitialFobSolid = function () {
             var fob =
                     parseFloat($scope.fabSolid)
@@ -562,9 +690,15 @@
             fob = Math.round(fob * 100) / 100;
             $scope.changePackingCostSolid();
             $scope.changeFabCostSolid();
+            $scope.changeLinerCost();
             $scope.changeTrimCost();
-            $scope.changeEmdTotal();
+            $scope.changeMachineEmbCost();
+            $scope.changeHandEmbCost();
             $scope.changCmCost();
+            $scope.changeCupCost();
+
+
+            $scope.changeEmdTotal();
             $scope.changeMachineEmbTotal();
             return fob;
         };
@@ -577,8 +711,24 @@
             $rootScope.fabSolid = $scope.fabSolid;
         };
 
+        $scope.changeLinerCost = function () {
+            $rootScope.linerCost = $scope.linerCost;
+        };
+
         $scope.changeTrimCost = function () {
             $rootScope.trimCost = $scope.trimCost;
+        };
+
+        $scope.changeMachineEmbCost = function () {
+            $rootScope.machineCost = $scope.machineCost;
+        };
+
+        $scope.changeHandEmbCost = function () {
+            $rootScope.handEmbellihshmentCost = $scope.handEmbellihshmentCost;
+        };
+
+        $scope.changeCupCost = function () {
+            $rootScope.cupCost = $scope.cupCost;
         };
 
         //TODO
@@ -609,7 +759,17 @@
         };
 
 
-        //view-10 funtions
+        //-----------------view-10 funtions--------------------
+
+        $scope.nextSummary = function () {
+            if (!$rootScope.retailPricePrint) {
+                Notification.error("please enter retail price");
+            } else {
+                $location.path("/view-11");
+            }
+
+        };
+
         $rootScope.calculateInitialFobPrint = function () {
             var fob =
                     parseFloat($scope.fabPrint)
@@ -622,14 +782,24 @@
                     + parseFloat($scope.packingCostPrint);
             fob = Math.round(fob * 100) / 100;
             $scope.changePackingCostPrint();
-            $scope.changeFabCostSolid();
+            $scope.changeFabCostPrint();
+            $scope.changeLinerCost();
             $scope.changeTrimCost();
-            $scope.changeEmdTotal();
+            $scope.changeMachineEmbCost();
+            $scope.changeHandEmbCost();
             $scope.changCmCost();
+            $scope.changeEmdTotal();
+            $scope.changeCupCost();
+
             $scope.changeMachineEmbTotal();
             return fob;
 
         };
+
+        $scope.changeFabCostPrint = function () {
+            $rootScope.fabPrint = $scope.fabPrint;
+        };
+
         $scope.changePackingCostPrint = function () {
             $rootScope.packingCostPrint = $scope.packingCostPrint;
         };
@@ -644,13 +814,14 @@
             $rootScope.targetFobPrint = $scope.targetFobPrint;
         };
 
-        // form 12 funtion
+        // -----------------------form 12 funtion--------------------------
 
 //        $scope.changeTiers = function (tier) {
 //            console.log(tier);
 //            $scope.styleModal.tier = tier;
-//        };
-
+//            console.log($scope.styleModal.tier);
+//        };/
+//
         // upload file
         $scope.imageUpload = function (event) {
             //FileList object
@@ -670,18 +841,18 @@
             });
         };
 
-        $scope.uploadForm = function (index) {
-            var file = document.getElementById("file").files[0];
-            var url = systemConfig.apiUrl + "/document/upload-image/" + index;
-
-
-            var formData = new FormData();
-            formData.append("file", file);
+//        $scope.uploadForm = function (index) {
+//            var file = document.getElementById("file").files[0];
+//            var url = systemConfig.apiUrl + "/document/upload-image/" + index;
 //
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url);
-            xhr.send(formData);
-        };
+//
+//            var formData = new FormData();
+//            formData.append("file", file);
+////
+//            var xhr = new XMLHttpRequest();
+//            xhr.open("POST", url);
+//            xhr.send(formData);
+//        };
 
 
         $scope.inint = function () {
@@ -694,7 +865,6 @@
                 var url = systemConfig.apiUrl + "/api/style/all-style/" + "bottom";
                 $http.get(url)
                         .success(function (data) {
-                            console.log(data);
                             $rootScope.bottomList.push(data);
                         });
             } else if ($rootScope.mode === 'bottom') {

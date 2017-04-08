@@ -42,14 +42,13 @@ gulp.task('build-js', function () {
         "bower_components/angular-animate/angular-animate.min.js",
         "bower_components/angular-sanitize/angular-sanitize.min.js",
         "bower_components/angular-cookies/angular-cookies.min.js",
-        "bower_components/chart.js/dist/Chart.min.js",
-        "bower_components/angular-chart.js/dist/angular-chart.min.js",
         "bower_components/angular-bootstrap/ui-bootstrap.min.js",
         "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
         "bower_components/angular-ui-notification/dist/angular-ui-notification.min.js",
         "bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js",
         "bower_components/angular-filter/dist/angular-filter.js",
         "bower_components/boostrap/dist/css/bootstrap.min.css",
+        "bower_components/angular-base64/angular-base64.js",
         "bower_components/boostrap/dist/js/bootstrap.min.js"
     ])
             .pipe(debug())
@@ -88,12 +87,12 @@ gulp.task('build-other', function () {
     gulp.src('src/site/img/*.*')
             .pipe(debug())
             .pipe(gulp.dest('src/main/resources/static/img'));
-    
+
     //images
     gulp.src('src/site/images/**/*.*')
             .pipe(debug())
             .pipe(gulp.dest('src/main/resources/static/images'));
-    
+
     //web fonts
     gulp.src('bower_components/bootstrap/dist/fonts/*.*')
             .pipe(debug())

@@ -1,25 +1,59 @@
 <div class="background-image">
-    <div style="background-color: #ffffff;opacity: 0.9; height: 50px">
-        <div class="col-xs-5">
-            <img style="width: 110px; height: 45px;margin-top: 3px" src="./img/logo.PNG" alt=""/>
-        </div>
-        <div class="col-xs-7">
-            <h1 class="pull-right" style="font-size: 20px;margin-top: 14px ">LINEA AQUA</h1>
-        </div>
-    </div>
+	<div style="background-color: #ffffff; opacity: 0.9; height: 50px">
+		<div class="col-xs-5">
+			<img style="width: 110px; height: 45px; margin-top: 3px"
+				src="./img/logo.PNG" alt="" />
+		</div>
+		<div class="col-xs-7">
+			<h1 class="pull-right" style="font-size: 20px; margin-top: 14px">LINEA
+				AQUA</h1>
+		</div>
+	</div>
+
+	<div class="center-content">
+		<div class="col-xs-12" style="margin-top: 100px">
+			<div
+				class="loginpanel col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+				<div class="row" style="font-family: serif;">
+					<h1 class="text-center"
+						style="font-size: 40px; color: #ffffff; -webkit-text-stroke: 2px pink; font-weight: 900">PINK</h1>
+				</div>
+				<div class="form-group has-feedback" style="margin-top: 30px">
+					<input type="text" class="form-control" id="login-text"
+						placeholder="user name" ng-model="name"> <span
+						class="glyphicon glyphicon-user form-control-feedback"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="password" id="login-text" class="form-control"
+						placeholder="Password" ng-model="password"> <span
+						class="glyphicon glyphicon-lock form-control-feedback"></span>
+				</div>
+				<button class="btn btn-lg btn-danger btn-block btn-flat"
+					style="margin-top: 65px" type="submit" ng-click="login(name)">LOGIN</button>
+			</div>
+		</div>
+
+	</div> 
+    
 </div>
 
-<div class="content" style="margin-top: 37%;">
-    <div class="row" style="font-family: serif;"><h1 class="text-center" style="font-size: 40px; color:#ffffff; -webkit-text-stroke: 2px pink;font-weight: 900">PINK</h1></div>
-    <div class="form-group has-feedback" style="margin-top: 30px">
-        <input type="text" class="form-control" id="login-text" placeholder="user name" ng-model="name">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-    </div>
-    <div class="form-group has-feedback">
-        <input type="password" id="login-text" class="form-control" placeholder="Password" ng-model="password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-    </div>
-    <button class="btn btn-lg btn-danger btn-block btn-flat" style="margin-top:65px" type="submit" ng-click="login(name)">LOGIN</button>   
-</div>
+<!-- <div class="content">
+		<div class="row" style="font-family: serif;">
+			<h1 class="text-center"
+				style="font-size: 40px; color: #ffffff; -webkit-text-stroke: 2px pink; font-weight: 900">PINK</h1>
+		</div>
+		<div class="form-group has-feedback" style="margin-top: 30px">
+			<input type="text" class="form-control" id="login-text"
+				placeholder="user name" ng-model="name"> <span
+				class="glyphicon glyphicon-user form-control-feedback"></span>
+		</div>
+		<div class="form-group has-feedback">
+			<input type="password" id="login-text" class="form-control"
+				placeholder="Password" ng-model="password"> <span
+				class="glyphicon glyphicon-lock form-control-feedback"></span>
+		</div>
+		<button class="btn btn-lg btn-danger btn-block btn-flat"
+			style="margin-top: 65px" type="submit" ng-click="login(name)">LOGIN</button>
+</div> -->
 
 

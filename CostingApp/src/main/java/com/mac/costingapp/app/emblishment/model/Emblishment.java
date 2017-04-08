@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "embellishment_cost")
-public class Embellishment implements Serializable {
+public class Emblishment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +41,7 @@ public class Embellishment implements Serializable {
     @Column(name = "charge_out")
     private double chargeOut;
 
-    public Embellishment() {
+    public Emblishment() {
     }
 
     public Integer getIndexNo() {

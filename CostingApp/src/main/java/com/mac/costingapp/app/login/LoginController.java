@@ -1,7 +1,7 @@
-package com.mac.masapp.app.login;
+package com.mac.costingapp.app.login;
 
-import com.mac.masapp.app.login.respond.LoginRequest;
-import com.mac.masapp.app.login.respond.LoginRespond;
+import com.mac.costingapp.app.login.respond.LoginRequest;
+import com.mac.costingapp.app.login.respond.LoginRespond;
 import java.util.Base64;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,7 +35,7 @@ public class Summary implements Serializable {
 
     @JsonIgnore
     @JoinColumn(name = "style", referencedColumnName = "index_no")
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Style style;
 
     @Column(name = "trim_cost_solid")
@@ -99,32 +100,7 @@ public class Summary implements Serializable {
 
     public Summary() {
     }
-
-    public Summary(Integer indexNo, Style style, double trimCostSoild, double trimCostPrint, double fabricCostPrint, double fabricCostSolid, double machineEmbSoild, double machineEmbPrint, double handEmbSolid, double handEmbPrint, double cmCostSolid, double cmCostPrint, double packingCostSolid, double packingCostPrint, double initialFobSolid, double initialFobPrint, double retailPriceSolid, double retailPricePrint, int seaImuSolid, int seaImuPrint, int airImuSolid, int airImuPrint) {
-        this.indexNo = indexNo;
-        this.style = style;
-        this.trimCostSoild = trimCostSoild;
-        this.trimCostPrint = trimCostPrint;
-        this.fabricCostPrint = fabricCostPrint;
-        this.fabricCostSolid = fabricCostSolid;
-        this.machineEmbSoild = machineEmbSoild;
-        this.machineEmbPrint = machineEmbPrint;
-        this.handEmbSolid = handEmbSolid;
-        this.handEmbPrint = handEmbPrint;
-        this.cmCostSolid = cmCostSolid;
-        this.cmCostPrint = cmCostPrint;
-        this.packingCostSolid = packingCostSolid;
-        this.packingCostPrint = packingCostPrint;
-        this.initialFobSolid = initialFobSolid;
-        this.initialFobPrint = initialFobPrint;
-        this.retailPriceSolid = retailPriceSolid;
-        this.retailPricePrint = retailPricePrint;
-        this.seaImuSolid = seaImuSolid;
-        this.seaImuPrint = seaImuPrint;
-        this.airImuSolid = airImuSolid;
-        this.airImuPrint = airImuPrint;
-    }
-
+    
     public Integer getIndexNo() {
         return indexNo;
     }

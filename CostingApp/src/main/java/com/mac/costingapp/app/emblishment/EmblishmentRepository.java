@@ -5,7 +5,7 @@
  */
 package com.mac.costingapp.app.emblishment;
 
-import com.mac.costingapp.app.emblishment.model.Embellishment;
+import com.mac.costingapp.app.emblishment.model.Emblishment;
 import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,6 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Nidura Prageeth
  */
-public interface EmblishmentRepository extends JpaRepository<Embellishment,Integer>{
+public interface EmblishmentRepository extends JpaRepository<Emblishment,Integer>{
     
 }

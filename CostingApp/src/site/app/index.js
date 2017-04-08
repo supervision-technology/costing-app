@@ -95,6 +95,11 @@
                             controller: "viewController"
                         })
                         //admin
+                        .when("/login-admin", {
+                            templateUrl: "app/user/login/admin-login.html"
+//                            controller: "loginController"
+                        })
+                        
                         .when("/admin", {
                             templateUrl: "app/user/admin/style/new-style.html",
                             controller: "styleController"

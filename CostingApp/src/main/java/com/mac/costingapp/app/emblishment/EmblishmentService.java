@@ -5,7 +5,7 @@
  */
 package com.mac.costingapp.app.emblishment;
 
-import com.mac.costingapp.app.emblishment.model.Embellishment;
+import com.mac.costingapp.app.emblishment.model.Emblishment;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +23,11 @@ public class EmblishmentService {
     @Autowired
     private EmblishmentRepository emblishmentRepository;
 
-    public List<Embellishment> allEmblishment() {
+    public List<Emblishment> allEmblishment() {
         return emblishmentRepository.findAll();
     }
 
-    public Embellishment saveEmbellishment(Embellishment embellishment) {
+    public Emblishment saveEmbellishment(Emblishment embellishment) {
         return emblishmentRepository.save(embellishment);
     }
 

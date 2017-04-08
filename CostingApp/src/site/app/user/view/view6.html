@@ -13,6 +13,7 @@
     </div>
 </header>
 
+
 <div class="container-fluid" id="top">
     <!--stepper-->
     <div class="row">
@@ -79,7 +80,7 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td  ng-repeat="embllishment in embllishments| filter : {'type': 'hand'}">
+                        <td  ng-repeat="embllishment in embllishments | filter : {'type': 'hand'} track by $index">
                             <div id="imgPanel" style="width: 45px; height: 65px;" ng-click="getHandEmbllishmentDetails(embllishment)">
                                 <img src="/{{embllishment.picture}}" style="width: 45px; height: 38px;"/>
                                 <h6 class="text-center">${{embllishment.price}}</h6>
@@ -168,7 +169,7 @@
             </a>
         </div>
         <div class="col-xs-3">
-            <a class="btn btn-default btn-xs btn-flat pull-right" href="#/machine-embllishment">NEXT
+            <a class="btn btn-default btn-xs btn-flat pull-right" ng-click="nextMachineEmb()">NEXT
                 <span class="glyphicon glyphicon-arrow-right"></span>
             </a>
         </div>

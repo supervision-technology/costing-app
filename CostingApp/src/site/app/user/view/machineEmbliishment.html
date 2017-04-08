@@ -79,7 +79,7 @@
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td  ng-repeat="embllishment in embllishments|filter : {'type': 'machine'}">
+                        <td  ng-repeat="embllishment in embllishments|filter : {'type': 'machine'} track by $index">
                             <div id="imgPanel" style="width: 150px; height: 160px;" ng-click="getMachineEmbllishmentDetails(embllishment)">
                                 <img src="/{{embllishment.picture}}" style="width: 150px; height: 160px;">
                             </div>
@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-xs-12" style="margin-bottom: 45px">
         <h6 class="text-center">Total ($)</h6>
         <input type="text" class="form-control input-sm text-center" ng-model="machineCost">
     </div>
@@ -140,7 +140,7 @@
             </a>
         </div>
         <div class="col-xs-3">
-            <a class="btn btn-default btn-xs btn-flat pull-right" href="#/view-7">NEXT
+            <a class="btn btn-default btn-xs btn-flat pull-right" ng-click="nextCmCost()">NEXT
                 <span class="glyphicon glyphicon-arrow-right"></span>
             </a>
         </div>

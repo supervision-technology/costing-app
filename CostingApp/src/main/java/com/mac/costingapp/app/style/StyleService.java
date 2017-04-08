@@ -7,13 +7,18 @@ package com.mac.costingapp.app.style;
 
 import com.mac.costingapp.app.style.model.Style;
 import com.mac.costingapp.app.style.model.Summary;
-import com.mac.costingapp.app.tier.TierRepository;
-import com.mac.costingapp.app.tier.model.Tier;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -26,8 +31,7 @@ public class StyleService {
     @Autowired
     private StyleRepository styleRepository;
 
-    @Autowired
-    private TierRepository tierRepository;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-S");
 
     public List<Style> allStyles() {
         return styleRepository.findAll();
@@ -38,17 +42,15 @@ public class StyleService {
     }
 
     public Style saveStyle(Style style) {
-        Tier tier = tierRepository.findOne(1);
-        style.setTier(tier);
+//        style.setSummary(style.getSummary());
 
-        Style style1 = styleRepository.save(style);
-        System.out.println(style1);
+        System.out.println(style);
+        return styleRepository.save(style);
+    }
 
-        Summary summary = style.getSummary();
-        summary.setStyle(style1);
-        System.out.println(summary);
+    public void deleteStyle(Integer indexNo) {
+        styleRepository.delete(indexNo);
 
-        return style1;
     }
 
 }

@@ -6,6 +6,7 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Nidura Prageeth <niduraprageeth@gmail.com>",
+  
     "devDependencies": {
         "bower-npm-resolver": "^0.7.0",
         "browser-sync": "^2.16.0",
