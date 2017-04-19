@@ -83,9 +83,12 @@
                     <tbody>
                         <tr>
                             <td ng-repeat="style in value">
-                                <a href="#/view-3"><div id="imgPanel" style="width: 60px; height: 50px;" ng-click="getfabricCostDetails(style)">
+                                <a href="#/view-3">
+                                    <div id="imgPanel" class="text-center" style="width: 60px; height: auto;" ng-click="getfabricCostDetails(style)">
                                         <img src="/{{style.picture}}" style="width: 60px; height: 50px;">
-                                    </div></a>
+                                        <span class="label label-default text-center">{{style.styleNo}}</span>
+                                    </div>
+                                </a>
                             </td>
                         </tr>   
                     </tbody>
