@@ -36,13 +36,13 @@ public class Style implements Serializable {
     @Column(name = "index_no")
     private Integer indexNo;
 
-    @JoinColumn(name = "machine_embellishment", referencedColumnName = "index_no")
-    @ManyToOne(optional = true, fetch = FetchType.EAGER)
-    private Emblishment machineEmbellishment;
+//    @JoinColumn(name = "machine_embellishment", referencedColumnName = "index_no")
+//    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @Column(name = "machine_embellishment")
+    private int machineEmbellishment;
 
-    @JoinColumn(name = "hand_embellishment", referencedColumnName = "index_no")
-    @ManyToOne(optional = true, fetch = FetchType.EAGER)
-    private Emblishment handEmbellishment;
+    @Column(name = "hand_embellishment")
+    private int handEmbellishment;
 
     @Column(name = "category")
     private String category;
@@ -92,10 +92,17 @@ public class Style implements Serializable {
 
     @Column(name = "machine_embellishment_cost")
     private double machineEmbellishmentCost;
+    
+    @Column(name = "cup")
+    private String cup;
+    
+    @Column(name = "cockies")
+    private String cockies;
+    
+    @JoinColumn(name = "summary",referencedColumnName = "index_no")
+    @OneToOne(fetch = FetchType.EAGER)
+    private Summary summary;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "style", fetch = FetchType.EAGER, orphanRemoval = true)
-//    private Collection<Summary> summary;
-//    
     public Style() {
     }
 
@@ -107,19 +114,19 @@ public class Style implements Serializable {
         this.indexNo = indexNo;
     }
 
-    public Emblishment getMachineEmbellishment() {
+    public int getMachineEmbellishment() {
         return machineEmbellishment;
     }
 
-    public void setMachineEmbellishment(Emblishment machineEmbellishment) {
+    public void setMachineEmbellishment(int machineEmbellishment) {
         this.machineEmbellishment = machineEmbellishment;
     }
 
-    public Emblishment getHandEmbellishment() {
+    public int getHandEmbellishment() {
         return handEmbellishment;
     }
 
-    public void setHandEmbellishment(Emblishment handEmbellishment) {
+    public void setHandEmbellishment(int handEmbellishment) {
         this.handEmbellishment = handEmbellishment;
     }
 
@@ -251,15 +258,33 @@ public class Style implements Serializable {
         this.machineEmbellishmentCost = machineEmbellishmentCost;
     }
 
-//    public Collection<Summary> getSummary() {
-//        return summary;
-//    }
-//
-//    public void setSummary(Collection<Summary> summary) {
-//        this.summary = summary;
-//    }
+    public Summary getSummary() {
+        return summary;
+    }
 
-    
+    public void setSummary(Summary summary) {
+        this.summary = summary;
+    }
 
+    public String getCup() {
+        return cup;
+    }
+
+    public void setCup(String cup) {
+        this.cup = cup;
+    }
+
+    public String getCockies() {
+        return cockies;
+    }
+
+    public void setCockies(String cockies) {
+        this.cockies = cockies;
+    }
     
+    @Override
+    public String toString() {
+        return "Style{" + "indexNo=" + indexNo + ", machineEmbellishment=" + machineEmbellishment + ", handEmbellishment=" + handEmbellishment + ", category=" + category + ", styleNo=" + styleNo + ", picture=" + picture + ", tier=" + tier + ", solidPrice=" + solidPrice + ", solidConsumption=" + solidConsumption + ", printPrice=" + printPrice + ", printConsumption=" + printConsumption + ", trimCost=" + trimCost + ", smv=" + smv + ", cor=" + cor + ", linerPrice=" + linerPrice + ", linerConsumption=" + linerConsumption + ", cupCost=" + cupCost + ", handEmbellishmentCost=" + handEmbellishmentCost + ", machineEmbellishmentCost=" + machineEmbellishmentCost + ", summary=" + summary + '}';
+    }
+
 }

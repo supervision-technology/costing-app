@@ -56,24 +56,27 @@ public class StyleController {
         
         try {
             Style jsonAd = new ObjectMapper().readValue(adString, Style.class);
-
-            String fileName = dateFormat.format(new Date());
-            fileName = Base64.getEncoder().encodeToString(fileName.getBytes()) + file.getOriginalFilename();
-
-            System.out.println(fileName);
-
-            File uploadFile = new File("./files", fileName);
-            if (!uploadFile.getParentFile().exists()) {
-                uploadFile.getParentFile().mkdirs();
-            }
-
-            uploadFile.createNewFile();
-
-            FileOutputStream fileOutputStream = new FileOutputStream(uploadFile);
-            fileOutputStream.write(file.getBytes());
+            
+            System.out.println(jsonAd.toString());
+            System.out.println(jsonAd.getSummary().toString());
+//
+//            String fileName = dateFormat.format(new Date());
+//            fileName = file.getOriginalFilename();
+//
+//            System.out.println(fileName);
+//
+//            File uploadFile = new File("./src/site/images", fileName);
+//            if (!uploadFile.getParentFile().exists()) {
+//                uploadFile.getParentFile().mkdirs();
+//            }
+//
+//            uploadFile.createNewFile();
+//
+//            FileOutputStream fileOutputStream = new FileOutputStream(uploadFile);
+//            fileOutputStream.write(file.getBytes());
             
             
-            jsonAd.setPicture(fileName);
+//            jsonAd.setPicture(fileName);
             saveStyle = styleService.saveStyle(jsonAd);
             
         } catch (Exception a) {

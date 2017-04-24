@@ -33,13 +33,8 @@ public class Summary implements Serializable {
     @Column(name = "index_no")
     private Integer indexNo;
 
-    @JsonIgnore
-    @JoinColumn(name = "style", referencedColumnName = "index_no")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Style style;
-
     @Column(name = "trim_cost_solid")
-    private double trimCostSoild;
+    private double trimCostSolid;
     
     @Column(name = "trim_cost_print")
     private double trimCostPrint;
@@ -49,9 +44,15 @@ public class Summary implements Serializable {
 
     @Column(name = "fabric_cost_solid")
     private double fabricCostSolid;
+    
+    @Column(name = "liner_cost_solid")
+    private double linerCostSolid;
+    
+    @Column(name = "liner_cost_print")
+    private double linerCostPrint;
 
     @Column(name = "machine_emb_solid")
-    private double machineEmbSoild;
+    private double machineEmbSolid;
     
     @Column(name = "machine_emb_print")
     private double machineEmbPrint;
@@ -100,7 +101,7 @@ public class Summary implements Serializable {
 
     public Summary() {
     }
-    
+
     public Integer getIndexNo() {
         return indexNo;
     }
@@ -109,20 +110,12 @@ public class Summary implements Serializable {
         this.indexNo = indexNo;
     }
 
-    public Style getStyle() {
-        return style;
+    public double getTrimCostSolid() {
+        return trimCostSolid;
     }
 
-    public void setStyle(Style style) {
-        this.style = style;
-    }
-
-    public double getTrimCostSoild() {
-        return trimCostSoild;
-    }
-
-    public void setTrimCostSoild(double trimCostSoild) {
-        this.trimCostSoild = trimCostSoild;
+    public void setTrimCostSolid(double trimCostSolid) {
+        this.trimCostSolid = trimCostSolid;
     }
 
     public double getTrimCostPrint() {
@@ -149,12 +142,28 @@ public class Summary implements Serializable {
         this.fabricCostSolid = fabricCostSolid;
     }
 
-    public double getMachineEmbSoild() {
-        return machineEmbSoild;
+    public double getLinerCostSolid() {
+        return linerCostSolid;
     }
 
-    public void setMachineEmbSoild(double machineEmbSoild) {
-        this.machineEmbSoild = machineEmbSoild;
+    public void setLinerCostSolid(double linerCostSolid) {
+        this.linerCostSolid = linerCostSolid;
+    }
+
+    public double getLinerCostPrint() {
+        return linerCostPrint;
+    }
+
+    public void setLinerCostPrint(double linerCostPrint) {
+        this.linerCostPrint = linerCostPrint;
+    }
+
+    public double getMachineEmbSolid() {
+        return machineEmbSolid;
+    }
+
+    public void setMachineEmbSolid(double machineEmbSolid) {
+        this.machineEmbSolid = machineEmbSolid;
     }
 
     public double getMachineEmbPrint() {
@@ -277,5 +286,6 @@ public class Summary implements Serializable {
         this.airImuPrint = airImuPrint;
     }
 
+    
     
 }

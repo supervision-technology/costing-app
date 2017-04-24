@@ -40,6 +40,9 @@ public class Emblishment implements Serializable {
 
     @Column(name = "charge_out")
     private double chargeOut;
+    
+    @Column(name = "tier")
+    private String tier;
 
     public Emblishment() {
     }
@@ -92,4 +95,11 @@ public class Emblishment implements Serializable {
         this.chargeOut = chargeOut;
     }
 
+    public String getTier() {
+        return tier;
+    }
+
+    public void setTier(String tier) {
+        this.tier = tier;
+    }
 }

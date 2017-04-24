@@ -31,6 +31,9 @@ public class StyleService {
     @Autowired
     private StyleRepository styleRepository;
 
+    @Autowired
+    private SummaryRepository summaryRepository;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-S");
 
     public List<Style> allStyles() {
@@ -42,10 +45,13 @@ public class StyleService {
     }
 
     public Style saveStyle(Style style) {
-//        style.setSummary(style.getSummary());
+        Summary summary = summaryRepository.save(style.getSummary());
+
+        style.setSummary(summary);
+        Style save = styleRepository.save(style);
 
         System.out.println(style);
-        return styleRepository.save(style);
+        return save;
     }
 
     public void deleteStyle(Integer indexNo) {

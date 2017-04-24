@@ -1,0 +1,106 @@
+<header class="header">
+    <div class="col-xs-4" style="padding-top: 2px">              
+        <img class="pull-left" src="./img/maslogosmall.PNG">     
+    </div>
+    <div class="col-xs-5">
+        <label>
+            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            {{mode}}
+        </label>
+    </div>
+    <div class="col-xs-3" style="padding-top: 6px">
+        <img class="pull-right" src="./img/pinksmall.PNG">
+    </div>
+</header>
+
+<div class="container-fluid" id="top">
+    <!--stepper-->
+    <div class="row">
+        <div class="container">
+            <div class="bs-wizard" style="border-bottom:0;margin-left: 2px;">
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">Fabric</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">Liner</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">Trim</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step active" ng-show="mode === 'Top' || mode === 'One-Piece'" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">Cup</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">Emb</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">Emb 2</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">CM</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+
+                <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
+                    <div class="text-center bs-wizard-stepnum">FOB</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+    <!--categorys-->
+    <div class="text-center"><label>Cup Cost</label></div>
+    <div style="margin-bottom: 45px" class="col-xs-12">
+        <div class="category"  ng-repeat="(key, value) in styleList | groupBy:'tier.name'">
+            <div class="title row">
+                <label>{{key}}</label>
+            </div>
+            <div class="row mygrid-wrapper-div" style="height: 85px">
+                <table class="table">  
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="style in value">
+                                <a href="#/cup-cost2"><div id="imgPanel" style="width: 55px; height: 67px; text-align: center" ng-click="getCupCostDetails(style)">
+                                        <img src="./images/{{style.picture}}" style="width: 55px; height: 40px;">
+                                        <h6 class="text-center" style="margin-top: 1px; margin-bottom: 0px">{{style.styleNo}}</h6>
+                                        <h6 style="margin-top: 0px; font-size: 9px;" >{{style.cup}}{{style.cockies}}</h6>
+                                    </div></a>
+                            </td>
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--footer-->
+<footer class="footer">
+    <div class="container-fluid" style="margin-top: 8px">
+        <a class="btn btn-default btn-xs btn-flat" href="#/view-5">
+            <span class="glyphicon glyphicon-arrow-left"></span> BACK
+        </a>
+    </div>
+</footer>
