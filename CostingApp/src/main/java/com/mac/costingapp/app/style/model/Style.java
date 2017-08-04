@@ -5,6 +5,7 @@ import com.mac.costingapp.app.emblishment.model.Emblishment;
 import com.mac.costingapp.app.tier.model.Tier;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -39,10 +41,10 @@ public class Style implements Serializable {
 //    @JoinColumn(name = "machine_embellishment", referencedColumnName = "index_no")
 //    @ManyToOne(optional = true, fetch = FetchType.EAGER)
     @Column(name = "machine_embellishment")
-    private int machineEmbellishment;
+    private Integer machineEmbellishment;
 
     @Column(name = "hand_embellishment")
-    private int handEmbellishment;
+    private Integer handEmbellishment;
 
     @Column(name = "category")
     private String category;
@@ -102,8 +104,41 @@ public class Style implements Serializable {
     @JoinColumn(name = "summary",referencedColumnName = "index_no")
     @OneToOne(fetch = FetchType.EAGER)
     private Summary summary;
+    
+    @Column(name = "measure")
+    private String measure;
+    
+    @Column(name = "date")
+    private Date date;
 
     public Style() {
+    }
+
+    public Style(Integer indexNo, Integer machineEmbellishment, Integer handEmbellishment, String category, String styleNo, String picture, Tier tier, double solidPrice, double solidConsumption, double printPrice, double printConsumption, double trimCost, double smv, double cor, double linerPrice, double linerConsumption, double cupCost, double handEmbellishmentCost, double machineEmbellishmentCost, String cup, String cockies, Summary summary, String measure, Date date) {
+        this.indexNo = indexNo;
+        this.machineEmbellishment = machineEmbellishment;
+        this.handEmbellishment = handEmbellishment;
+        this.category = category;
+        this.styleNo = styleNo;
+        this.picture = picture;
+        this.tier = tier;
+        this.solidPrice = solidPrice;
+        this.solidConsumption = solidConsumption;
+        this.printPrice = printPrice;
+        this.printConsumption = printConsumption;
+        this.trimCost = trimCost;
+        this.smv = smv;
+        this.cor = cor;
+        this.linerPrice = linerPrice;
+        this.linerConsumption = linerConsumption;
+        this.cupCost = cupCost;
+        this.handEmbellishmentCost = handEmbellishmentCost;
+        this.machineEmbellishmentCost = machineEmbellishmentCost;
+        this.cup = cup;
+        this.cockies = cockies;
+        this.summary = summary;
+        this.measure = measure;
+        this.date = date;
     }
 
     public Integer getIndexNo() {
@@ -114,19 +149,19 @@ public class Style implements Serializable {
         this.indexNo = indexNo;
     }
 
-    public int getMachineEmbellishment() {
+    public Integer getMachineEmbellishment() {
         return machineEmbellishment;
     }
 
-    public void setMachineEmbellishment(int machineEmbellishment) {
+    public void setMachineEmbellishment(Integer machineEmbellishment) {
         this.machineEmbellishment = machineEmbellishment;
     }
 
-    public int getHandEmbellishment() {
+    public Integer getHandEmbellishment() {
         return handEmbellishment;
     }
 
-    public void setHandEmbellishment(int handEmbellishment) {
+    public void setHandEmbellishment(Integer handEmbellishment) {
         this.handEmbellishment = handEmbellishment;
     }
 
@@ -258,14 +293,6 @@ public class Style implements Serializable {
         this.machineEmbellishmentCost = machineEmbellishmentCost;
     }
 
-    public Summary getSummary() {
-        return summary;
-    }
-
-    public void setSummary(Summary summary) {
-        this.summary = summary;
-    }
-
     public String getCup() {
         return cup;
     }
@@ -281,10 +308,30 @@ public class Style implements Serializable {
     public void setCockies(String cockies) {
         this.cockies = cockies;
     }
-    
-    @Override
-    public String toString() {
-        return "Style{" + "indexNo=" + indexNo + ", machineEmbellishment=" + machineEmbellishment + ", handEmbellishment=" + handEmbellishment + ", category=" + category + ", styleNo=" + styleNo + ", picture=" + picture + ", tier=" + tier + ", solidPrice=" + solidPrice + ", solidConsumption=" + solidConsumption + ", printPrice=" + printPrice + ", printConsumption=" + printConsumption + ", trimCost=" + trimCost + ", smv=" + smv + ", cor=" + cor + ", linerPrice=" + linerPrice + ", linerConsumption=" + linerConsumption + ", cupCost=" + cupCost + ", handEmbellishmentCost=" + handEmbellishmentCost + ", machineEmbellishmentCost=" + machineEmbellishmentCost + ", summary=" + summary + '}';
+
+    public Summary getSummary() {
+        return summary;
     }
 
+    public void setSummary(Summary summary) {
+        this.summary = summary;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+   
 }

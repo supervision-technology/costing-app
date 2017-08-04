@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 
 
@@ -23,49 +23,49 @@
                 <div class="col-xs-3 bs-wizard-step active" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Fabric</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3  bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3  bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Trim</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3  bs-wizard-step disabled" ng-show="mode === 'Top' || mode === 'One-Piece'" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3  bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3  bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb 2</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a  class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3  bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a  class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">FOB</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a  class="bs-wizard-dot"></a>
                 </div>
             </div>
         </div>
@@ -83,10 +83,10 @@
                     <tbody>
                         <tr>
                             <td ng-repeat="style in value">
-                                <a href="#/view-3"><div id="imgPanel" style="width: 55px; height: 50px;" ng-click="getfabricCostDetails(style)">
-                                        <img src="./images/{{style.picture}}" style="width: 55px; height: 40px;">
-                                        <h6 class="text-center" style="margin-top: 1px">{{style.styleNo}}</h6>
-                                    </div></a>
+                                <div ng-click="selectZoom(style)" id="imgPanel" style="width: 55px; height: 50px;"  onclick="document.getElementById('modal01').style.display = 'block'">
+                                    <img src="{{getImage(style.picture)}}" style="width: 55px; height: 40px;cursor:zoom-in">
+                                    <h6 class="text-center" style="margin-top: 8px">{{style.styleNo}}</h6>
+                                </div>
                             </td>
                         </tr>   
                     </tbody>
@@ -95,6 +95,17 @@
         </div>
     </div>
 </div>
+
+<div id="modal01" class="w3-modal" onclick="this.style.display = 'none'" style="z-index: 1000">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom text-center">
+        <img  ng-src="{{selectStyle}}" style="width:200px;margin-top: 15px">
+
+        <h3 class="text-center" style="margin-top: 10px">{{styleNo}}</h3>
+        <a href="#/view-3"><button style=" margin-bottom: 20px" class="btn btn-primary" ng-click="selectFabricStyle()">Select Style</button></a>
+    </div>
+</div>
+
 
 <!--footer-->
 <footer class="footer">

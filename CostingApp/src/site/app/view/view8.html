@@ -1,17 +1,18 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
+
 <div class="container-fluid" id="top">
     <!--stepper-->
     <div class="row">
@@ -20,49 +21,49 @@
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Fabric</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Trim</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-show="mode === 'Top' || mode === 'One-Piece'" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb 2</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">FOB</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
             </div>
         </div>
@@ -73,15 +74,16 @@
     </div>
     <div class="category col-xs-12">
         <div class="title row">
-            <label>{{tier}}</label>
+            <label>{{tier3}}</label>
         </div>
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
                     <tr>
                         <td>
-                            <div id="imgPanel" style="width: 60px; height: 50px;">
-                                <img src="./images/{{selectPicture}}" style="width: 60px; height: 50px;">
+                            <div  style="width: 60px; height: 50px;" ng-click="zoomPictureModal(selectPicture3)">
+                                  <img src="{{selectPicture3}}" style="width: 55px; height: 45px;">
+                                 <h6 class="text-center" style="margin-top: 8px">{{styleNo3}}</h6>
                             </div>
                         </td>
                     </tr>   
@@ -94,11 +96,11 @@
     <div class="row" id="smv-top">
         <div id="smv-cor">
             <div class="col-xs-6 text-center">
-                <label>SMV ($)</label>
+                <label>SMV</label>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="btn btn-primary input-group-addon" id="slider" ng-click="smvDecrement()">-</span>
-                        <input type="text" class="form-control input-sm text-center" ng-model="smv">
+                        <input type="text" class="form-control input-sm text-center" ng-model="smv" ng-disabled="true">
                         <span class="btn btn-primary input-group-addon" id="slider" ng-click="smvIncrement()">+</span>
                     </div>
                 </div>
@@ -108,7 +110,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <span class="btn btn-primary input-group-addon" id="slider" ng-click="corDecrement()">-</span>
-                        <input type="text" class="form-control input-sm text-center" ng-model="cor">
+                        <input type="text" class="form-control input-sm text-center" ng-model="cor" ng-disabled="true">
                         <span class="btn btn-primary input-group-addon" id="slider" ng-click="corIncrement()">+</span>
                     </div>
                 </div>
@@ -117,7 +119,7 @@
     </div>
     <div class="container-fluid text-center" id="smv-total">
         <label>CM ($)</label>
-        <input type="text" id="total" class="form-control input-sm text-center" placeholder="total" ng-model="cmCost">
+        <input type="text" id="total" class="form-control input-sm text-center" placeholder="total" ng-model="cmCost" ng-disabled="true">
     </div>
 </div>
 

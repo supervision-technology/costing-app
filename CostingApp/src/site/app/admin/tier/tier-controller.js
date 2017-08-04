@@ -99,7 +99,7 @@
                             detailJSON,
                             function (data) {
                                 Notification.success(data.indexNo + " - " + "Save Successfully");
-                                $scope.model.tiers.push(data);
+                                $scope.model.tiers.unshift(data);
                                 $scope.model.reset();
                             }
                     );

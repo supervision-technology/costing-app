@@ -9,10 +9,11 @@
         "adminModule",
         "tierModule",
         "embellishmentModule",
-        "styleModule"
+        "styleModule",
+        "userModule"
     ]);
 
-     //constants
+    //constants
     angular.module("indexModule")
             .constant("systemConfig", {
                 apiUrl:
@@ -66,12 +67,20 @@
                             templateUrl: "app/view/view5.html",
                             controller: "viewController"
                         })
+                        .when("/hand-embellishment", {
+                            templateUrl: "app/view/handEmbellishment.html",
+                            controller: "viewController"
+                        })
                         .when("/view-6", {
                             templateUrl: "app/view/view6.html",
                             controller: "viewController"
                         })
                         .when("/machine-embllishment", {
                             templateUrl: "app/view/machineEmbliishment.html",
+                            controller: "viewController"
+                        })
+                        .when("/machine-embllishments", {
+                            templateUrl: "app/view/embllishments.html",
                             controller: "viewController"
                         })
                         .when("/view-7", {
@@ -103,13 +112,16 @@
                             templateUrl: "app/login/admin-login.html"
 //                            controller: "loginController"
                         })
-                        
+
                         .when("/admin", {
+                            templateUrl: "app/admin/home.html"
+                        })
+                        .when("/admin/style", {
                             templateUrl: "app/admin/style/new-style.html",
                             controller: "styleController"
                         })
                         .when("/admin/styles", {
-                            templateUrl: "app/admin/style/all-styles.html",
+                            templateUrl: "app/admin/style/pending-styles.html",
                             controller: "styleController"
                         })
                         .when("/admin/embelleshment", {
@@ -120,10 +132,25 @@
                             templateUrl: "app/admin/tier/tier.html",
                             controller: "tierController"
                         })
+                        .when("/admin/user-registraion", {
+                            templateUrl: "app/admin/user/user-registration.html",
+                            controller: "userController"
+                        })
 
                         .otherwise({
                             redirectTo: "/"
                         });
+            });
+
+
+
+    angular.module("indexModule")
+            .controller("indexController", function ($scope, $rootScope, $location) {
+                $scope.logout = function () {
+                    document.getElementById("mySidenav").style.width = "0";
+                    $rootScope.viewnav = "hide";
+                    $location.path("#/");
+                };
             });
 }());
 

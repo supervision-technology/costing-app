@@ -36,13 +36,16 @@ public class Emblishment implements Serializable {
     private String type;
 
     @Column(name = "smv")
-    private double smv;
+    private Double smv;
 
     @Column(name = "charge_out")
-    private double chargeOut;
+    private Double chargeOut;
     
     @Column(name = "tier")
     private String tier;
+    
+    @Column(name = "category")
+    private String category;
 
     public Emblishment() {
     }
@@ -79,22 +82,6 @@ public class Emblishment implements Serializable {
         this.type = type;
     }
 
-    public double getSmv() {
-        return smv;
-    }
-
-    public void setSmv(double smv) {
-        this.smv = smv;
-    }
-
-    public double getChargeOut() {
-        return chargeOut;
-    }
-
-    public void setChargeOut(double chargeOut) {
-        this.chargeOut = chargeOut;
-    }
-
     public String getTier() {
         return tier;
     }
@@ -102,4 +89,29 @@ public class Emblishment implements Serializable {
     public void setTier(String tier) {
         this.tier = tier;
     }
+
+    public Double getChargeOut() {
+        return chargeOut;
+    }
+
+    public void setChargeOut(Double chargeOut) {
+        this.chargeOut = chargeOut;
+    }
+
+    public Double getSmv() {
+        return smv;
+    }
+
+    public void setSmv(Double smv) {
+        this.smv = smv;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
 }

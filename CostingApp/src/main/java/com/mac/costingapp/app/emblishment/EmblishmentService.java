@@ -6,6 +6,7 @@
 package com.mac.costingapp.app.emblishment;
 
 import com.mac.costingapp.app.emblishment.model.Emblishment;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,14 @@ public class EmblishmentService {
 
     public void deleteEmbellishment(Integer indexNo) {
         emblishmentRepository.delete(indexNo);
+    }
+
+    public List<Object> embellishmentTier() {
+        return emblishmentRepository.embellishmentTier();
+    }
+
+    public List<Object> findByEmbellishment(String embellishment) {
+        return emblishmentRepository.findByType(embellishment);
     }
 
 }

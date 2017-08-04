@@ -7,6 +7,8 @@ package com.mac.costingapp.app.style;
 
 import com.mac.costingapp.app.style.model.Style;
 import com.mac.costingapp.app.style.model.Summary;
+import com.mac.costingapp.app.tier.TierRepository;
+import com.mac.costingapp.app.tier.model.Tier;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,9 @@ public class StyleService {
     @Autowired
     private SummaryRepository summaryRepository;
 
+    @Autowired
+    private TierRepository tierRepository;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-S");
 
     public List<Style> allStyles() {
@@ -44,19 +49,39 @@ public class StyleService {
         return styleRepository.findByCategory(category);
     }
 
+    @Transactional
     public Style saveStyle(Style style) {
-        Summary summary = summaryRepository.save(style.getSummary());
+        if (style.getSummary() == null) {
+            System.out.println(style.toString());
+            return styleRepository.save(style);
+        } else {
+            Style save = new Style();
 
-        style.setSummary(summary);
-        Style save = styleRepository.save(style);
-
-        System.out.println(style);
-        return save;
+            Summary summary = summaryRepository.save(style.getSummary());
+            if (style.getTier().getName() == null) {
+                style.setTier(null);
+                style.setSummary(summary);
+                save = styleRepository.save(style);
+            } else {
+                style.setSummary(summary);
+                save = styleRepository.save(style);
+            }
+            return save;
+        }
     }
 
     public void deleteStyle(Integer indexNo) {
         styleRepository.delete(indexNo);
 
+    }
+
+    @Transactional
+    public Style saveStyle(Integer indexNo, String tier) {
+        Style findOne = styleRepository.findByIndexNo(indexNo);
+
+        Tier tier1 = tierRepository.findByName(tier);
+        findOne.setTier(tier1);
+        return styleRepository.save(findOne);
     }
 
 }

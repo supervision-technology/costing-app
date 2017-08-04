@@ -1,21 +1,61 @@
 <html>
     <head>
-        <title>MAS</title>
+        <title>MAS-PINK</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <!--css-->
         <!-- inject:css -->
         <!-- endinject -->
     </head>
 
-    <body ng-app="indexModule">
+    <body ng-app="indexModule" ng-controller="indexController">
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">User</a>
+            <a ng-click="logout()">Log Out</a>
+        </div>
+
+        <header class="header" ng-show="viewnav === 'show'">
+            <div class="container-fluid">
+
+                <div class="row col-xs-8" style="padding-top: 2px">              
+                    <span class="pull-left" style="font-size:30px;cursor:pointer;padding-right:10px" onclick="openNav()">&#9776;</span>
+                    <img  src="./img/maslogosmall.PNG">     
+                </div>
+                <div class="row col-xs-3">
+                    <label>
+                        <img src="{{topImg}}" class="img-circle" id="top-img">
+                        <!--{{mode}}-->
+                    </label>
+                </div>
+                <div style="padding-top: 6px">
+                    <img src="./img/pinksmall.PNG">
+                </div>
+            </div>
+        </header>
 
         <div ng-view>
             <!--CONTENT OF THE APP-->
         </div>
 
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
         <!--js dependencies-->
         <!-- inject:js -->
         <!-- endinject -->
+
+        <script type="text/javascript">
+                                    function openNav() {
+                                        document.getElementById("mySidenav").style.width = "250px";
+                                    }
+
+                                    function closeNav() {
+                                        document.getElementById("mySidenav").style.width = "0";
+                                    }
+        </script>
+
+        
+
     </body>
 </html>

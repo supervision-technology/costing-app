@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 
 <div class="container-fluid" id="top">
@@ -82,8 +82,9 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div id="imgPanel" style="width: 60px; height: 50px;">
-                                <img src="./images/{{selectPicture}}" style="width: 60px; height: 50px;">
+                            <div  style="width: 60px; height: 50px;" ng-click="zoomPictureModal(selectPicture)">
+                                <img src="{{selectPicture}}" style="width: 55px; height: 45px;">
+                                  <h6 class="text-center" style="margin-top: 8px">{{styleNo}}</h6>
                             </div>
                         </td>
                     </tr>   
@@ -97,7 +98,7 @@
         <div class="form-group">
             <div class="input-group">                                           
                 <span class="btn btn-primary input-group-addon" ng-click="cupCostDecrement()" >-</span>
-                <input type="text" class="form-control input-sm text-center" ng-model="cupCost">
+                <input type="text" class="form-control input-sm text-center" ng-model="cupCost" ng-disabled="true">
                 <span class="btn btn-primary input-group-addon" ng-click="cupCostIncrement()" >+</span>
             </div>
         </div>
@@ -110,7 +111,7 @@
         <a class="btn btn-default btn-xs btn-flat" href="#/cup-cost">
             <span class="glyphicon glyphicon-arrow-left"></span> BACK
         </a>
-        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/view-6">NEXT
+        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/hand-embellishment">NEXT
             <span class="glyphicon glyphicon-arrow-right"></span>
         </a>
     </div>

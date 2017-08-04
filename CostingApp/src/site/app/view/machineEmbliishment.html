@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 
 <div class="container-fluid" id="top">
@@ -22,59 +22,80 @@
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Fabric</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Trim</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-show="mode === 'Top' || mode === 'One-Piece'" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
-                <div class="col-xs-3 my-part bs-wizard-step active" ng-style="myStyle">
+                <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb 2</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">FOB</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
             </div>
         </div>
     </div><br>
 
     <!--category-->
-    <div class="text-center"><label>Machine Embellishment</label>
+    <div style="margin-bottom: 15px;" class="text-center"><label>Machine Embellishment</label>
+    </div >
+    <!--<input type="button"  value="Embellishments" ng-click="openMachineEmbellishment()" class="btn btn-primary btn-xs pull-right"/>-->  
+
+
+    <div class="tier col-xs-12" style="margin-top: 0px;">
+        <div class="title row">
+            <label>{{tier4}}</label>
+        </div>
+        <div class="row mygrid-wrapper-div">
+            <table class="table">  
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="imgPanel" style="width: 60px; height: 50px;" ng-click="zoomPictureModal(selectPicture4)">
+                                <img src="{{selectPicture4}}" style="width: 60px; height: 50px;">
+                                <!--<h6 class="text-center" style="margin-top: 0px">{{styleNo}}</h6>-->
+                            </div>
+                        </td>
+                    </tr>   
+                </tbody>
+            </table>
+        </div>
     </div>
-    <input type="button"  value="Embellishments" ng-click="openMachineEmbellishment()" class="btn btn-primary btn-xs pull-right"/>  
-    <div class="col-xs-12">
+    <!--    <div class="col-xs-12">
         <div class="row mygrid-wrapper-div"  style="height: 180px">
             <table class="table">  
                 <tbody>
@@ -88,14 +109,14 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>-->
     <div class="row" id="cmd-cost">
         <div class="col-xs-6">
             <h6 class="text-center">Cost ($)</h6>
             <div class="form-group">
                 <div class="input-group"> 
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embMachineCostDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="embMachineCost">
+                    <input type="text" class="form-control input-sm text-center" ng-model="embMachineCost" ng-disabled="true">
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embMachineCostIncrement()">+</span>
                 </div>
             </div>
@@ -105,7 +126,7 @@
             <div class="form-group">
                 <div class="input-group"> 
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="machineQtyDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="embMachineqty">
+                    <input type="text" class="form-control input-sm text-center" ng-model="embMachineqty" ng-disabled="true">
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="machineQtyIncrement()">+</span>
                 </div>
             </div>
@@ -114,8 +135,9 @@
 
     <div class="col-xs-12" style="margin-bottom: 45px">
         <h6 class="text-center">Total ($)</h6>
-        <input type="text" class="form-control input-sm text-center" ng-model="machineCost">
+        <input type="text" class="form-control input-sm text-center" ng-model="machineCost" ng-disabled="true">
     </div>
+
 </div>
 
 <!--footer-->
@@ -130,7 +152,7 @@
         </div>-->
     <div style="margin-top: 8px;">
         <div class="col-xs-3">
-            <a class="btn btn-default btn-xs btn-flat pull-left" href="#/view-6">
+            <a class="btn btn-default btn-xs btn-flat pull-left" href="#/machine-embllishments">
                 <span class="glyphicon glyphicon-arrow-left"></span> BACK
             </a>
         </div>

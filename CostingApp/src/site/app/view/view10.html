@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 <div class="container-fluid" id="top">
     <!--stepper-->
@@ -75,22 +75,22 @@
         <h6>Fabric Cost = $ {{fabPrint}}</h6>
         <input type="range" step="0.01" ng-model="fabPrint" min="0" max="4">
 
-        <h6>Liner Cost = $ {{linerCost}}</h6>
-        <input type="range" step="0.01" ng-model="linerCost" min="0" max="4">  
+        <h6>Liner Cost = $ {{linerPrint}}</h6>
+        <input type="range" step="0.01" ng-model="linerPrint" min="0" max="4">  
 
-        <h6>Trim Cost = $ {{trimCost}}</h6>
-        <input type="range" step="0.01" ng-model="trimCost" min="0" max="4">
+        <h6>Trim Cost = $ {{trimPrint}}</h6>
+        <input type="range" step="0.01" ng-model="trimPrint" min="0" max="4">
 
         <h6 ng-show="mode === 'Top' || mode === 'One-Piece'">Cup Cost = $ {{cupCost}}</h6>
         <input  ng-show="mode === 'Top' || mode === 'One-Piece'" type="range" step="0.01" ng-model="cupCost" min="0" max="4">  
 
-        <h6>Hand Emb  Cost = $ {{handEmbellihshmentCost}}</h6>
-        <input type="range" step="0.01" ng-model="handEmbellihshmentCost" min="0" max="4"> 
+        <h6>Hand Emb  Cost = $ {{handEmbellihshmentPrint}}</h6>
+        <input type="range" step="0.01" ng-model="handEmbellihshmentPrint" min="0" max="4"> 
 
-        <h6>Machine Emb Cost = $ {{machineCost}}</h6>
-        <input type="range" step="0.01" ng-model="machineCost" min="0" max="4">  
+        <h6>Machine Emb Cost = $ {{machinePrint}}</h6>
+        <input type="range" step="0.01" ng-model="machinePrint" min="0" max="4">  
 
-        <h6>CM Cost = $ {{cmCost}}</h6>
+        <h6 class="pull-left">CM Cost = $ {{cmCost}}</h6><h6 class="pull-right bg-danger">COR = $ {{cor}}</h6>
         <input type="range" step="0.01" ng-model="cmCost" min="0" max="4">    
 
         <h6>Packing Cost = $ {{packingCostPrint}}</h6>
@@ -132,7 +132,7 @@
                 <input type="text" class="form-control text-center input-sm" ng-model="retailPricePrint" ng-change="calculatTargetFobPrint()">
             </div>
             <div class="col-xs-6">
-                Target FOB
+                Target Air Cost
                 <input type="text" ng-disabled="true" class="form-control text-center input-sm" ng-model="targetFobPrint" ng-change="changeTargetFobPrint()">
             </div>
             <div class="col-xs-6">

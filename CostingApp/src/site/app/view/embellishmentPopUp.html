@@ -3,28 +3,109 @@
     <!--    <h3 class="modal-title">I'm a modal!</h3>-->
 </div>
 <div class="modal-body">
-    <div class="col-xs-12" style="padding-left: 0px" ng-show="embellishmentMode === 'hand'">
-        <div class="col-xs-3" ng-repeat="embllishment in embllishments| filter : {'type': 'hand'}">
-            <div id="imgPanel" style="width: 60px; height: 65px; margin-bottom: 8px" ng-click="getHandEmbllishmentDetails(embllishment)">
-                <img src="./images/{{embllishment.picture}}" style="width: 60px; height: 50px;"/>
-                <h6 class="text-center" style="margin-top: 5px;">${{embllishment.price}}</h6>
-            </div>
-        </div>
-    </div>
-    <div style="padding-left: 0px" ng-show="embellishmentMode === 'machine'">
-        <div class="category" style="margin-top: 15px;" ng-repeat="(key, value) in embllishments | groupBy:'tier'">
-            <div class="title" ng-hide="value[0].type==='hand_embellishment'">
+    <div style="padding-left: 0px" ng-show="embellishmentMode === 'hand'">
+        <!--load Bottom hand embellishment-->
+        <div class="category" ng-repeat="(key, value) in embllishments | groupBy:'tier'" ng-hide="mode === 'Top' || mode === 'One-Piece'">
+            <div class="title" ng-hide="value[0].category === 'top' || value[0].category === 'one-piece' || value[0].type === 'machine_embellishment'">
                 <label>{{key}}</label>
             </div>
-            <div class="mygrid-wrapper-div" ng-hide="value[0].type==='hand_embellishment'">
+            <div class="mygrid-wrapper-div" ng-hide="value[0].category === 'top' || value[0].category === 'one-piece' || value[0].type === 'machine_embellishment'">
                 <table class="table">  
                     <tbody>
                         <tr>
-                            <td ng-repeat="style in value | filter : {'type': 'machine'}">
-                                <div id="imgPanel" style="width: 55px; height: 50px;" ng-click="getMachineEmbllishmentDetails(style)">
-                                        <img src="./images/{{style.picture}}" style="width: 60px; height: 40px;">
-                                        <h6 class="text-center" style="margin-top: 1px">${{style.price}}</h6>
+                            <td ng-repeat="style in value| filter : {'type': 'hand'} | filter : {'category' : 'bottom'}">
+                                <a href="#/view-6">
+                                    <div id="imgPanel" style="width: 55px; height: 50px;"  ng-click="getHandEmbllishmentDetails(style)">
+                                        <img src="{{getImage(style.picture)}}" style="width: 55px; height: 40px;">
+                                        <h6 class="text-center" style="margin-top: 8px">${{style.price}}</h6>
                                     </div>
+                                </a>
+                            </td>
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--load one-piece hand embellishment-->
+        <div class="category" ng-repeat="(key, value) in embllishments | groupBy:'tier'" ng-hide="mode === 'Bottom' || mode === 'Top'">
+            <div class="title" ng-hide="value[0].category === 'bottom' || value[0].category === 'top' || value[0].type === 'machine_embellishment'">
+                <label>{{key}}</label>
+            </div>
+            <div class="mygrid-wrapper-div" ng-hide="value[0].category === 'bottom' || value[0].category === 'top' || value[0].type === 'machine_embellishment'">
+                <table class="table">  
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="style in value| filter : {'type': 'hand'} | filter : {'category' : 'one-piece'}">
+                                <a href="#/view-6">
+                                    <div id="imgPanel" style="width: 55px; height: 50px;" ng-click="getHandEmbllishmentDetails(style)">
+                                        <img src="{{getImage(style.picture)}}" style="width: 55px; height: 40px;">
+                                        <h6 class="text-center" style="margin-top: 8px">${{style.price}}</h6>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--laod top hand embellishment-->
+        <div class="category"  ng-repeat="(key, value) in embllishments | groupBy:'tier'" ng-hide="mode === 'Bottom' || mode === 'One-Piece'">
+            <div class="title" ng-hide="value[0].category === 'bottom' || value[0].category === 'one-piece' || value[0].type === 'machine_embellishment'">
+                <label>{{key}}</label>
+            </div>
+            <div class="mygrid-wrapper-div" ng-hide="value[0].category === 'bottom' || value[0].category === 'one-piece' || value[0].type === 'machine_embellishment'" >
+                <table class="table">  
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="style in value| filter : {'type': 'hand'} | filter : {'category' : 'top'}">
+                                <a href="#/view-6">
+                                    <div id="imgPanel" style="width: 55px; height: 50px;" ng-click="getHandEmbllishmentDetails(style)">
+                                        <img src="{{getImage(style.picture)}}" style="width: 55px; height: 40px;">
+                                        <h6 class="text-center" style="margin-top: 8px">${{style.price}}</h6>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--        <div class="category" style="margin-top: 15px;" ng-repeat="(key, value) in embllishments | groupBy:'tier'">
+                    <div class="title" ng-hide="value[0].type === 'machine_embellishment'">
+                        <label>{{key}}</label>
+                    </div>
+                    <div class="mygrid-wrapper-div" ng-hide="value[0].type === 'machine_embellishment'">
+                        <table class="table">  
+                            <tbody>
+                                <tr>
+                                    <td ng-repeat="style in value| filter : {'type': 'hand'}">
+                                        <div id="imgPanel" style="width: 55px; height: 50px;" ng-click="getHandEmbllishmentDetails(style)">
+                                            <img src="./images/{{style.picture}}" style="width: 55px; height: 40px;">
+                                            <h6 class="text-center" style="margin-top: 1px">${{style.price}}</h6>
+                                        </div>
+                                    </td>
+                                </tr>   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>-->
+    </div>
+    <div style="padding-left: 0px" ng-show="embellishmentMode === 'machine'">
+        <div class="category" style="margin-top: 15px;" ng-repeat="(key, value) in embllishments | groupBy:'tier'">
+            <div class="title" ng-hide="value[0].type === 'hand_embellishment'">
+                <label>{{key}}</label>
+            </div>
+            <div class="mygrid-wrapper-div" ng-hide="value[0].type === 'hand_embellishment'">
+                <table class="table">  
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="style in value| filter : {'type': 'machine'}">
+                                <div id="imgPanel" style="width: 55px; height: 50px;" ng-click="getMachineEmbllishmentDetails(style)">
+                                    <img src="{{getImage(style.picture)}}" style="width: 55px; height: 40px;">
+                                    <h6 class="text-center" style="margin-top: 1px">${{style.price}}</h6>
+                                </div>
                             </td>
                         </tr>   
                     </tbody>

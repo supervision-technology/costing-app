@@ -10,22 +10,27 @@
 
 <div class="container-fluid" id="top">
     <br>
+    <label>Date </label>
+    <input type="date" class="form-control" ng-model="styleModal.date">
+    <br>
     <label>Style No</label>
     <input type="text"
            class="form-control input-sm text-center"
            ng-model="styleModal.styleNo"><br> 
     <label>Tier</label>
-      <select class="form-control"  ng-model="styleModal.tier" ng-options="tier.name for tier in tiers track by tier.indexNo"></select>
+    <select class="form-control"  ng-model="styleModal.tier" ng-options="tier.name for tier in tiers track by tier.indexNo"></select>
     <br> 
     <label for="file-upload" class="custom-file-upload">
         <i class="glyphicon glyphicon-camera"></i> Upload Image
     </label> <input id="file-upload" type="file"
                     onchange="angular.element(this).scope().imageUpload(event)"><br>
-    <img src="{{imagemodel}}" style="width: 46%; height: 20%">
+    <div style="width: 150px; height: 150px" >
+        <img src="{{imagemodel}}" width="150" height="150">
+    </div>
 </div>
 <br>
 
-<div class="col-xs-12" style="margin-top: 50px ;  margin-bottom: 45px">
+<div class="col-xs-12" style="margin-bottom: 45px">
     <a class="btn btn-default col-xs-5 btn-flat pull-left"> <span
             class="glyphicon glyphicon-share"></span> Share
     </a> <a class="btn btn-success col-xs-5 btn-flat pull-right"
@@ -36,8 +41,8 @@
 
 <footer class="footer">
     <div class="container-fluid" style="margin-top: 8px">
-        <a class="btn btn-default btn-xs pull-right btn-flat" href="#/view-1">
-            <span class="glyphicon glyphicon-arrow-right"></span> Menu
+        <a class="btn btn-default btn-xs pull-right btn-flat" href="#/view-1" ng-click="menu()">
+            Menu <span class="glyphicon glyphicon-arrow-right"></span> 
         </a>
     </div>
 </footer>

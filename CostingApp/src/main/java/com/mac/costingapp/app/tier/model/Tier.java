@@ -33,14 +33,18 @@ public class Tier implements Serializable {
 
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "category")
+    private String category;
 
 
     public Tier() {
     }
 
-    public Tier(Integer indexNo, String name) {
+    public Tier(Integer indexNo, String name, String category) {
         this.indexNo = indexNo;
         this.name = name;
+        this.category = category;
     }
 
     public Integer getIndexNo() {
@@ -58,5 +62,14 @@ public class Tier implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
     
 }

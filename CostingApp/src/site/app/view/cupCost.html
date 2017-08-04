@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 <div class="container-fluid" id="top">
     <!--stepper-->
@@ -81,11 +81,11 @@
                     <tbody>
                         <tr>
                             <td ng-repeat="style in value">
-                                <a href="#/cup-cost2"><div id="imgPanel" style="width: 55px; height: 67px; text-align: center" ng-click="getCupCostDetails(style)">
-                                        <img src="./images/{{style.picture}}" style="width: 55px; height: 40px;">
-                                        <h6 class="text-center" style="margin-top: 1px; margin-bottom: 0px">{{style.styleNo}}</h6>
-                                        <h6 style="margin-top: 0px; font-size: 9px;" >{{style.cup}}{{style.cockies}}</h6>
-                                    </div></a>
+                                <div ng-click="selectZoom(style)" id="imgPanel" style="width: 55px; height: 67px; text-align: center" onclick="document.getElementById('modal01').style.display = 'block'">
+                                    <img src="{{getImage(style.picture)}}" style="width: 55px; height: 40px;cursor:zoom-in">
+                                    <h6 class="text-center" style="margin-top: 8px; margin-bottom: 0px">{{style.styleNo}}</h6>
+                                    <h6 style="margin-top: 0px; font-size: 9px;color: black" >{{style.cup}}{{style.cockies}}</h6>
+                                </div>
                             </td>
                         </tr>   
                     </tbody>
@@ -96,11 +96,25 @@
 
 </div>
 
+<div id="modal01" class="w3-modal" onclick="this.style.display = 'none'" style="z-index: 1000">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom text-center">
+        <img  ng-src="{{selectStyle}}" style="width:200px;margin-top: 15px">
+
+        <h3 class="text-center" style="margin-top: 10px">{{styleNo}}</h3>
+        <a href="#/cup-cost2"><button style=" margin-bottom: 20px" class="btn btn-primary" ng-click="selectCupStyle()">Select Style</button></a>
+    </div>
+</div>
+
 <!--footer-->
 <footer class="footer">
     <div class="container-fluid" style="margin-top: 8px">
         <a class="btn btn-default btn-xs btn-flat" href="#/view-5">
             <span class="glyphicon glyphicon-arrow-left"></span> BACK
         </a>
+        <a class="btn btn-default btn-xs btn-flat pull-right" href="#/hand-embellishment" ng-click="skipCupCost()">Skip if not applicable 
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
     </div>
+
 </footer>

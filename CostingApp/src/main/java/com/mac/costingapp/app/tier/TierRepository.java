@@ -16,5 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TierRepository extends JpaRepository<Tier, Integer>{
 
+    public Tier findByName(String tier);
+
     
 }

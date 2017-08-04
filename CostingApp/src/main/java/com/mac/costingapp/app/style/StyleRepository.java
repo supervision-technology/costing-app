@@ -13,4 +13,6 @@ public interface StyleRepository extends JpaRepository<Style, Integer> {
 
     public List<Style> findByCategory(String BOTTOM);
 
+    public Style findByIndexNo(Integer indexNo);
+
 }

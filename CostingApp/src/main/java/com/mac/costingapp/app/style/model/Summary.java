@@ -286,6 +286,11 @@ public class Summary implements Serializable {
         this.airImuPrint = airImuPrint;
     }
 
+    @Override
+    public String toString() {
+        return "Summary{" + "indexNo=" + indexNo + ", trimCostSolid=" + trimCostSolid + ", trimCostPrint=" + trimCostPrint + ", fabricCostPrint=" + fabricCostPrint + ", fabricCostSolid=" + fabricCostSolid + ", linerCostSolid=" + linerCostSolid + ", linerCostPrint=" + linerCostPrint + ", machineEmbSolid=" + machineEmbSolid + ", machineEmbPrint=" + machineEmbPrint + ", handEmbSolid=" + handEmbSolid + ", handEmbPrint=" + handEmbPrint + ", cmCostSolid=" + cmCostSolid + ", cmCostPrint=" + cmCostPrint + ", packingCostSolid=" + packingCostSolid + ", packingCostPrint=" + packingCostPrint + ", initialFobSolid=" + initialFobSolid + ", initialFobPrint=" + initialFobPrint + ", retailPriceSolid=" + retailPriceSolid + ", retailPricePrint=" + retailPricePrint + ", seaImuSolid=" + seaImuSolid + ", seaImuPrint=" + seaImuPrint + ", airImuSolid=" + airImuSolid + ", airImuPrint=" + airImuPrint + '}';
+    }
+
     
     
 }

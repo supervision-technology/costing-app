@@ -48,6 +48,7 @@
             xhr.send(formData);
         };
 
+   
 
         $scope.ui.init = function () {
             //set ideal mode
@@ -60,11 +61,6 @@
         $scope.ui.init();
 
     };
-
-
-
-
-
 
     angular.module("adminModule")
             .controller("adminController", adminController);

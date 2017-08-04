@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 <div class="container-fluid" id="top">
     <!--stepper-->
@@ -90,7 +90,7 @@
         <h6>Machine Emb Cost = $ {{machineCost}}</h6>
         <input type="range" step="0.01" ng-model="machineCost" min="0" max="4">
 
-        <h6>CM Cost = $ {{cmCost}}</h6>
+        <h6 class="pull-left">CM Cost = $ {{cmCost}}</h6> <h6 class="pull-right bg-danger">COR = $ {{cor}}</h6>
         <input type="range" step="0.01" ng-model="cmCost" min="0" max="4">    
 
         <h6>Packing Cost = $ {{packingCostSolid}}</h6>
@@ -131,8 +131,8 @@
                 Retail Price ($)
                 <input type="text" class="form-control text-center input-sm" ng-model="retailPriceSolid" ng-change="calculatTargetFobSolid()">
             </div>
-            <div class="col-xs-6" >
-                Target FOB
+            <div class="col-xs-6">
+                Target Air Cost
                 <input type="text" ng-disabled="true" class="form-control text-center input-sm" ng-model="targetFobSolid" ng-change="changeTargetFobSolid()">
             </div>
             <div class="col-xs-6">

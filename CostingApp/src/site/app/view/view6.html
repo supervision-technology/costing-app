@@ -1,17 +1,17 @@
-<header class="header">
+<!--<header class="header">
     <div class="col-xs-4" style="padding-top: 2px">              
         <img class="pull-left" src="./img/maslogosmall.PNG">     
     </div>
     <div class="col-xs-5">
         <label>
-            <img src="./img/bottom.PNG" class="img-circle" style="margin-left: 5px" id="top-img">
+            <img src="{{topImg}}" class="img-circle" style="margin-left: 5px" id="top-img">
             {{mode}}
         </label>
     </div>
     <div class="col-xs-3" style="padding-top: 6px">
         <img class="pull-right" src="./img/pinksmall.PNG">
     </div>
-</header>
+</header>-->
 
 
 <div class="container-fluid" id="top">
@@ -22,49 +22,49 @@
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Fabric</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Liner</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Trim</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step complete" ng-show="mode === 'Top' || mode === 'One-Piece'" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Cup</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step active" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a  class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">Emb 2</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a  class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">CM</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
 
                 <div class="col-xs-3 my-part bs-wizard-step disabled" ng-style="myStyle">
                     <div class="text-center bs-wizard-stepnum">FOB</div>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <a href="#" class="bs-wizard-dot"></a>
+                    <a class="bs-wizard-dot"></a>
                 </div>
             </div>
         </div>
@@ -74,30 +74,51 @@
     <!--    <div class="text-center"><label>Embellishment Cost Trim making cost</label>-->
     <div class="text-center"><label>Hand Embellishment</label>
     </div>
-    <input type="button"  value="Embellishments" ng-click="modalOpen()" class="btn btn-primary btn-xs pull-right"/>  
-    <div class="col-xs-12">
+    <!--<input type="button"  value="Embellishments" ng-click="modalOpen()" class="btn btn-primary btn-xs pull-right"/>-->  
+
+    <div class="tier col-xs-12" style="margin-top: 0px;">
+        <div class="title row">
+            <label>{{tier5}}</label>
+        </div>
         <div class="row mygrid-wrapper-div">
             <table class="table">  
                 <tbody>
                     <tr>
-                        <td  ng-repeat="embllishment in embllishments | filter : {'type': 'hand'} track by $index">
-                            <div id="imgPanel" style="width: 45px; height: 65px;" ng-click="getHandEmbllishmentDetails(embllishment)">
-                                <img src="./images/{{embllishment.picture}}" style="width: 45px; height: 38px;"/>
-                                <h6 class="text-center">${{embllishment.price}}</h6>
+                        <td>
+                            <div id="imgPanel" style="width: 60px; height: 50px;" ng-click="zoomPictureModal(selectPicture5)">
+                                <img src="{{selectPicture5}}" style="width: 60px; height: 50px;">
+                                <!--<h6 class="text-center" style="margin-top: 0px">{{styleNo}}</h6>-->
                             </div>
-                        </td>   
+                        </td>
                     </tr>   
                 </tbody>
             </table>
         </div>
     </div>
+    <!--    <div class="col-xs-12">
+            <div class="row mygrid-wrapper-div">
+                <table class="table">  
+                    <tbody>
+                        <tr>
+                            <td  ng-repeat="embllishment in embllishments| filter : {'type': 'hand'} track by $index">
+                                <div id="imgPanel" style="width: 45px; height: 65px;" ng-click="getHandEmbllishmentDetails(embllishment)">
+                                    <img src="./images/{{embllishment.picture}}" style="width: 45px; height: 38px;"/>
+                                    <h6 class="text-center">${{embllishment.price}}</h6>
+                                </div>
+                            </td>   
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
+        </div>-->
+
     <div class="row" id="cmd-cost">
         <div class="col-xs-6">
             <h6 class="text-center">Cost ($)</h6>
             <div class="form-group">
                 <div class="input-group"> 
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embCostDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="embCost">
+                    <input type="text" class="form-control input-sm text-center" ng-model="embCost" ng-disabled="true">
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embCostIncrement()">+</span>
                 </div>
             </div>
@@ -107,7 +128,7 @@
             <div class="form-group">
                 <div class="input-group"> 
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="qtyDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="qty">
+                    <input type="text" class="form-control input-sm text-center" ng-model="qty" ng-disabled="true">
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="qtyIncrement()">+</span>
                 </div>
             </div>
@@ -118,7 +139,7 @@
         <h6 class="text-center">Total ($)</h6>
         <div class="col-xs-2"></div>
         <div class="col-xs-8 text-center">
-            <input type="text" class="form-control input-sm text-center" ng-model="emdTotal">
+            <input type="text" class="form-control input-sm text-center" ng-model="emdTotal" ng-disabled="true">
         </div>
         <div class="col-xs-"></div>
     </div>
@@ -126,11 +147,11 @@
 
     <div class="row" id="cmd-cost">
         <div class="col-xs-6">
-            <h6 class="text-center">SMV ($)</h6>
+            <h6 class="text-center">SMV</h6>
             <div class="form-group">
                 <div class="input-group"> 
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embSmvDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="emblishmentSmv">
+                    <input type="text" class="form-control input-sm text-center" ng-model="emblishmentSmv" ng-disabled="true">
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embSmvIncrement()">+</span>
                 </div>
             </div>
@@ -140,7 +161,7 @@
             <div class="form-group">
                 <div class="input-group"> 
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embChargeOutDecrement()">-</span>
-                    <input type="text" class="form-control input-sm text-center" ng-model="chargeOut">
+                    <input type="text" class="form-control input-sm text-center" ng-model="chargeOut" ng-disabled="true">
                     <span class="btn btn-primary input-group-addon" id="slider" ng-click="embChargeOutIncrement()">+</span>
                 </div>
             </div>
@@ -150,7 +171,7 @@
         <h6 class="text-center">Total ($)</h6>
         <div class="col-xs-2"></div>
         <div class="col-xs-8 text-center">
-            <input type="text" class="form-control input-sm text-center" ng-model="smvChargeOutTotal">
+            <input type="text" class="form-control input-sm text-center" ng-model="smvChargeOutTotal" ng-disabled="true">
         </div>
     </div>
 </div>
@@ -159,12 +180,12 @@
 <footer class="footer">
     <div style="margin-top: 8px;">
         <div class="col-xs-3">
-            <a class="btn btn-default btn-xs btn-flat pull-left" ng-click="backCupOrTrim()">
+            <a class="btn btn-default btn-xs btn-flat pull-left" href="#/hand-embellishment">
                 <span class="glyphicon glyphicon-arrow-left"></span> BACK
             </a>
         </div>
         <div class="col-xs-6">
-            <a class="btn btn-default btn-xs btn-flat" href="#/machine-embllishment" ng-click="skipHandEmbllishment()">Skip if not applicable 
+            <a class="btn btn-default btn-xs btn-flat" href="#/machine-embllishments" ng-click="skipHandEmbllishment()">Skip if not applicable 
                 <span class="glyphicon glyphicon-arrow-right"></span>
             </a>
         </div>
