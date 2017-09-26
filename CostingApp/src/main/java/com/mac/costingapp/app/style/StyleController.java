@@ -50,10 +50,11 @@ public class StyleController {
         return styleService.allStyle(category);
     }
 
-//    @RequestMapping(value = "/save-style", method = RequestMethod.POST)
-//    public Style saveStyle(@RequestBody Style style) {  
-//        return styleService.saveStyle(style);
-//    }
+    @RequestMapping(value = "/save-new-style", method = RequestMethod.POST)
+    public Style saveNewStyle(@RequestBody Style style) {  
+        return styleService.saveNewStyle(style);
+    }
+   
     @RequestMapping(value = "/save-style", method = RequestMethod.POST)
     public @ResponseBody
     Style saveStyle(@RequestPart("ad") String adString, @RequestPart("file") MultipartFile file) {
@@ -63,7 +64,6 @@ public class StyleController {
         try {
             Style jsonAd = new ObjectMapper().readValue(adString, Style.class);
 
-//            System.out.println(jsonAd.toString());
 
             String fileName = dateFormat.format(new Date());
             fileName = file.getOriginalFilename();
@@ -95,9 +95,9 @@ public class StyleController {
         return styleService.saveStyle(indexNo, tier);
     }
 
-    @RequestMapping(value = "/delete-style/{indexNo}", method = RequestMethod.DELETE)
-    public void deleteStyle(@PathVariable Integer indexNo) {
-        styleService.deleteStyle(indexNo);
+    @RequestMapping(value = "/delete-style/{indexNo}/{styleNo}", method = RequestMethod.DELETE)
+    public void deleteStyle(@PathVariable Integer indexNo,@PathVariable int styleNo) {
+        styleService.deleteStyle(indexNo,styleNo);
     }
 
     @RequestMapping(value = "/app-image/{path:.+}", method = RequestMethod.GET)

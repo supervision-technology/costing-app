@@ -5,6 +5,8 @@
  */
 package com.mac.costingapp.app.style;
 
+import com.mac.costingapp.app.log.LogFileRepository;
+import com.mac.costingapp.app.log.model.MLog;
 import com.mac.costingapp.app.style.model.Style;
 import com.mac.costingapp.app.style.model.Summary;
 import com.mac.costingapp.app.tier.TierRepository;
@@ -39,6 +41,9 @@ public class StyleService {
     @Autowired
     private TierRepository tierRepository;
 
+    @Autowired
+    private LogFileRepository logFileRepository;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-S");
 
     public List<Style> allStyles() {
@@ -52,9 +57,22 @@ public class StyleService {
     @Transactional
     public Style saveStyle(Style style) {
         if (style.getSummary() == null) {
-            System.out.println(style.toString());
+            MLog log = new MLog();
+            log.setStyleNo(Integer.parseInt(style.getStyleNo()));
+            log.setStatus("update");
+            log.setUpdateDate(style.getDate());
+            log.setUser(1);
+            logFileRepository.save(log);
+            
             return styleRepository.save(style);
         } else {
+            MLog log = new MLog();
+            log.setStyleNo(Integer.parseInt(style.getStyleNo()));
+            log.setStatus("update");
+            log.setUpdateDate(style.getDate());
+            log.setUser(1);
+            logFileRepository.save(log);
+
             Style save = new Style();
 
             Summary summary = summaryRepository.save(style.getSummary());
@@ -70,7 +88,13 @@ public class StyleService {
         }
     }
 
-    public void deleteStyle(Integer indexNo) {
+    public void deleteStyle(Integer indexNo, int styleNo) {
+        MLog log = new MLog();
+        log.setStyleNo(styleNo);
+        log.setStatus("delete");
+        log.setUpdateDate(new Date());
+        log.setUser(1);
+        logFileRepository.save(log);
         styleRepository.delete(indexNo);
 
     }
@@ -82,6 +106,18 @@ public class StyleService {
         Tier tier1 = tierRepository.findByName(tier);
         findOne.setTier(tier1);
         return styleRepository.save(findOne);
+    }
+
+    @Transactional
+    public Style saveNewStyle(Style style) {
+        MLog log = new MLog();
+        log.setStyleNo(Integer.parseInt(style.getStyleNo()));
+        log.setStatus("update");
+        log.setUpdateDate(style.getDate());
+        log.setUser(1);
+        logFileRepository.save(log);
+
+        return styleRepository.save(style);
     }
 
 }

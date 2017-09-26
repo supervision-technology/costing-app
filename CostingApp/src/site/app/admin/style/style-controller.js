@@ -32,6 +32,19 @@
                             });
                 };
 
+                //load styleHostory
+                factory.loadLogfile = function (styleNo, callback) {
+                    var url = systemConfig.apiUrl + "/api/logfile/style/" + styleNo;
+
+                    $http.get(url)
+                            .success(function (data, status, headers) {
+                                callback(data);
+                            })
+                            .error(function (data, status, headers) {
+
+                            });
+                };
+
                 //save style
                 factory.saveStyle = function (index, tier, callback, errorCallback) {
                     var url = systemConfig.apiUrl + "/api/style/save-style/" + index + "/" + tier;
@@ -47,10 +60,25 @@
                             });
 
                 };
+                //save new style without image
+                factory.saveNewStyle = function (style, callback, errorCallback) {
+                    var url = systemConfig.apiUrl + "/api/style/save-new-style";
+
+                    $http.post(url, style)
+                            .success(function (data, status, headers) {
+                                callback(data);
+                            })
+                            .error(function (data, status, headers) {
+                                if (errorCallback) {
+                                    errorCallback(data);
+                                }
+                            });
+
+                };
 
                 //delete style
-                factory.deleteStyle = function (indexNo, callback, errorCallback) {
-                    var url = systemConfig.apiUrl + "/api/style/delete-style/" + indexNo;
+                factory.deleteStyle = function (indexNo, styleNo, callback, errorCallback) {
+                    var url = systemConfig.apiUrl + "/api/style/delete-style/" + indexNo + "/" + styleNo;
 
 
                     $http.delete(url)
@@ -106,11 +134,12 @@
                             && $scope.model.style.linerPrice
                             && $scope.model.style.linerConsumption
                             && $scope.model.style.trimCost
-                            && $scope.model.style.handEmbellishmentCost
-                            && $scope.model.style.machineEmbellishmentCost
+//                            && $scope.model.style.handEmbellishmentCost
+//                            && $scope.model.style.machineEmbellishmentCost
                             && $scope.model.style.smv
                             && $scope.model.style.cor
-                            && $scope.model.style.tier
+                            && $scope.model.tier
+                            && $rootScope.dateVal === "1"
                             && $scope.imagemodel) {
                         return true;
                     } else {
@@ -141,35 +170,54 @@
 
                 //save new style
                 $scope.http.saveNewStyle = function () {
-                    var formData = new FormData();
-                    var file = document.getElementById('file-upload').files[0];
                     $scope.model.style.tier = $scope.model.tier;
                     var json = JSON.stringify($scope.model.style);
+                    var formData = new FormData();
+                    var file = document.getElementById('file-upload').files[0];
+                    if (file) {
+                        var url = systemConfig.apiUrl + "/api/style/save-style";
+
+                        formData.append("file", file);
+                        formData.append("ad", json);
+
+                        var xhr = new XMLHttpRequest();
+
+                        xhr.onreadystatechange = function () {
+                            if (this.readyState === 4 && this.status === 200) {
+                                Notification.success("Successfully Added..");
+                                styleFactory.loadStyles(function (data) {
+                                    $scope.styles = data;
+                                });
+                                $scope.imagemodel = null;
+                                $scope.model.style = {};
+                                $rootScope.dateVal = "0";
+                            }
+                        };
+                        xhr.open("POST", url);
+                        xhr.send(formData);
+                    } else {
+                        styleFactory.saveNewStyle(json,
+                                function (data) {
+//                                    $scope.styles.unshift(data);
+                                    styleFactory.loadStyles(function (data) {
+                                        $scope.styles = data;
+                                    });
+                                    Notification.success("Successfully Added..");
+                                    $scope.imagemodel = null;
+                                    $scope.model.style = {};
+                                    $rootScope.dateVal = "0";
+                                });
+                    }
 
 
-                    var url = systemConfig.apiUrl + "/api/style/save-style";
 
-                    formData.append("file", file);
-                    formData.append("ad", json);
-
-                    var xhr = new XMLHttpRequest();
-
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            Notification.success("Successfully Added..");
-                            $scope.imagemodel = null;
-                            $scope.model.style = {};
-                        }
-                    };
-                    xhr.open("POST", url);
-                    xhr.send(formData);
                 };
 
                 //delete style
-                $scope.http.deleteStyle = function (indexNo) {
+                $scope.http.deleteStyle = function (indexNo, styleNo) {
                     ConfirmPane.primaryConfirm("Are you sure you want to delete?")
                             .confirm(function () {
-                                styleFactory.deleteStyle(indexNo
+                                styleFactory.deleteStyle(indexNo, styleNo
                                         , function () {
                                             var id = -1;
                                             for (var i = 0; i < $scope.styles.length; i++) {
@@ -209,6 +257,12 @@
                         $scope.http.saveNewStyle();
                     } else {
                         Notification.error("please input values");
+                    }
+                };
+
+                $scope.ui.changeDate = function (val) {
+                    if (val) {
+                        $rootScope.dateVal = "1";
                     }
                 };
 
@@ -265,12 +319,35 @@
                     });
                 };
 
+                //edit funtion
+                $scope.ui.edit = function (style, index) {
+                    var id = -1;
+                    for (var i = 0; i < $scope.styles.length; i++) {
+                        if ($scope.styles[i].indexNo === index) {
+                            id = i;
+                        }
+                    }
+                    $scope.styles.splice(id, 1);
+                    $scope.model.style = style;
+                    $rootScope.dateVal === "0";
+                    $scope.imagemodel = $scope.getImage(style.picture);
+                    $scope.model.tier = style.tier;
+                };
+
                 $scope.onSelect = function ($item, $model, $label) {
                     $scope.model.tier = $item;
                 };
-                
-                 $scope.showMore = function () {
+
+                $scope.showMore = function () {
                     $scope.numLimit += 5;
+                };
+
+                $scope.ui.selectHistory = function (style) {
+                    styleFactory.loadLogfile(style.styleNo,
+                            function (data) {
+                                $scope.styleHistory = data;
+
+                            });
                 };
 
 
@@ -278,6 +355,11 @@
                     $scope.numLimit = 15;
                     //mode
                     $scope.ui.mode = "IDEAL";
+                    //date change status
+                    if (!$rootScope.dateVal) {
+                        $rootScope.dateVal === "0";
+                    }
+
 
                     //load styles
                     styleFactory.loadStyles(function (data) {
