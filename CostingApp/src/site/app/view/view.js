@@ -1,7 +1,7 @@
 (function () {
     angular.module("viewModule", ["ngAnimate", "ui.bootstrap", "angular.filter"]);
 
-    var viewController = function ($http, $scope, $rootScope, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
+    var viewController = function ($http, $scope, $rootScope,FileSaver, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
 
 
         $scope.styleModal = {
@@ -1110,6 +1110,31 @@
                 $scope.imagemodel = e.target.result;
             });
         };
+        
+         $scope.shareClick = function () {
+            $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/view/download-file.html',
+                controller: 'viewController',
+                scope: $scope,
+                size: 'xs'
+            });
+        };
+
+        $scope.exportData = function () {
+            $uibModalStack.dismissAll();
+//            location.href = "mailto:someone@example.com";
+//            window.location = "mailto:joe@blogs.com&body=<html><body><h1>Hello world</h1></body></html>";
+//            location.href = "mailto:?subject=Summary Sheet&body=<html><body><h1>hellow</h1></body></html>";
+            var blob = new Blob([document.getElementById('printDiv').innerHTML], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            });
+
+            FileSaver.saveAs(blob, "" + $scope.fileName + ".xls");
+            location.href = "mailto:?subject=Summary Sheet&body";
+        };
 
 
         $scope.zoomPictureModal = function (picture) {
@@ -1191,61 +1216,34 @@
         $scope.inint = function () {
             //----------------------get Styles----------------------
 
-            //get bottom styles
-            if (!$rootScope.bottomList) {
-                $rootScope.bottomList = new Array();
+              if ($rootScope.mode === 'Bottom') {
                 var url = systemConfig.apiUrl + "/api/style/all-style/" + "bottom";
                 $http.get(url)
                         .success(function (data) {
-                            $rootScope.bottomList.push(data);
+                            $scope.styleList = data;
                         });
-            } else if ($rootScope.mode === 'Bottom') {
-                angular.forEach($rootScope.bottomList, function (value) {
-                    $scope.styleList = value;
-                });
             }
-
-            //get top styles
-            if (!$rootScope.TopList) {
-                $rootScope.TopList = new Array();
+            if ($rootScope.mode === 'Top') {
                 var url = systemConfig.apiUrl + "/api/style/all-style/" + "top";
                 $http.get(url)
                         .success(function (data) {
-                            $rootScope.TopList.push(data);
+                            $scope.styleList = data;
                         });
-            } else if ($rootScope.mode === 'Top') {
-                angular.forEach($rootScope.TopList, function (value) {
-                    $scope.styleList = value;
-                });
             }
-
-            //get one-piece styles
-            if (!$rootScope.onePieceList) {
-                $rootScope.onePieceList = new Array();
+            if ($rootScope.mode === 'One-Piece') {
                 var url = systemConfig.apiUrl + "/api/style/all-style/" + "one-piece";
                 $http.get(url)
                         .success(function (data) {
-                            $rootScope.onePieceList.push(data);
+                            $scope.styleList = data;
                         });
-            } else if ($rootScope.mode === 'One-Piece') {
-                angular.forEach($rootScope.onePieceList, function (value) {
-                    $scope.styleList = value;
-                });
             }
 
-            //get emblishments
-            if (!$rootScope.embList) {
-                $rootScope.embList = new Array();
-                var url = systemConfig.apiUrl + "/api/embellishment";
-                $http.get(url)
-                        .success(function (data) {
-                            $rootScope.embList.push(data);
-                        });
-            } else {
-                angular.forEach($rootScope.embList, function (value) {
-                    $scope.embllishments = value;
-                });
-            }
+            var url = systemConfig.apiUrl + "/api/embellishment";
+            $http.get(url)
+                    .success(function (data) {
+                        $scope.embllishments = data;
+                        ;
+                    });
 
             //get tiers
             var url = systemConfig.apiUrl + "/api/tiers";

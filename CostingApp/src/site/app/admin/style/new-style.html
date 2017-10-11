@@ -179,7 +179,7 @@
                         <td>{{style.category}}</td>
                         <td>{{style.tier.name}}</td>
                         <td><img src="{{getImage(style.picture)}}" width="60px" height="50px"></td>
-                        <td>{{style.date| date}}</td>
+                        <td>{{style.date| date:'yyyy-MM-dd'}}</td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm"
                                     ng-click="http.deleteStyle(style.indexNo, style.styleNo)">
@@ -265,7 +265,7 @@
                         <!--<td>{{style.user}}</td>-->
                         <td>User1</td>
                         <td>{{style.styleNo}}</td>
-                        <td>{{style.updateDate|date}}</td>
+                        <td>{{style.updateDate|date:'yyyy-MM-dd'}}</td>
                         <td>{{style.status}}</td>
                     </tr>
                 </tbody>

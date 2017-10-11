@@ -31,12 +31,92 @@
 <br>
 
 <div class="col-xs-12" style="margin-bottom: 45px">
-    <a class="btn btn-default col-xs-5 btn-flat pull-left"> <span
+    <a class="btn btn-default col-xs-5 btn-flat pull-left" ng-click="shareClick()"> <span
             class="glyphicon glyphicon-share"></span> Share
     </a> <a class="btn btn-success col-xs-5 btn-flat pull-right"
             ng-click="saveStyle()"> <span class="glyphicon glyphicon-ok"></span>
         Save
     </a>
+</div>
+
+<div class="container-fluid" id="printDiv" ng-hide="true">
+    <!--initial cost summary-->
+    <div class="text-center" style="margin-top: 10px"><label>Initial Cost Summary</label></div>
+    <div class="container-fluid" style="margin-bottom: 45px">
+        <table class="table">
+            <thead>
+                <tr>           
+                    <th></th>
+                    <th>Solid</th>
+                    <th>Print</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fabric Cost</td>
+                    <td>${{fabSolid}}</td>
+                    <td>${{fabPrint}}</td>
+                </tr>
+                <tr>
+                    <td>Liner Cost</td>
+                    <td>${{linerCost}}</td>
+                    <td>${{linerCost}}</td>
+                </tr>
+                <tr>
+                    <td>Trim Cost</td>
+                    <td>${{trimCost}}</td>
+                    <td>${{trimCost}}</td>
+                </tr>
+                <tr>
+                    <td>Hand Emb Cost</td>
+                    <td>${{handEmbellihshmentCost}}</td>
+                    <td>${{handEmbellihshmentCost}}</td>
+                </tr>
+                <tr>
+                    <td>Machine Emb Cost</td>
+                    <td>${{machineCost}}</td>
+                    <td>${{machineCost}}</td>
+                </tr>
+                <tr>
+                    <td>CM Cost</td>
+                    <td>${{cmCost}}</td>
+                    <td>${{cmCost}}</td>
+                </tr>
+                <tr>
+                    <td>Packing Cost</td>
+                    <td>${{packingCostSolid}}</td>
+                    <td>${{packingCostPrint}}</td>
+                </tr>
+                <tr>
+                    <td>Initial FOB</td>
+                    <td>${{calculateInitialFobSolid()}}</td>
+                    <td>${{calculateInitialFobPrint()}}</td>
+                </tr>
+                <tr>
+                    <td>Retail Price</td>
+                    <td>${{retailPriceSolid}}</td>
+                    <td>${{retailPricePrint}}</td>
+                </tr>
+                <tr>
+                    <td><label>Sea IMU%</label></td>
+                    <td>{{calcSeaImuSolid()}}%</td>
+                    <td>{{calcSeaImuPrint()}}%</td>
+                </tr>
+                <tr>
+                    <td><label>Air IMU %</label></td>
+                    <td>{{calcAirImuSolid()}}%</td>
+                    <td>{{calcAirImuPrint()}}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="modalfile" class="w3-modal" onclick="this.style.display = 'none'" style="z-index: 1000">
+    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom text-center">
+        
+    </div>
 </div>
 
 <footer class="footer">

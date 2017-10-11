@@ -49,7 +49,9 @@ gulp.task('build-js', function () {
         "bower_components/angular-filter/dist/angular-filter.js",
         "bower_components/boostrap/dist/css/bootstrap.min.css",
         "bower_components/angular-base64/angular-base64.js",
-        "bower_components/boostrap/dist/js/bootstrap.min.js"
+        "bower_components/boostrap/dist/js/bootstrap.min.js",
+        "bower_components/angular-file-saver/dist/angular-file-saver.js",
+        "bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"
     ])
             .pipe(debug())
             .pipe(concat('vendor.js'))
