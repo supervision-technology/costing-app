@@ -90,8 +90,8 @@
         <h6>Machine Emb Cost = $ {{machineCost}}</h6>
         <input type="range" step="0.01" ng-model="machineCost" min="0" max="4">
 
-        <h6 class="pull-left">CM Cost = $ {{cmCost}}</h6> <h6 class="pull-right bg-danger">COR = $ {{cor}}</h6>
-        <input type="range" step="0.01" ng-model="cmCost" min="0" max="4">    
+        <h6 class="pull-left">CM Cost = $ {{cmCost}}</h6> <h6 class="pull-right" style="color: white;background-color: rgb(255, 0, 0); padding: 3px;">COR = $ {{cor}}</h6>
+        <input type="range" step="0.01" ng-model="cmCost" min="0" max="10">    
 
         <h6>Packing Cost = $ {{packingCostSolid}}</h6>
         <input type="range" step="0.01" ng-model="packingCostSolid" min="0" max="4">    
@@ -137,7 +137,7 @@
             </div>
             <div class="col-xs-6">
                 <h5>Sea Cost = {{calcSeaCostSolid()}}</h5>
-                
+
             </div>
             <div class="col-xs-6">
                 <h5>Air Cost = {{calcAirCostSolid()}}</h5>

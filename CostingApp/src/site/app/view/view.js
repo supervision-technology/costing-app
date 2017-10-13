@@ -1,7 +1,7 @@
 (function () {
     angular.module("viewModule", ["ngAnimate", "ui.bootstrap", "angular.filter"]);
 
-    var viewController = function ($http, $scope, $rootScope,FileSaver, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
+    var viewController = function ($http, $scope, $rootScope, FileSaver, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
 
 
         $scope.styleModal = {
@@ -180,7 +180,7 @@
         };
 
 
-      
+
 
 
         //-------------------------view-2 funtions----------------------
@@ -201,7 +201,7 @@
         };
 
         $scope.selectLinerStyle = function () {
-              if ($rootScope.style.measure === "M") {
+            if ($rootScope.style.measure === "M") {
                 $rootScope.checkboxModel2 = true;
             }
             $scope.getLinerCostDetails($rootScope.style);
@@ -1110,8 +1110,8 @@
                 $scope.imagemodel = e.target.result;
             });
         };
-        
-         $scope.shareClick = function () {
+
+        $scope.shareClick = function () {
             $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
@@ -1151,7 +1151,7 @@
 
 
         //----------------common funtions---------------
-        
+
         $scope.getImage = function (path) {
             var url = systemConfig.apiUrl + "/api/style/app-image/" + path;
             return url;
@@ -1162,11 +1162,19 @@
             $rootScope.viewnav = "hide";
             $location.path("#/");
         };
-        
-          //--------------menu funtions-----------------
+
+        //--------------menu funtions-----------------
 
         $scope.selectTop = function () {
             $rootScope.tiers = [];
+            $rootScope.styleList = [];
+
+            var url = systemConfig.apiUrl + "/api/style/all-style/" + "top";
+            $http.get(url)
+                    .success(function (data) {
+                        $rootScope.styleList = data;
+                    });
+
             angular.forEach($rootScope.tierList, function (tiers) {
                 if (tiers.category === "top") {
                     $rootScope.tiers.push(tiers);
@@ -1183,6 +1191,14 @@
 
         $scope.selectBottom = function () {
             $rootScope.tiers = [];
+            $rootScope.styleList = [];
+
+            var url = systemConfig.apiUrl + "/api/style/all-style/" + "bottom";
+            $http.get(url)
+                    .success(function (data) {
+                        $rootScope.styleList = data;
+                    });
+
             angular.forEach($rootScope.tierList, function (tiers) {
                 if (tiers.category === "bottom") {
                     $rootScope.tiers.push(tiers);
@@ -1198,6 +1214,13 @@
 
         $scope.selectOnePiece = function () {
             $rootScope.tiers = [];
+            $rootScope.styleList = [];
+
+            var url = systemConfig.apiUrl + "/api/style/all-style/" + "one-piece";
+            $http.get(url)
+                    .success(function (data) {
+                        $rootScope.styleList = data;
+                    });
             angular.forEach($rootScope.tierList, function (tiers) {
                 if (tiers.category === "one-piece") {
                     $rootScope.tiers.push(tiers);
@@ -1214,44 +1237,27 @@
 
 
         $scope.inint = function () {
-            //----------------------get Styles----------------------
-
-              if ($rootScope.mode === 'Bottom') {
-                var url = systemConfig.apiUrl + "/api/style/all-style/" + "bottom";
+            //get emblishments
+            if (!$rootScope.embList) {
+                $rootScope.embList = new Array();
+                var url = systemConfig.apiUrl + "/api/embellishment";
                 $http.get(url)
                         .success(function (data) {
-                            $scope.styleList = data;
+                            $rootScope.embList.push(data);
                         });
+            } else {
+                angular.forEach($rootScope.embList, function (value) {
+                    $scope.embllishments = value;
+                });
             }
-            if ($rootScope.mode === 'Top') {
-                var url = systemConfig.apiUrl + "/api/style/all-style/" + "top";
-                $http.get(url)
-                        .success(function (data) {
-                            $scope.styleList = data;
-                        });
-            }
-            if ($rootScope.mode === 'One-Piece') {
-                var url = systemConfig.apiUrl + "/api/style/all-style/" + "one-piece";
-                $http.get(url)
-                        .success(function (data) {
-                            $scope.styleList = data;
-                        });
-            }
-
-            var url = systemConfig.apiUrl + "/api/embellishment";
-            $http.get(url)
-                    .success(function (data) {
-                        $scope.embllishments = data;
-                        ;
-                    });
 
             //get tiers
             var url = systemConfig.apiUrl + "/api/tiers";
             $http.get(url)
                     .success(function (data) {
-                        $rootScope.tierList = data;
-                        ;
+                        $scope.tierList = data;
                     });
+
 
 
             if (!$rootScope.qty) {
