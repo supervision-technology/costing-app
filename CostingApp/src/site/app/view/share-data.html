@@ -1,0 +1,16 @@
+<div class="modal-header" style="height: 40px">
+    <span class="btn btn-danger btn-xs glyphicon glyphicon-remove pull-right" style="margin-top: -7px" ng-click="close()"></span>
+</div>
+<div class="modal-body">
+    <div style="text-align: center;">
+        <input placeholder="to" class="form-control text-center" type="email" ng-model="mail.mailTo"><br>
+        <input placeholder="subject" class="form-control text-center" type="text" ng-model="mail.subject"><br>
+        <a><button style=" margin-bottom: 20px" class="btn btn-success" ng-click="share()">Send</button></a><br>
+        <div  ng-show="sendMode === 'sending'" class="col-lg-12" style="background-color: #ffbc2c;
+             height: 30px;
+             padding-top: 6px;">
+            <label class="label" style="font-size: 15px;">Sending...</label>
+        </div>
+
+    </div>
+</div>

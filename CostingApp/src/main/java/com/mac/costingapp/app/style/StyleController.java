@@ -2,6 +2,7 @@ package com.mac.costingapp.app.style;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mac.costingapp.app.style.StyleService;
+import com.mac.costingapp.app.style.model.Gmail;
 import com.mac.costingapp.app.style.model.Style;
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,10 +52,10 @@ public class StyleController {
     }
 
     @RequestMapping(value = "/save-new-style", method = RequestMethod.POST)
-    public Style saveNewStyle(@RequestBody Style style) {  
+    public Style saveNewStyle(@RequestBody Style style) {
         return styleService.saveNewStyle(style);
     }
-   
+
     @RequestMapping(value = "/save-style", method = RequestMethod.POST)
     public @ResponseBody
     Style saveStyle(@RequestPart("ad") String adString, @RequestPart("file") MultipartFile file) {
@@ -63,7 +64,6 @@ public class StyleController {
 
         try {
             Style jsonAd = new ObjectMapper().readValue(adString, Style.class);
-
 
             String fileName = dateFormat.format(new Date());
             fileName = file.getOriginalFilename();
@@ -96,8 +96,8 @@ public class StyleController {
     }
 
     @RequestMapping(value = "/delete-style/{indexNo}/{styleNo}", method = RequestMethod.DELETE)
-    public void deleteStyle(@PathVariable Integer indexNo,@PathVariable int styleNo) {
-        styleService.deleteStyle(indexNo,styleNo);
+    public void deleteStyle(@PathVariable Integer indexNo, @PathVariable int styleNo) {
+        styleService.deleteStyle(indexNo, styleNo);
     }
 
     @RequestMapping(value = "/app-image/{path:.+}", method = RequestMethod.GET)
@@ -122,6 +122,11 @@ public class StyleController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @RequestMapping(path = "/send-mail", method = RequestMethod.POST)
+    public boolean sendMail(@RequestBody Gmail mail) {
+        return styleService.sendMail(mail);
     }
 
 }

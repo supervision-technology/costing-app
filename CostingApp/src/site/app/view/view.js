@@ -1,8 +1,9 @@
 (function () {
     angular.module("viewModule", ["ngAnimate", "ui.bootstrap", "angular.filter"]);
 
-    var viewController = function ($http, $scope, $rootScope, FileSaver, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
+    var viewController = function ($http, $scope, $rootScope, systemConfig, $location, $uibModal, $uibModalStack, Notification) {
 
+        $scope.mail = {};
 
         $scope.styleModal = {
             styleNo: null,
@@ -1111,29 +1112,46 @@
             });
         };
 
-        $scope.shareClick = function () {
+        $scope.addShare = function () {
             $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: 'app/view/download-file.html',
+                templateUrl: 'app/view/share-data.html',
                 controller: 'viewController',
                 scope: $scope,
                 size: 'xs'
             });
         };
 
-        $scope.exportData = function () {
-            $uibModalStack.dismissAll();
+        $scope.share = function () {
+            $scope.sendMode = 'sending';
+
+            $scope.mail.mailBody = document.getElementById('printDiv').innerHTML;
+            console.log($scope.mail.mailBody)
+
+            var mail = JSON.stringify($scope.mail);
+            var url = systemConfig.apiUrl + "/api/style/send-mail";
+            $http.post(url, mail)
+                    .success(function (data) {
+                        $scope.sendMode = 'done';
+                        $uibModalStack.dismissAll();
+                    });
+
+
+
+
 //            location.href = "mailto:someone@example.com";
 //            window.location = "mailto:joe@blogs.com&body=<html><body><h1>Hello world</h1></body></html>";
 //            location.href = "mailto:?subject=Summary Sheet&body=<html><body><h1>hellow</h1></body></html>";
-            var blob = new Blob([document.getElementById('printDiv').innerHTML], {
-                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
-            });
+//            var blob = new Blob([document.getElementById('printDiv').innerHTML], {
+//                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+//            });
+//
+//            FileSaver.saveAs(blob, "" + $scope.fileName + ".xls");
+//            window.open('mailto:?subject=style sheet&body');
+//            location.href = "mailto:?subject=Summary Sheet&body";
 
-            FileSaver.saveAs(blob, "" + $scope.fileName + ".xls");
-            location.href = "mailto:?subject=Summary Sheet&body";
         };
 
 

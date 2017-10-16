@@ -3,7 +3,6 @@
     angular.module("indexModule", [
         "ngRoute",
         "ngCookies",
-        "ngFileSaver",
         "ui.bootstrap",
         "viewModule",
         "loginModule",

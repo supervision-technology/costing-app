@@ -31,27 +31,27 @@
 <br>
 
 <div class="col-xs-12" style="margin-bottom: 45px">
-    <a class="btn btn-default col-xs-5 btn-flat pull-left" ng-click="shareClick()"> <span
+    <a class="btn btn-default col-xs-3 btn-flat" ng-click="addShare()"> <span
             class="glyphicon glyphicon-share"></span> Share
-    </a> <a class="btn btn-success col-xs-5 btn-flat pull-right"
+    </a> 
+    <a class="btn btn-success col-xs-5 btn-flat pull-right"
             ng-click="saveStyle()"> <span class="glyphicon glyphicon-ok"></span>
         Save
     </a>
 </div>
 
 <div class="container-fluid" id="printDiv" ng-hide="true">
-    <!--initial cost summary-->
-    <div class="text-center" style="margin-top: 10px"><label>Initial Cost Summary</label></div>
-    <div class="container-fluid" style="margin-bottom: 45px">
-        <table class="table">
-            <thead>
+    <div class="text-center" style="margin-top: 10px"><label>Initial Cost Summary / Style No - {{styleModal.styleNo}} / {{mode}}</label></div>
+    <div class="container-fluid" style="margin-bottom: 45px" >
+        <table class="table" style="border: 1px solid #000000">
+            <thead style="background-color: #cccccc;">
                 <tr>           
                     <th></th>
-                    <th>Solid</th>
-                    <th>Print</th>
+                    <th class="text-right">Solid</th>
+                    <th class="text-right">Print</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="background-color: #ffffc1">
                 <tr>
                     <td>Fabric Cost</td>
                     <td>${{fabSolid}}</td>
@@ -60,22 +60,22 @@
                 <tr>
                     <td>Liner Cost</td>
                     <td>${{linerCost}}</td>
-                    <td>${{linerCost}}</td>
+                    <td>${{linerPrint}}</td>
                 </tr>
                 <tr>
                     <td>Trim Cost</td>
                     <td>${{trimCost}}</td>
-                    <td>${{trimCost}}</td>
+                    <td>${{trimPrint}}</td>
                 </tr>
                 <tr>
                     <td>Hand Emb Cost</td>
                     <td>${{handEmbellihshmentCost}}</td>
-                    <td>${{handEmbellihshmentCost}}</td>
+                    <td>${{handEmbellihshmentPrint}}</td>
                 </tr>
-                <tr>
+                 <tr>
                     <td>Machine Emb Cost</td>
                     <td>${{machineCost}}</td>
-                    <td>${{machineCost}}</td>
+                    <td>${{machinePrint}}</td>
                 </tr>
                 <tr>
                     <td>CM Cost</td>
@@ -97,7 +97,7 @@
                     <td>${{retailPriceSolid}}</td>
                     <td>${{retailPricePrint}}</td>
                 </tr>
-                <tr>
+                 <tr>
                     <td><label>Sea IMU%</label></td>
                     <td>{{calcSeaImuSolid()}}%</td>
                     <td>{{calcSeaImuPrint()}}%</td>

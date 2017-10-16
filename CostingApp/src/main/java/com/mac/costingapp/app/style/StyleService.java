@@ -7,6 +7,7 @@ package com.mac.costingapp.app.style;
 
 import com.mac.costingapp.app.log.LogFileRepository;
 import com.mac.costingapp.app.log.model.MLog;
+import com.mac.costingapp.app.style.model.Gmail;
 import com.mac.costingapp.app.style.model.Style;
 import com.mac.costingapp.app.style.model.Summary;
 import com.mac.costingapp.app.tier.TierRepository;
@@ -19,6 +20,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +49,9 @@ public class StyleService {
     @Autowired
     private LogFileRepository logFileRepository;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-S");
 
     public List<Style> allStyles() {
@@ -63,7 +71,7 @@ public class StyleService {
             log.setUpdateDate(style.getDate());
             log.setUser(1);
             logFileRepository.save(log);
-            
+
             return styleRepository.save(style);
         } else {
             MLog log = new MLog();
@@ -118,6 +126,25 @@ public class StyleService {
         logFileRepository.save(log);
 
         return styleRepository.save(style);
+    }
+
+    public boolean sendMail(Gmail mail) {
+        try {
+            MimeMessagePreparator messagePreparator = mimeMessage -> {
+                MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+                messageHelper.setFrom("kaizencommittee1@gmail.com");
+                messageHelper.setTo(mail.getMailTo());
+//                      messageHelper.setTo("niduraprageeth@gmail.com");
+                messageHelper.setSubject(mail.getSubject());
+//                messageHelper.setText(mail.getMailBody());
+                mimeMessage.setContent(mail.getMailBody(), "text/html");
+            };
+            mailSender.send(messagePreparator);
+            return true;
+        } catch (MailException e) {
+            System.out.println(e);
+        }
+        return false;
     }
 
 }
