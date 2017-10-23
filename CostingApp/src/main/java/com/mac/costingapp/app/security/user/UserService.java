@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mac.costingapp.app.user;
+package com.mac.costingapp.app.security.user;
 
-import com.mac.costingapp.app.user.model.User;
+import com.mac.costingapp.app.security.user.model.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +33,10 @@ public class UserService {
 
     public void deleteUser(Integer indexNo) {
         userRepository.delete(indexNo);
+    }
+
+    public User findByName(String userName) {
+        return userRepository.findByName(userName);
     }
 
 }

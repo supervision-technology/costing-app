@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mac.costingapp.app.user.model;
+package com.mac.costingapp.app.security.user.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -80,6 +80,12 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "indexNo=" + indexNo + ", name=" + name + ", password=" + password + ", role=" + role + '}';
+    }
+    
     
     
 

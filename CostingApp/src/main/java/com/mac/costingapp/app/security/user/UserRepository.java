@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mac.costingapp.app.user;
+package com.mac.costingapp.app.security.user;
 
-import com.mac.costingapp.app.user.model.User;
+import com.mac.costingapp.app.security.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author Nidura Prageeth
- */
+
 public interface UserRepository extends JpaRepository<User, Integer>{
+
+    public User findByName(String name);
     
+    
+//    public User findByName()
+
+//    public User findByName(String name);
 }

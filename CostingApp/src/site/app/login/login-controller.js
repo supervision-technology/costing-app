@@ -11,8 +11,7 @@
                 AuthenticationService.ClearCredentials();
 
                 $scope.login = function () {
-                    $rootScope.error =null;
-                    $rootScope.loading = "loading";
+                    $rootScope.error = null;
                     AuthenticationService.Login($scope.username, $scope.password, function (response) {
                         if (response) {
                             $rootScope.loading = null;
@@ -21,13 +20,12 @@
 //                            $rootScope.userName = response.name;
                             $rootScope.user = response;
                             if (response.role === 'admin') {
-                                $location.path('/master/user-registration');
+                                $location.path('/admin');
                             } else {
-                                $location.path('/home');
+                                $location.path('/view-1');
                             }
 
                         } else {
-                            $rootScope.loading = null;
 //                            $rootScope.error = 'Username or password is incorrect';
                         }
                     });

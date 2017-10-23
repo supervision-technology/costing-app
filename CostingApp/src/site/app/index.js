@@ -2,10 +2,10 @@
     //index module
     angular.module("indexModule", [
         "ngRoute",
+        "base64",
         "ngCookies",
         "ui.bootstrap",
         "viewModule",
-        "loginModule",
         "adminModule",
         "tierModule",
         "embellishmentModule",
@@ -29,7 +29,7 @@
                         //user
                         .when("/", {
                             templateUrl: "app/login/login.html",
-                            controller: "loginController"
+                            controller: "LoginController"
                         })
                         .when("/view-1", {
                             templateUrl: "app/view/view1.html",
@@ -151,6 +151,21 @@
                     $rootScope.viewnav = "hide";
                     $location.path("#/");
                 };
+            });
+    angular.module("indexModule")
+            .run(function ($rootScope, $location, $cookieStore, $http) {
+                // keep user logged in after page refresh
+                $rootScope.globals = $cookieStore.get('globals') || {};
+                if ($rootScope.globals.currentUser) {
+                    $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+                }
+
+                $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                    // redirect to login page if not logged in
+                    if ($location.path() !== '/' && !$rootScope.globals.currentUser) {
+                        $location.path('/');
+                    }
+                });
             });
 }());
 

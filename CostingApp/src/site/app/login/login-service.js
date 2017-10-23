@@ -34,29 +34,30 @@ angular.module('indexModule')
                 $rootScope.model.name = username;
                 $rootScope.model.password = password;
 
-                var auth = username + '--' + password + ":" + password;
+//                var auth = username + '--' + password + ":" + password;
+                var auth = username + ":" + password;
                 auth = "Basic " + btoa(auth);
 
                 var headers = {
                     "Authorization": auth,
                     "X-Requested-With": "XMLHttpRequest"
+//                    "Access-Control-Allow-Origin": "*"
                 };
 
-                var url = systemConfig.apiUrl + "/user/login";
+                var url = systemConfig.apiUrl + "/api/user/login/" + $rootScope.model.name;
 
-                var DetailJSON = JSON.stringify($rootScope.model);
+//                var DetailJSON = JSON.stringify($rootScope.model);
 
                 $timeout(function () {
-                    $http.post(url, DetailJSON, {
+                    $http.get(url, {
                         'headers': headers
                     })
                             .success(function (response) {
+                                console.log(response)
                                 callback(response);
                             })
                             .error(function (data) {
-                                $rootScope.loading = null;
-                                $rootScope.error = 'Username or password is incorrect';
-                                console.log(data)
+                                $rootScope.error = 'username or password is incorrect';
                             });
                     ;
 
@@ -65,7 +66,7 @@ angular.module('indexModule')
             };
 
             service.SetCredentials = function (username, password) {
-                var authdata = btoa(username + '--' + password + ":" + password); //$base64.encode(username + ':' + password);
+                var authdata = btoa(username +":"+ password); //$base64.encode(username + ':' + password);
 
                 $rootScope.globals = {
                     currentUser: {
@@ -73,7 +74,7 @@ angular.module('indexModule')
                         authdata: authdata
                     }
                 };
-                
+
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
                 $cookieStore.put('globals', $rootScope.globals);
             };
